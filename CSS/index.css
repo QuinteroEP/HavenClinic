@@ -3,7 +3,9 @@
     border: solid red;
 }*/
 
-
+html{
+    background-color: #FFFBE9;
+}
 
 h1{ /*Falta decidir una fuente*/
     font-size: 90px;
@@ -39,38 +41,3 @@ button{
     font-size: 25px;
     border-radius: 2px;
 }
-body {
-    color: #AD8B73;
-    color: white;
-    font-family: sans-serif;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-  }
-  
-  .logo {
-    width: 100px;
-    height: 100px;
-    background-color: #ddd;
-    margin-right: 1rem;
-  }
-  
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-  
-  nav li {
-    margin-right: 1rem;
-  }
-  
-  nav a {
-    color: white;
-    text-decoration: none;
-  }
