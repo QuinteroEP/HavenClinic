@@ -1,28 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Portal Web de la clinica canina Haven">
-    <meta name="keywords" content="Veterinary, Vet, Dog, Clinic" />
-    <link rel="stylesheet" href="../CSS/index.css" />
-
-    <title>Clinica Haven</title>
+    <title>Haven - Clínica Veterinaria</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesindex.css">
 </head>
-
 <body>
-    <main>
-        <div id="splash">
-            <img src="../Images/Logo.png" alt="Haven Logo">
-
-            <h1>Haven</h1>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">
+            <img src="ruta-al-logo-del-perro.png" alt="Haven" class="logo-img"> Haven
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#home">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#services">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contacto</a>
+                </li>
+            </ul>
         </div>
+    </nav>
 
-        <div id="Botones">
-            <button>Registrarse</button>
-            <button>Iniciar Sesion</button>
+    <!-- Hero Section -->
+    <header id="home" class="hero-section text-center text-light">
+        <div class="container">
+            <h1>Bienvenido a Haven</h1>
+            <p>La mejor atención para tu mascota</p>
         </div>
-    </main>
+    </header>
+
+    <!-- Services Section -->
+    <section id="services" class="text-center my-5">
+        <div class="container">
+            <h2>Servicios</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="service-box">
+                        <h3>Consultas</h3>
+                        <p>Consulta médica para tu mascota con nuestros veterinarios especializados.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-box">
+                        <h3>Hospitalización</h3>
+                        <p>Hospitalización completa para el tratamiento y cuidado de tu mascota.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-box">
+                        <h3>Registro de Mascotas</h3>
+                        <p>Registro detallado de cada mascota con información médica y personal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="text-center my-5">
+        <div class="container">
+            <h2>Contacto</h2>
+            <p>Para más información, contáctanos en:</p>
+            <p><strong>Email:</strong> contacto@havenveterinaria.com</p>
+            <p><strong>Teléfono:</strong> +123 456 789</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-3">
+        <p>&copy; 2024 Haven - Clínica Veterinaria. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 </html>
