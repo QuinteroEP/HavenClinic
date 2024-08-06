@@ -41,3 +41,59 @@ button{
     font-size: 25px;
     border-radius: 2px;
 }
+
+/* Colores de la paleta /
+:root {
+    --color-principal: #AD8B73;  / Color de fondo y elementos destacados /
+    --color-secundario: #CEAB93; / Color de fondos secundarios /
+    --color-terciario: #E3CAA5;  / Color de acentos /
+    --color-fondo: #FFFBE9;      / Color de fondo general /
+    --color-texto: #333;         / Color de texto para mejorar la legibilidad /
+}
+
+/ General */
+*{ 
+    border: solid red;
+  }
+  *{
+    box-sizing:border-box;
+    position: sticky;
+    margin: sticky;
+    
+  }
+  
+  main{
+    background-color: #E3CAA5;
+   
+  
+  }
+  
+  footer, header{
+    background-color: #CEAB93;
+    top:0px;
+    
+  
+    display:inline-flex;
+  
+    
+  
+   
+    
+  
+  }
+  
+  img {
+    width: 100px;
+    height: 100px;
+    
+    margin-right: 1rem;
+  }
+  
+  div ul li{
+    display:inline;
+  }
+  
+  a{
+    color:white;
+  }
+  

@@ -12,64 +12,63 @@
 }*/
 
 
-/* Colores de la paleta /
-:root {
-    --color-principal: #AD8B73;  / Color de fondo y elementos destacados /
-    --color-secundario: #CEAB93; / Color de fondos secundarios /
-    --color-terciario: #E3CAA5;  / Color de acentos /
-    --color-fondo: #FFFBE9;      / Color de fondo general /
-    --color-texto: #333;         / Color de texto para mejorar la legibilidad /
+/* General */
+header{
+  background-color: #CEAB93;
 }
-
-/ General */
 body {
-  font-family: Arial, sans-serif;
-  background-color: var(--color-fondo);
-  color: var(--color-texto);
-  margin: 0;
-  padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
 }
-
+img {
+  width: 100px;
+  height: 100px;
+  
+  margin-right: 1rem;
+}
 .navbar {
-  background-color: var(--color-principal);
+    background-color: var(--color-principal);
 }
 
 .navbar-brand {
-  color: #fff;
-  font-size: 1.5rem;
+    color: #fff;
+    font-size: 1.5rem;
 }
 
 .nav-link {
-  color: #fff !important;
+    color: #fff !important;
 }
 
 .hero-section {
-  background-color: var(--color-secundario);
-  color: var(--color-texto);
-  padding: 60px 0;
+    background-color: var(--color-secundario);
+    color: var(--color-texto);
+    padding: 60px 0;
 }
 
 .hero-section h1 {
-  font-size: 3rem;
+    font-size: 3rem;
 }
 
 .hero-section p {
-  font-size: 1.25rem;
+    font-size: 1.25rem;
 }
 
 .service-box {
-  background-color: var(--color-terciario);
-  padding: 20px;
-  border-radius: 8px;
-  margin: 10px 0;
+    background-color: var(--color-terciario);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px 0;
 }
 
 .service-box h3 {
-  font-size: 1.5rem;
+    font-size: 1.5rem;
 }
 
 footer {
-  background-color: var(--color-principal);
-  color: #fff;
-  padding: 20px 0;
+    background-color: var(--color-principal);
+    color: #fff;
+    padding: 20px 0;
 }
