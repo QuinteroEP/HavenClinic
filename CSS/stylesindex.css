@@ -190,10 +190,7 @@ header h2 {
 
   
  }
- .container p{
-  
-  text-align: justify;
- }
+
  
  
  .contenedor_cafe{
@@ -210,4 +207,16 @@ header h2 {
   padding: 30px; /* Consistent padding */
   margin: 50px auto; /* Center the form */
  
+ }
+
+
+
+
+ /*ajustes individuales para agregar a los elementos especificos*/
+ .justify_content{
+  text-align: justify;
+ }
+
+ .center_content{
+  text-align: center;
  }
