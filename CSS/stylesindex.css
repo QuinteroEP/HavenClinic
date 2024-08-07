@@ -50,7 +50,7 @@ body {
     margin: 0;
     padding: 0;
 }
-img {
+#logo {
   width: 100px;
   height: 100px;
   
@@ -144,6 +144,7 @@ header h2 {
   font-weight: bold;
   display: flex;
   flex-direction: column;
+
  }
 
  .form-group { /* New class for each input and label */
@@ -152,7 +153,11 @@ header h2 {
   gap: 15px; /* Space between label and input */
 }
  #mascotaForm{
+  margin: auto;
+ 
   justify-content: space-around;
+  
+
  }
  .form-group label {
   min-width: 120px; /* Ensure labels have consistent width */
@@ -170,7 +175,12 @@ header h2 {
   background-color: var(--color-principal)
  }
 
+ 
+
+ /* Contenedores */
+
  .container{
   margin-top: 70px;
   margin-bottom: 90px;
  }
+
