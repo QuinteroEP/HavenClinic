@@ -92,36 +92,37 @@
         <div id="formularioRegistro">
             <form id="mascotaForm">
                 <fieldset>
+                    <div class="form-group">
+                        <label for="name">Nombre:</label>
+                        <input type="text" id="name" name="name" required>
+                   
+                        <label for="race">Raza:</label>
+                        <input type="text" id="race" name="race" required>
+                   
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="age">Edad:</label>
+                        <input type="number" id="age" name="age" min="0" required>
                     
-                    <label for="name">Nombre:</label>
-                    <input type="text" id="name" name="name">
+                        <label for="weight">Peso:</label>
+                        <input type="number" step="0.01" id="weight" name="weight" min="0" required>
+                 
+                    </div>
+                  
+                    <div class="form-group">
+                        <label for="condition">Condición:</label>
+                        <textarea id="condition" name="condition" rows="3"></textarea>
+                   
+                        <label for="owner">Nombre del dueño:</label> 
+                        <input type="text" id="owner" name="owner" required>
+                  
+                    </div>
                     
-                    <label for="race">Raza:</label>
-                    <input type="text" id="race" name="race">
-                    
-                    <br><br>
-
-                    <label for="age">Edad:</label>
-                    <input type="number" id="age" name="age">
-                    
-                    <label for="weight">Peso:</label>
-                    <input type="number" step="0.01" id="weight" name="weight">
-                    
-                    <br><br>
-
-                    <label for="condition">Condición:</label>
-                    <input type="text" id="condition" name="condition">
-                    
-                    <label for="owner">Nombre del dueño:</label> 
-                    <input type="text" id="owner" name="owner">
-
-                    <br><br>
-
-                    <label for="photo">Foto:</label>
-                    <input type="file" id="photo" name="photo">
-                    
-                    <br><br>
-
+                    <div class="form-group">
+                        <label for="photo">Foto:</label>
+                        <input type="file" id="photo" name="photo" accept="image/*">
+                    </div>
                     
                     <br>
                     <button type="submit">Registrar Mascota</button>
