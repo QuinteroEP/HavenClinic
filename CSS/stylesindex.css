@@ -1,21 +1,25 @@
-/* Colores de la paleta /
+  /* Para debug
+*{ 
+    border: solid red;
+}*/
+
+/* Colores de la paleta */
 :root {
   --color-principal: #AD8B73;
   --color-secundario: #CEAB93;
   --color-terciario: #E3CAA5;
   --color-fondo: #FFFBE9;
 }
-  */
-  /* Para debug
-*{ 
-    border: solid red;
-}*/
-
 
 /* General */
 header{
   background-color: #CEAB93;
 }
+
+header{
+  background-color: #CEAB93;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: var(--color-fondo);
@@ -61,6 +65,8 @@ img {
     padding: 20px;
     border-radius: 8px;
     margin: 10px 0;
+    border : 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .service-box h3 {
@@ -72,3 +78,37 @@ footer {
     color: #fff;
     padding: 20px 0;
 }
+header h2 {
+    font-family: "Rozha One", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #764b36;
+    font-size: 70px;
+  }
+
+  #RegistroMascota{
+    border: 1px solid black;
+    background-color: #CEAB93;
+
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    margin-left: 50px;
+    margin-right: 50px;
+
+    font-weight: bold;
+  }
+  
+ #formularioRegistro{
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+ }
+
+ #mascotaForm{
+  justify-content: space-around;
+ }
+
+ button{
+  font-weight: bold;
+ }
