@@ -50,12 +50,15 @@ body {
     margin: 0;
     padding: 0;
 }
+
 #logo {
   width: 100px;
   height: 100px;
   
   margin-right: 1rem;
 }
+
+/* Navbar */
 .navbar{
     background-color: var(--color-principal);
 
@@ -80,7 +83,7 @@ body {
 .navbar a:hover{
   font-size: 30px;
 }
-
+/* Header2 Section */
 .hero-section {
     background-color: var(--color-secundario);
     color: var(--color-texto);
@@ -92,9 +95,11 @@ body {
 }
 
 .hero-section p {
+  
     font-size: 1.25rem;
 }
 
+/* Servicios Section */
 .service-box {
     background-color: var(--color-terciario);
     padding: 20px;
@@ -132,13 +137,7 @@ header h2 {
 
   /* Registro de mascota */
 
-  #RegistroMascota{
-    border: 1px solid #333;
-    background-color: var(--color-secundario);
-    padding: 30px; /* Consistent padding */
-    margin: 50px auto; /* Center the form */
-    font-weight: bold;
-  }
+
   
  #formularioRegistro{
   font-weight: bold;
@@ -184,3 +183,31 @@ header h2 {
   margin-bottom: 90px;
  }
 
+
+ .container img{
+  margin: 10px;
+  float:left;
+
+  
+ }
+ .container p{
+  
+  text-align: justify;
+ }
+ 
+ 
+ .contenedor_cafe{
+  border: 1px solid #333;
+  background-color: var(--color-secundario);
+  padding: 30px; /* Consistent padding */
+  margin: 50px auto; /* Center the form */
+ 
+ }
+
+ .contenedor_claro{
+ 
+  background-color: var(--color-fondo);
+  padding: 30px; /* Consistent padding */
+  margin: 50px auto; /* Center the form */
+ 
+ }
