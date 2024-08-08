@@ -66,6 +66,8 @@ body {
     background-color: var(--color-principal);
 
     position: fixed;
+    z-index: 2;
+
     top: 0;
     width: 100%;
 }
@@ -84,7 +86,8 @@ body {
 }
 
 .navbar a:hover{
-  font-size: 30px;
+  font-size: 25px;
+  text-decoration: underline;
 }
 /* Header2 Section */
 .hero-section {
@@ -187,9 +190,11 @@ header h2 {
  }
 
 
- .container img{
-  margin: 10px;
+ #QuienesSomos img{
+  margin: 12px;
   float:left;
+
+  border: 1px solid  black;
 
   
  }
@@ -253,8 +258,15 @@ header h2 {
     margin: 0; /* Remove any margin */
     padding: 0; /* Remove any padding */
 
+    z-index: 1;
 }
+
 
 #Mision{
     margin: 0;
+}
+
+#contact p{
+  font-size: 15px;
+  font-style: italic;
 }
