@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiny Pokemon Master - Register Pokemon</title>
+    <meta
+        name="Shiny Pokemon Master"
+        content="Learn more about shiny Pokemon and keep track of the ones you've captured"
+        />
+    <meta name="keywords" content="Pokemon, Shiny" />
+    <link rel="stylesheet" href="../css/register_style.css" />
+    <script src="../Scripts/script.js"></script>
+
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div id="navfather">
+            <div id="navbar">
+                <ul>
+                    <a href="index.html"> <li>Home</li> </a>
+                    <a href="methods.html"> <li>Methods</li> </a>
+                    <a href="#tracker"> <li>Registered Pokemon</li> </a>
+                    <a href="Charms.html"> <li>Meet the Charms</li> </a>
+                    <a href="Tips.html"> <li>Tips</li> </a>
+                </ul>
+            </div>
+        </div>
+
+        <div id="landing">
+            <div id="title">
+                <h1>Shiny Pokemon Master</h1>
+            </div>
+        </div>
+
+    </header>
+    
+    <div id="tracker">
+        <h2>Registered Pokemon</h2>
+        <h4>Register the Pokemon you have collected and keep track of their stats</h4>    
+        
+        <br>
+        
+        <div id="Formulario">
+            <form id="registerForm"> 
+                <fieldset>
+                    <legend>Register Form</legend>
+
+                    <label for="txtPokemon">Pokemon</label>
+                    <input type="text" name="poke" id="txtPokemon" required>
+                    
+                    <label for="txtNick">Nickname (Optional)</label>
+                    <input type="text" name="nick" id="txtNick">
+
+                    <label for="originGame">Game</label>
+                    <input type="text" name="game" id="originGame" required>
+
+                    <label for="numEncounters">Number of enounters/Eggs (0 if unknown)</label>
+                    <input type="number" name="enc" id="numEncounters" value="0" required>
+                    
+                    <label for="lstMethod">Method</label>
+                    <select name="meth" id="lstMethod" required>
+                        <option value="Breeding">Breeding</option>
+                        <option value="Ultra Wormholes">Ultra Wormholes</option>
+                        <option value="S.O.S">S.O.S Battles</option>
+                        <option value="DexNav">DexNav</option>
+                        <option value="Pokeradar">Pokeradar</option>
+                        <option value="Chain Fishing">Chain Fishing</option>
+                        <option value="Dynamax Adventures">Dynamax Adventures</option>
+                        <option value="Random Encounters">Random Encounters</option>
+                        <option value="Soft Reseting">Soft Reseting</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <p><strong>Shiny Charm?</strong></p>
+                    <div id="charmOption">
+                        <input type="radio" name="charmCheck" value="charmYes" id="charmYes" >
+                        <label for="charmYes">Yes</label>
+
+                        <input type="radio" name="charmCheck" value="charmNo" id="charmNo" checked>
+                        <label for="charmNo">No</label>
+                    </div>
+
+                    <br>
+
+                    <label for="photo">Photo URL (Optional)</label>
+                    <input type="text" name="pic" id="photo">
+
+                    <br>
+
+                    <div id="buttonFather">
+                        <button type="submit">Register</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+
+    <br>
+    <hr>
+
+    <div id="registered">
+        <table>
+            <thead>
+                <th>Registered Pokemon</th>
+                <th></th>
+            </thead>
+
+            <tbody id="tableBody">
+                <tr>
+                    <td id="tableBody">Name</td>
+                    <td><button>Show Info</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <br>
+
+    <div id="Data">
+
+        <div id="information">
+
+        </div>
+    
+        <div id="Photo">
+            
+        </div>
+
+    </div>
+    
+    <footer>
+        <div id="contacto">
+            <p>Pablo Enrique Quintero Callamand (<span>p_quintero@javeriana.edu.co</span>) </p>
+            <p>Copyright &copy; 2024</p>
+            <p>Universidad Javeriana - Bogotá, Colombia</p>
+        </div>
+
+        <div id="gitLink">
+            <a href="https://github.com/QuinteroEP" target="_blank">
+                <img src="../Images/github.png" alt="GitHub">
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>
