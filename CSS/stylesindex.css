@@ -61,6 +61,12 @@ body {
   margin-right: 1rem;
 }
 
+#logo2 {
+  width: 100px;
+  height: 100px;
+  
+  margin-right: 1rem;
+}
 /* Navbar */
 .navbar{
     background-color: var(--color-principal);
@@ -190,8 +196,12 @@ header h2 {
  }
 
 
- #QuienesSomos img{
-  margin: 12px;
+ #QuienesSomos img  {
+
+  display: block;
+  margin-left: 250px;
+  margin-right: auto;
+  margin-top: 35px;
   float:left;
 
   border: 1px solid  black;
@@ -202,7 +212,19 @@ header h2 {
   
   text-align: justify;
  }
+
+
+  #QuienesSomos .container p{
+    padding: 0px 150px;
+    font-size: large;
+     
+  }
  
+  h2{
+    
+    font-size: 45px;
+  font-weight: bold;
+  }
  
  .contenedor_cafe{
   border: 1px solid #333;
@@ -269,4 +291,6 @@ header h2 {
 #contact p{
   font-size: 15px;
   font-style: italic;
+  text-align: center;
 }
+
