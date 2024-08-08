@@ -1,5 +1,5 @@
 <h1 align="center">
-  Proyecto web - Haven
+  Proyecto Final Desarrollo Web - Haven
 </h1>
 Este es un portal web de la clinica veterinaria ficticia Haven, en el cual los dueños de mascotas podran registrarlas para tratamiento al igual que mantenerse actualizados sobre este. Por otro lado, los veterinarios podran acceder a la informacion de sus pacientes (raza, edad, razon de consulta, historial medico, etc.), y el administrador de la clinica podra obtener la informacion de tanto los veterinarios como la de los pacientes de cada uno.
 
