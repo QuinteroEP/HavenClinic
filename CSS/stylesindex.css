@@ -5,10 +5,11 @@
 
 /* Colores de la paleta */
 :root {
-  --color-principal: #AD8B73;
-  --color-secundario: #CEAB93;
+  --color-principal: #754b36;
+  --color-secundario: #d7a68f;
   --color-terciario: #E3CAA5;
-  --color-fondo: #FFFBE9;
+  --color-fondo: #fbf2e4;
+    --color-texto: #000;
 }
 
 /* General */
@@ -36,12 +37,14 @@ header{
 
 #splash p{
   font-size: 50px;
+    color: #754b36;
 }
 
 #Botones{
   font-size: 25px;
   border-radius: 2px;
 }
+
 
 body {
     font-family: Arial, sans-serif;
@@ -85,8 +88,8 @@ body {
 }
 /* Header2 Section */
 .hero-section {
-    background-color: var(--color-secundario);
-    color: var(--color-texto);
+    background-color: var(--color-fondo);
+    color: #754b36;
     padding: 60px 0;
 }
 
@@ -95,7 +98,7 @@ body {
 }
 
 .hero-section p {
-  
+
     font-size: 1.25rem;
 }
 
@@ -131,7 +134,7 @@ header h2 {
     font-family: "Rozha One", serif;
     font-weight: 400;
     font-style: normal;
-    color: #764b36;
+    color: #f9f0e3;
     font-size: 70px;
   }
 
@@ -201,6 +204,7 @@ header h2 {
   background-color: var(--color-secundario);
   padding: 30px; /* Consistent padding */
   margin: 50px auto; /* Center the form */
+     border-style: none;
  
  }
 
@@ -211,3 +215,46 @@ header h2 {
   margin: 50px auto; /* Center the form */
  
  }
+
+ /* Personalización del carrusel */
+/* Ensure the carousel spans the full width of the page */
+#Mision .carousel-item img {
+    width: 100%; /* Ensure images take full width */
+    max-height: 500px; /* Adjust the height as needed */
+    object-fit: cover; /* Ensure images cover the container */
+    image-rendering: auto; /* Default rendering */
+    image-rendering: -webkit-optimize-contrast; /* High-quality rendering for WebKit browsers */
+    image-rendering: optimizeQuality; /* High-quality rendering */
+
+}
+#Mision .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para el texto */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+
+}
+
+#Mision .carousel-control-prev-icon,
+#Mision .carousel-control-next-icon {
+    background-color: #333; /* Color de fondo de los iconos de control */
+    border-radius: 50%; /* Iconos redondeados */
+}
+
+/* Ensure the carousel spans the full width of the page */
+#Mision .carousel-item img {
+    width: 100%; /* Ensure images take full width */
+    max-height: 500px; /* Adjust the height as needed */
+    object-fit: cover; /* Ensure images cover the container */
+
+}
+
+#Mision .container, #Mision #misionCarousel {
+    width: 100%; /* Ensure the container takes full width */
+    margin: 0; /* Remove any margin */
+    padding: 0; /* Remove any padding */
+
+}
+
+#Mision{
+    margin: 0;
+}
