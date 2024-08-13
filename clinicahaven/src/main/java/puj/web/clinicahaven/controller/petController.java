@@ -11,12 +11,5 @@ import puj.web.clinicahaven.servicio.petService;
 @Controller
 
 public class petController {
-    @Autowired
-    petService service;
-
-    /*public String mostrarLista(Model model){
-        model.addAttribute("Mascotas", petService.findAll());
-
-        return s;
-    }*/
+   
 } 
