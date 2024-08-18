@@ -94,6 +94,7 @@ body {
     background-color: var(--color-fondo);
     color: #754b36;
     padding: 60px 0;
+    z-index: -2;
 }
 
 .hero-section h1 {
@@ -341,4 +342,48 @@ header h2 {
 
   .form-column:last-child {
       margin-right: 0;
+  }
+
+  /* Star animation */
+  .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: 0; /* Ensure stars are behind the logo */
+  }
+
+  .star {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      background: var(--color-principal);
+      border-radius: 50%;
+      animation: twinkle 2s infinite, move-diagonal 5s linear infinite;
+  }
+
+  @keyframes twinkle {
+      0%, 100% {
+          opacity: 0.5;
+      }
+      50% {
+          opacity: 1;
+      }
+  }
+
+  @keyframes move-diagonal {
+      0% {
+          transform: translate(0, 0);
+      }
+      100% {
+          transform: translate(100px, 100px);
+      }
+  }
+
+  /* Ensure interactive elements have a higher z-index */
+  #home #up {
+      position: relative;
+      z-index: 1;
   }

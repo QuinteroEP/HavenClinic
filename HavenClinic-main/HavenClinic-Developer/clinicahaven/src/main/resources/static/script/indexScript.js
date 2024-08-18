@@ -46,4 +46,17 @@ window.onload = () => {
         event.preventDefault();
         window.location.href = "/menu";
     });
+
+    // Star animation
+    const starContainer = document.querySelector(".stars");
+    const starCount = 100; // Number of stars
+
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement("div");
+        star.classList.add("star");
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        starContainer.appendChild(star);
+    }
+
 }
