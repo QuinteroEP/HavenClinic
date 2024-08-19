@@ -1,6 +1,6 @@
 package puj.web.clinicahaven.entity;
 
-import java.net.URL;
+
 
 public class mascot {
     private String nombre;

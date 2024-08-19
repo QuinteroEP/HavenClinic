@@ -6,6 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     function logOut(){
-        window.location.href = "/"
+        window.location.href = "/inicio"
     }
 })
