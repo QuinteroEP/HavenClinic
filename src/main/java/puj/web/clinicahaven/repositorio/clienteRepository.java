@@ -33,6 +33,10 @@ public class clienteRepository {
         return clientes.get(cedula);
     }
 
+    public Cliente findByEmail(String correo) {
+        return clientes.get(correo);
+    }
+
     public void deleteByCedula(int cedula) {
         clientes.remove(cedula);
     }
@@ -41,13 +45,5 @@ public class clienteRepository {
         clientes.put(cliente.getCedula(), cliente);
     }
 
-    public void agregar(Cliente cliente) {
-     
-        clientes.put(cliente.getCedula(), cliente);
-       
-    
-
-
-
-}
+    public void agregar(Cliente cliente) {clientes.put(cliente.getCedula(), cliente);}
 }

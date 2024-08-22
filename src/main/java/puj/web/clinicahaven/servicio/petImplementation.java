@@ -13,6 +13,9 @@ public class petImplementation implements petService{
     @Autowired
     petRepository repo;
 
+
+
+
     @Override
     public Collection<mascot> findAll() {
         return repo.findAll(); 
@@ -27,4 +30,20 @@ public class petImplementation implements petService{
     public void deletePet(int key){
         repo.deletePet(key);
     }
+
+    @Override
+    public void update(mascot mascota){
+        repo.update(mascota);
+    }
+
+    @Override
+    public void agregar(mascot mascota){
+        repo.agregar(mascota);
+    }
+
+
+
+
+
+
 }

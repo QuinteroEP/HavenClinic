@@ -21,6 +21,10 @@ public class ClienteImplementation implements ClienteService{
        
         return repoCliente.findByCedula(cedula);
     }
+    @Override
+    public Cliente findByEmail(String correo) {
+        return repoCliente.findByEmail(correo);
+    }
     
     @Override //override es para sobreescribir un metodo
     public Collection<Cliente> findAll() {

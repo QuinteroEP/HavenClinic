@@ -32,6 +32,7 @@ public String getMethodName(Model model) {
 }
 
 
+//localhost:8090/cliente/find/10
 @GetMapping("/find/{cedula}")
 public String MostrarInfoCliente( Model model,@PathVariable("cedula") int cedula) {
     Cliente client = clienteService.findByCedula(cedula);
@@ -41,6 +42,13 @@ public String MostrarInfoCliente( Model model,@PathVariable("cedula") int cedula
     }else{
      throw new NotFoundException(cedula);
     }
+    return "mostrar_cliente";
+}
+
+
+@GetMapping("/findEmail/{correo}")
+public String MostrarInfoCliente( Model model,@RequestParam("correo") String correo) {
+    model.addAttribute("cliente", clienteService.findByEmail(correo));
     return "mostrar_cliente";
 }
 

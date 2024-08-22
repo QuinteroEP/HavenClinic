@@ -134,8 +134,9 @@ main{
     color: #754b36;
 }
 
-#petForm{
+#form{
     background-color:#d7a68f;
+    border: solid 2px black;
 
     padding: 10px;
     margin: 20px;

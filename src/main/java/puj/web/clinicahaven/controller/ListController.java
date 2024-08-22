@@ -23,7 +23,7 @@ public class ListController {
         this.petRepo = petRepo;
     }
 
-    @GetMapping("/lista")
+    @GetMapping("mascotas/informacion")
     public String list(Model model) {
         Collection<mascot> pets = petRepo.findAll();
         model.addAttribute("pets", pets);

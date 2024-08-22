@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class adminPageController {
 
 
-    @GetMapping("/admin")
+    @GetMapping("/veterinaria/administrador")
     public String getMenu() {
         return "adminPage";
     }

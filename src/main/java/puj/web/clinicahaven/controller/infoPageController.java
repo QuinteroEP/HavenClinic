@@ -16,7 +16,7 @@ public class infoPageController {
     @Autowired
     petService servicio;
 
-    @GetMapping("/informacion/{id}")
+    @GetMapping("mascotas/informacion/{id}")
     public String petInfo(Model model, @PathVariable("id") int id) {
 
 

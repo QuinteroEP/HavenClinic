@@ -29,28 +29,31 @@
     </header>
 
     <main>
-        <form id="petForm" th:object="${pet}" th:action="@{/mascota/agregarMascota}" method="post">
+        <form  id="form" th:object="${mascota}" th:action="@{/agregarmascota}" method="post"  >
+            <h1>Registrarse</h1>
+
             <div class="form-row">
                 <div class="form-column">
-                    <label for="nombre">Nombre</label>
-                    <input>
+                    <label ><b>nombre</b></label>
+                    <input th:field="*{nombre}" type="text" placeholder="nombre" name="nombre" id="nombre_mascota" required>
 
-                    <label for="edad">Edad</label>
-                    <input>
+                    <label ><b>edad</b></label>
+                    <input th:field="*{edad}" type="text" placeholder="edad" name="edad" id="edad_mascota" required>
 
-                    <label for="raza">Raza</label>
-                    <input>
+                    <label for="raza"><b>Correo</b></label>
+                    <input  th:field="*{raza}"type="email" placeholder="raza" name="raza" id="raza" required>
+                </div>
+                <div class="form-column">
+                    <label for="condicion"><b>Celular</b></label>
+                    <input th:field="*{condicion}" type="text" placeholder="condicion" name="condicion" id="condicion" required>
 
-                    <label for="condicion">Condicion</label>
-                    <input>
-
-                    <br>
-                    <label for="foto">Foto</label>
-                    <input type="file">
+                    <label ><b>descripcion</b></label>
+                    <input th:field="*{descripcion}" type="text" placeholder="descripcion" name="descripcion" id="descripcion" required>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+
         </form>
     </main>
 

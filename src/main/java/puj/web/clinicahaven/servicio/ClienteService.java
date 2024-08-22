@@ -13,6 +13,9 @@ public interface ClienteService {
     
     public Cliente findByCedula(int cedula);
 
+    public Cliente findByEmail(String correo);
+
+
     public Collection<Cliente> findAll();
 
     public void deleteByCedula(int cedula);

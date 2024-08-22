@@ -11,4 +11,8 @@ public interface petService {
     public mascot findPet(int id);
 
     public void deletePet(int id);
+
+    public void update(mascot mascota);
+
+    public void agregar(mascot mascota);
 }
