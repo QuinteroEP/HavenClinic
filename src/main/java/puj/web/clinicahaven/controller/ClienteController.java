@@ -3,16 +3,15 @@ package puj.web.clinicahaven.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import puj.web.clinicahaven.entity.Cliente;
-import puj.web.clinicahaven.servicio.ClienteService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import puj.web.clinicahaven.entity.Cliente;
+import puj.web.clinicahaven.servicio.ClienteService;
 
 
 
@@ -25,7 +24,7 @@ public class ClienteController {
 ClienteService clienteService;
 
 
-//localhost:8080/cliente/all
+//localhost:8090/cliente/all
 @GetMapping("/all")
 public String getMethodName(Model model) {
     model.addAttribute("clientes", clienteService.findAll());

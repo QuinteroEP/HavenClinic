@@ -3,6 +3,7 @@ package puj.web.clinicahaven.controller;
 public class NotFoundException extends RuntimeException {
     
     private int id;
+    private int petId;
     
     public NotFoundException(int id) {
         this.id = id;
@@ -14,5 +15,18 @@ public class NotFoundException extends RuntimeException {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+
+    public petNotFoundException(int petId) {
+        this.id = petId;
+    }
+
+    public int getPetId() {
+        return petId;
+    }
+
+    public void setPetId(int petId) {
+        this.petId = petId;
     }
 }

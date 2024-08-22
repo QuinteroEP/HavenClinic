@@ -133,3 +133,10 @@ main{
 
     color: #754b36;
 }
+
+#petForm{
+    background-color:#d7a68f;
+
+    padding: 10px;
+    margin: 20px;
+}

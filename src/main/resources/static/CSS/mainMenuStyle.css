@@ -127,3 +127,9 @@ main{
       font-family: 'Rozha One', serif;
       font-size: 1.2rem;
   }
+
+  h2{
+    font-family: "Rozha One", serif;
+
+    color: #754b36;
+}

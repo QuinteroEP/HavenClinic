@@ -4,8 +4,9 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import puj.web.clinicahaven.repositorio.clienteRepository;
+
 import puj.web.clinicahaven.entity.Cliente;
+import puj.web.clinicahaven.repositorio.clienteRepository;
 
 // @Service es un decorador que indica que la clase es un servicio para ser inyectada en otros componentes
 @Service
@@ -20,6 +21,7 @@ public class ClienteImplementation implements ClienteService{
        
         return repoCliente.findByCedula(cedula);
     }
+    
     @Override //override es para sobreescribir un metodo
     public Collection<Cliente> findAll() {
         

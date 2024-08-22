@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class ErrorControler {
+public class ErrorController {
     @ExceptionHandler (NotFoundException.class)
-    public String error(Model model, NotFoundException e) {
-        model.addAttribute("error", e.getId());
+    public String error(Model model, NotFoundException ex) {
+        model.addAttribute("id", ex.getId());
 
-        return ("pagina_error_cliente");
+        return ("errorFindClient");
     }
 }
