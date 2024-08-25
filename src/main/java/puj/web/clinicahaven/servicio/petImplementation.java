@@ -22,23 +22,23 @@ public class petImplementation implements petService{
     }
 
     @Override
-    public mascot findPet(int key){
-        return repo.findPet(key);
+    public mascot findPet(Long key){
+        return repo.findById(key).get();
     }
     
     @Override
-    public void deletePet(int key){
-        repo.deletePet(key);
+    public void deletePet(Long key){
+        repo.deleteById(key);
     }
 
     @Override
     public void update(mascot mascota){
-        repo.update(mascota);
+        repo.save(mascota);
     }
 
     @Override
     public void agregar(mascot mascota){
-        repo.agregar(mascota);
+        repo.save(mascota);
     }
 
 

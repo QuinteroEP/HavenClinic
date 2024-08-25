@@ -1,10 +1,10 @@
 package puj.web.clinicahaven.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Cliente {
@@ -16,6 +16,9 @@ public class Cliente {
     private int celular;
     private String correo;
     private String contraseña;
+
+    @OneToMany(mappedBy = "dueño", cascade = CascadeType.ALL)
+    private List<mascot> mascotas = new ArrayList<>();
 
 
     public Cliente(String nombre, int cedula, int celular, String correo, String contraseña) {

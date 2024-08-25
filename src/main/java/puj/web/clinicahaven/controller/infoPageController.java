@@ -17,7 +17,7 @@ public class infoPageController {
     petService servicio;
 
     @GetMapping("mascotas/informacion/{id}")
-    public String petInfo(Model model, @PathVariable("id") int id) {
+    public String petInfo(Model model, @PathVariable("id") Long id) {
 
 
         mascot mascota = servicio.findPet(id);

@@ -25,7 +25,7 @@ public class petRegisterController {
     @GetMapping("mascotas/crear")
     public String CrearNuevaMascota(Model model) {
 
-        mascot mascota = new mascot("", "", "", "", 0, "", "");
+        mascot mascota = new mascot("", "", "", "",  "", "");
 
         model.addAttribute("mascota", mascota);
 

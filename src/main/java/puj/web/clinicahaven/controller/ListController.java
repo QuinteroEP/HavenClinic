@@ -31,7 +31,7 @@ public class ListController {
     }
 
     @GetMapping("mascotas/delete/{id}")
-    public String deletePet(@PathVariable("id") int id) {
+    public String deletePet(@PathVariable("id") Long id) {
         servicio.deletePet(id);
         return "redirect:mascotas/informacion";
     }
