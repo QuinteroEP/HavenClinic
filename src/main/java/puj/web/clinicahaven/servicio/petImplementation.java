@@ -1,0 +1,49 @@
+package puj.web.clinicahaven.servicio;
+
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import puj.web.clinicahaven.entity.mascot;
+import puj.web.clinicahaven.repositorio.petRepository;
+
+@Service
+public class petImplementation implements petService{
+    @Autowired
+    petRepository repo;
+
+
+
+
+    @Override
+    public Collection<mascot> findAll() {
+        return repo.findAll(); 
+    }
+
+    @Override
+    public mascot findPet(Long key){
+        return repo.findById(key).get();
+    }
+    
+    @Override
+    public void deletePet(Long key){
+        repo.deleteById(key);
+    }
+
+    @Override
+    public void update(mascot mascota){
+        repo.save(mascota);
+    }
+
+    @Override
+    public void agregar(mascot mascota){
+        repo.save(mascota);
+    }
+
+
+
+
+
+
+}

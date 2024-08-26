@@ -1,0 +1,174 @@
+/* Para debug
+*{
+  border: solid red;
+}*/
+
+/* Colores de la paleta */
+:root {
+    --color-principal: #754b36;
+    --color-secundario: #d7a68f;
+    --color-terciario: #E3CAA5;
+    --color-fondo: #fbf2e4;
+    --color-texto: #000;
+}
+
+/* General */
+html{
+    scroll-behavior: smooth;
+    scroll-padding: 120px;
+}
+
+header{
+    background-color: #CEAB93;
+}
+
+#splash{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#splash img{
+    width: 40%;
+    height: auto;
+}
+
+#splash p{
+    font-size: 50px;
+    color: #754b36;
+}
+
+#Botones{
+    font-size: 25px;
+    border-radius: 2px;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
+}
+
+#logo {
+    width: 100px;
+    height: 100px;
+
+    margin-right: 1rem;
+}
+
+/* Navbar */
+.navbar{
+    background-color: var(--color-principal);
+
+    position: fixed;
+    z-index: 2;
+
+    top: 0;
+    width: 100%;
+}
+
+.navbar a{
+    font-size: 20px;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    color: #fff !important;
+}
+
+.navbar a:hover{
+    font-size: 25px;
+    text-decoration: underline;
+}
+/* Header2 Section */
+.hero-section {
+    background-color: var(--color-fondo);
+    color: #754b36;
+    padding: 60px 0;
+    z-index: -2;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+}
+
+.hero-section p {
+
+    font-size: 1.25rem;
+}
+
+/* Servicios Section */
+.service-box {
+    background-color: var(--color-terciario);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px 0;
+    border : 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.service-box h3 {
+    font-size: 1.5rem;
+}
+
+footer {
+    text-align: left;
+
+    background-color: var(--color-principal);
+    color: #fff;
+    padding: 20px 0;
+}
+
+footer p{
+    margin-left: 20px;
+
+    font-style: italic;
+}
+
+header h2 {
+    font-family: "Rozha One", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #f9f0e3;
+    font-size: 70px;
+}
+
+button{
+    background-color: red;
+}
+
+#tabla{
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+
+    border: solid 1px grey;
+}
+
+#tabla tr:nth-child(even){
+    background-color: lightgrey;
+}
+
+h1{
+    padding-left: 10px;
+    padding-top: 5px;
+
+    font-style: italic;
+}
+
+#buttonAdd{
+    margin: 10px;
+}
+
+#cerrar{
+    border: solid 1px black;
+}
