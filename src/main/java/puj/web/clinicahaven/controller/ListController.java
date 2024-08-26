@@ -30,9 +30,9 @@ public class ListController {
         return "listPage";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deletePet(@PathVariable("id") int id) {
+    @GetMapping("mascotas/delete/{id}")
+    public String deletePet(@PathVariable("id") Long id) {
         servicio.deletePet(id);
-        return "redirect:/lista";
+        return "redirect:mascotas/informacion";
     }
 }

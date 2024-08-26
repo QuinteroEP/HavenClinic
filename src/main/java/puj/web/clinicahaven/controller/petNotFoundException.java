@@ -1,17 +1,17 @@
 package puj.web.clinicahaven.controller;
 
 public class petNotFoundException extends RuntimeException{
-    private int petId;
+    private Long petId;
 
-    public petNotFoundException(int petId) {
+    public petNotFoundException(Long petId) {
         this.petId = petId;
     }
 
-    public int getPetId() {
+    public Long getPetId() {
         return petId;
     }
 
-    public void setPetId(int petId) {
+    public void setPetId(Long petId) {
         this.petId = petId;
     }
 }

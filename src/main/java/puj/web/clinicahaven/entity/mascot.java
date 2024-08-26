@@ -1,15 +1,26 @@
 package puj.web.clinicahaven.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class mascot {
     private String nombre;
     private String edad;
     private String raza;
     private String url;
-    private int id;
+    @Id
+    @GeneratedValue
+    private Long id;
     private String condicion;
     private String descripcion;
+
+    @ManyToOne
+    private Cliente dueño;
     
-    public mascot(String nombre, String edad, String raza, String url, int id, String condicion, String descripcion) {
+    public mascot(String nombre, String edad, String raza, String url, Long id, String condicion, String descripcion) {
         this.nombre = nombre;
         this.edad = edad;
         this.raza = raza;
@@ -17,6 +28,26 @@ public class mascot {
         this.id = id;
         this.condicion = condicion;
         this.descripcion = descripcion;
+    }
+
+    public mascot() {
+    }
+
+    public mascot(String nombre, String edad, String raza, String url, String condicion, String descripcion) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.raza = raza;
+        this.url = url;
+        this.condicion = condicion;
+        this.descripcion = descripcion;
+    }
+
+    public Cliente getDueño() {
+        return dueño;
+    }
+
+    public void setDueño(Cliente dueño) {
+        this.dueño = dueño;
     }
 
     public String getNombre() {
@@ -51,11 +82,11 @@ public class mascot {
         this.url = url;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
