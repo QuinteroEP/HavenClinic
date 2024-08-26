@@ -1,6 +1,6 @@
   /* Para debug
 *{ 
-    border: solid red;
+    border: solid 1px red;
 }*/
 
 /* Colores de la paleta */
@@ -140,4 +140,12 @@ main{
 
     padding: 10px;
     margin: 20px;
+}
+
+#Description{
+    margin-top: 20px;
+}
+
+#SubmitButton{
+    margin-top: 10px;
 }

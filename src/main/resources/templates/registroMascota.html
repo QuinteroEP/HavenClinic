@@ -30,29 +30,33 @@
 
     <main>
         <form  id="form" th:object="${mascota}" th:action="@{/agregarmascota}" method="post"  >
-            <h1>Registrarse</h1>
+            <h1>Registrar una mascota</h1>
 
             <div class="form-row">
                 <div class="form-column">
-                    <label ><b>nombre</b></label>
+                    <label for=""><b>Nombre</b></label>
                     <input th:field="*{nombre}" type="text" placeholder="nombre" name="nombre" id="nombre_mascota" required>
 
-                    <label ><b>edad</b></label>
+                    <label for="edad_mascota"><b>Edad</b></label>
                     <input th:field="*{edad}" type="text" placeholder="edad" name="edad" id="edad_mascota" required>
 
-                    <label for="raza"><b>Correo</b></label>
+                    <label for="raza"><b>Raza</b></label>
                     <input  th:field="*{raza}"type="email" placeholder="raza" name="raza" id="raza" required>
                 </div>
                 <div class="form-column">
-                    <label for="condicion"><b>Celular</b></label>
+                    <label for="condicion"><b>Condicion</b></label>
                     <input th:field="*{condicion}" type="text" placeholder="condicion" name="condicion" id="condicion" required>
-
-                    <label ><b>descripcion</b></label>
-                    <input th:field="*{descripcion}" type="text" placeholder="descripcion" name="descripcion" id="descripcion" required>
                 </div>
+                
             </div>
 
-            <button type="submit" class="btn btn-primary">Registrarse</button>
+            <div id="Description" class="form-column">
+                <label ><b>descripcion de estado medico</b></label>
+                <br>
+                <textarea th:field="*{descripcion}" type="text" name="descripcion" id="descripcion"> </textarea>
+            </div>
+
+            <button type="submit" id="SubmitButton" class="btn btn-primary">Registrar</button>
 
         </form>
     </main>

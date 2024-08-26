@@ -147,5 +147,28 @@ button{
 }
 
 #tabla{
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+
+    border: solid 1px grey;
+}
+
+#tabla tr:nth-child(even){
+    background-color: lightgrey;
+}
+
+h1{
+    padding-left: 10px;
+    padding-top: 5px;
+
+    font-style: italic;
+}
+
+#buttonAdd{
     margin: 10px;
+}
+
+#cerrar{
+    border: solid 1px black;
 }

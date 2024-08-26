@@ -106,6 +106,10 @@ main{
   width: 50px;
 }
 
+.table tr:nth-child(odd){
+  background-color: lightgrey;
+}
+
 .table-hover tbody tr:hover {
     transform: translateY(-5px);
 }

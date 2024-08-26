@@ -21,10 +21,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/admin">Inicio <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/veterinaria/administrador">Inicio <span class="sr-only">(current)</span></a>
                     </li>
                     <li>
-                        <button id="cerrar">Cerrar Sesion</button>
+                        <button id="cerrar" class="btn btn-danger">Cerrar Sesion</button>
                     </li>
                 </ul>
             </div>
@@ -32,7 +32,7 @@
         </header>
     <h1>Clientes de Haven</h1>
 
-    <div>
+    <div id="tabla">
         <table class="table ">
             <thead class="thead-dark">
                 <tr>
@@ -40,7 +40,7 @@
                     <th>Cedula</th>
                     <th >Celular</th>
                     <th >Correo</th>
-                  
+                    <th></th>
                 </tr>
             </thead>
 
@@ -63,7 +63,7 @@
         </table>
     </div>
 
-    <a type="button" class="btn btn-primary" th:href="@{/cliente/registrar}">Agregar Cliente</a>
+    <a type="button" id="buttonAdd" class="btn btn-info" th:href="@{/cliente/registrar}">Agregar Cliente</a>
 
 </body>
 </html>
