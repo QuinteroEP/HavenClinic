@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import puj.web.clinicahaven.controller.errorHandling.NotFoundException;
 import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.servicio.ClienteService;
 

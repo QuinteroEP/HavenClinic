@@ -38,15 +38,6 @@ header h1{
     padding-right: 10px;
 }
 
-header button{
-    background-color: red;
-    color: white;
-    border: 1px solid black;
-    cursor: pointer;
-    
-    justify-content: right;
-}
-
 footer {
     text-align: left;
 

@@ -1,4 +1,4 @@
-package puj.web.clinicahaven.controller;
+package puj.web.clinicahaven.controller.errorHandling;
 
 public class NotFoundException extends RuntimeException {
     
