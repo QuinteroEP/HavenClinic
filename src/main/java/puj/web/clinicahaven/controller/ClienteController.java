@@ -75,7 +75,7 @@ public String CrearNuevoCliente(Model model) {
 @PostMapping("/agregarCliente")
 public String agregarCliente(@ModelAttribute("cliente") Cliente cliente) {
    clienteService.add(cliente);
-    return "redirect:/cliente/all";
+    return "redirect:/menu";
 }
 
 //localhost:8080/cliente/eliminarCliente/{cedula}

@@ -23,6 +23,9 @@ window.onload = () => {
         darkOverlay.style.display = "block";
     }
 
+    function handleCancel() {
+        window.location.href = '/'; // Cambia '/otraPagina' por la URL a la que deseas redirigir
+    }
     function closePopUp() {
         loginForm.style.display = "none";
         darkOverlay.style.display = "none";

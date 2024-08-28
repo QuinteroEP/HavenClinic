@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <meta charset="UTF-8">
@@ -7,6 +7,7 @@
     <title>Haven - Clínica Veterinaria</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/CSS/stylesindex.css">
+    <link rel="stylesheet" href="/CSS/header_footer.css">
     <script src="/script/indexScript.js"> </script>
 
     <!-- Fonts -->
@@ -82,37 +83,39 @@
             </form>
         </div>
 
-        <!-- Pop Up Registro -->
-        <div class="darker">
-            <div class="form-popup" id="registerForm">
-                <form id="popUpRegister" class="form-container">
-                    <h1>Registrarse</h1>
+      <!-- Pop Up Registro -->
+<div class="darker">
+    <div class="form-popup" id="registerForm">
+        <form id="popUpRegister" th:object="${cliente}" th:action="@{/cliente/agregarCliente}" method="post" class="form-container">
+            <h1>Registrarse</h1>
 
-                    <div class="form-row">
-                        <div class="form-column">
-                            <label for="cedula"><b>Cedula</b></label>
-                            <input type="text" placeholder="Cedula" name="cedula" id="cedula" required>
+            <div class="form-row">
+                <div class="form-column">
+                    <label for="cedula"><b>Cedula</b></label>
+                    <input th:field="*{cedula}" type="text" placeholder="Cedula" name="cedula" id="cedula" required>
 
-                            <label for="nombre"><b>Nombre</b></label>
-                            <input type="text" placeholder="Nombre" name="nombre" id="nombre" required>
+                    <label for="nombre"><b>Nombre</b></label>
+                    <input th:field="*{nombre}" type="text" placeholder="Nombre" name="nombre" id="nombre" required>
 
-                            <label for="correo"><b>Correo</b></label>
-                            <input type="email" placeholder="Correo" name="correo" id="correo" required>
-                        </div>
-                        <div class="form-column">
-                            <label for="celular"><b>Celular</b></label>
-                            <input type="text" placeholder="Celular" name="celular" id="celular" required>
+                    <label for="correo"><b>Correo</b></label>
+                    <input th:field="*{correo}" type="email" placeholder="Correo" name="correo" id="correo" required>
+                </div>
+                <div class="form-column">
+                    <label for="celular"><b>Celular</b></label>
+                    <input th:field="*{celular}" type="text" placeholder="Celular" name="celular" id="celular" required>
 
-                            <label for="psw"><b>Contraseña</b></label>
-                            <input type="password" placeholder="Contraseña" name="psw" id="psw" required>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn">Registrarse</button>
-                    <button id="cancelRegister" class="btn cancel">Cancelar</button>
-                </form>
+                    <label for="psw"><b>Contraseña</b></label>
+                    <input th:field="*{contraseña}" type="password" placeholder="Contraseña" name="psw" id="psw" required>
+                </div>
             </div>
-        </div>
+
+            <button type="submit" class="btn">Registrarse</button>
+            <a href="#" id="cancelRegister" class="btn cancel" onclick="handleCancel()">Cancelar</a>
+
+           
+        </form> 
+    </div>
+</div>
         </div>
 
 
@@ -235,8 +238,18 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Haven - Clínica Veterinaria. Todos los derechos reservados.</p>
-    </footer>
+        <div class="footer-info">
+          <p>&copy; 2024 Haven - Clínica Veterinaria. Todos los derechos reservados.</p>
+          <img src="../../Images/contacts/facebook.png" alt="facebook" class="contacto-icono">
+          <img src="../../Images/contacts/insta.png" alt="instagram" class="contacto-icono">
+          <img src="../../Images/contacts/twitter.png" alt="twitter" class="contacto-icono">
+        </div>
+        <div >
+          
+          
+          <img src="../../Images/logo.png" alt="logo" id="logo_footer">
+        </div>
+      </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
