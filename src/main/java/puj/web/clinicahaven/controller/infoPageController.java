@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import puj.web.clinicahaven.controller.errorHandling.petNotFoundException;
 import puj.web.clinicahaven.entity.mascot;
 import puj.web.clinicahaven.servicio.petService;
 

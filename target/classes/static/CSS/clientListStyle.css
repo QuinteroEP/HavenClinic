@@ -18,6 +18,14 @@ html{
     scroll-padding: 120px;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
+}
+
 header{
     background-color: #CEAB93;
 }
@@ -43,15 +51,6 @@ header{
 #Botones{
     font-size: 25px;
     border-radius: 2px;
-}
-
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
-    margin: 0;
-    padding: 0;
 }
 
 #logo {
@@ -88,50 +87,6 @@ body {
 .navbar a:hover{
     font-size: 25px;
     text-decoration: underline;
-}
-/* Header2 Section */
-.hero-section {
-    background-color: var(--color-fondo);
-    color: #754b36;
-    padding: 60px 0;
-    z-index: -2;
-}
-
-.hero-section h1 {
-    font-size: 3rem;
-}
-
-.hero-section p {
-
-    font-size: 1.25rem;
-}
-
-/* Servicios Section */
-.service-box {
-    background-color: var(--color-terciario);
-    padding: 20px;
-    border-radius: 8px;
-    margin: 10px 0;
-    border : 1px solid black;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.service-box h3 {
-    font-size: 1.5rem;
-}
-
-footer {
-    text-align: left;
-
-    background-color: var(--color-principal);
-    color: #fff;
-    padding: 20px 0;
-}
-
-footer p{
-    margin-left: 20px;
-
-    font-style: italic;
 }
 
 header h2 {
@@ -171,4 +126,9 @@ h1{
 
 #cerrar{
     border: solid 1px black;
+}
+
+#botones{
+    display: flex;
+    justify-content: space-around;
 }

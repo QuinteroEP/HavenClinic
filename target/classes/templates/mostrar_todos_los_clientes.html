@@ -24,7 +24,7 @@
                         <a class="nav-link" href="/veterinaria/administrador">Inicio <span class="sr-only">(current)</span></a>
                     </li>
                     <li>
-                        <button id="cerrar" class="btn btn-danger">Cerrar Sesion</button>
+                        <button id="cerrar" class="btn btn-danger">Cerrar Sesion de Administrador</button>
                     </li>
                 </ul>
             </div>
@@ -51,14 +51,14 @@
                     <td th:text="${cliente.getCedula()}"></td>
                     <td th:text="${cliente.getCelular()}"></td>
                     <td th:text="${cliente.getCorreo()}"></td>
-                   <td>
-
+                    <td>
                     <!--<a  class="btn btn-info" th:href>Editar</a>-->
-                    <a class="btn btn-info" th:href="@{/cliente/update/{cedula}(cedula=${cliente.cedula})} ">Editar</a>
-                    <a class="btn btn-danger" th:href="@{/cliente/eliminarCliente/{cedula}(cedula=${cliente.cedula})} ">Eliminar</a>
-                   
-
-                   </td>
+                        <div id="botones">
+                            <a class="btn btn-info" th:href="@{/cliente/update/{cedula}(cedula=${cliente.cedula})} ">Editar</a>
+                            <a class="btn btn-info" th:href="@{/cliente//find/{cedula}(cedula=${cliente.cedula})}" >Informacion</a>
+                            <a class="btn btn-danger" th:href="@{/cliente/eliminarCliente/{cedula}(cedula=${cliente.cedula})} ">Eliminar</a>
+                        </div>
+                    </td>
 
         </table>
     </div>

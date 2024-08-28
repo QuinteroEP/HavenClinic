@@ -11,6 +11,7 @@ public class mascot {
     private String edad;
     private String raza;
     private String url;
+    private String genero;
     @Id
     @GeneratedValue
     private Long id;
@@ -20,11 +21,12 @@ public class mascot {
     @ManyToOne
     private Cliente dueño;
     
-    public mascot(String nombre, String edad, String raza, String url, Long id, String condicion, String descripcion) {
+    public mascot(String nombre, String edad, String raza, String url, String genero, Long id, String condicion, String descripcion) {
         this.nombre = nombre;
         this.edad = edad;
         this.raza = raza;
         this.url = url;
+        this.genero = genero;
         this.id = id;
         this.condicion = condicion;
         this.descripcion = descripcion;
@@ -33,11 +35,12 @@ public class mascot {
     public mascot() {
     }
 
-    public mascot(String nombre, String edad, String raza, String url, String condicion, String descripcion) {
+    public mascot(String nombre, String edad, String raza, String url, String genero, String condicion, String descripcion) {
         this.nombre = nombre;
         this.edad = edad;
         this.raza = raza;
         this.url = url;
+        this.genero = genero;
         this.condicion = condicion;
         this.descripcion = descripcion;
     }
@@ -104,5 +107,13 @@ public class mascot {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 }
