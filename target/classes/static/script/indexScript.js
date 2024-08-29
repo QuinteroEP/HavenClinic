@@ -43,11 +43,16 @@ window.onload = () => {
         darkOverlay.style.display = "none";
     }
 
-    loginForm.addEventListener("submit", (event) => {
+    /*loginForm.addEventListener("submit", (event) => {
         console.log("Redireccionando");
 
         event.preventDefault();
         window.location.href = "/menu";
+    });*/
+
+    botonCancelLogin.addEventListener("click", (event) => {
+        event.preventDefault();
+        closePopUp();
     });
 
     // Star animation

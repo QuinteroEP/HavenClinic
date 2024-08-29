@@ -7,5 +7,7 @@ import puj.web.clinicahaven.entity.mascot;
 
 @Repository
 public interface petRepository extends JpaRepository<mascot, Long> {
+    mascot findPetById(Long id);
 
+    public void deleteById(Long key);
 }

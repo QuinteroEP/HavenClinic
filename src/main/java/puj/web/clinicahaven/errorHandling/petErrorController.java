@@ -1,4 +1,4 @@
-package puj.web.clinicahaven.controller.errorHandling;
+package puj.web.clinicahaven.errorHandling;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;

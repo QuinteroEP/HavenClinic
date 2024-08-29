@@ -1,4 +1,4 @@
-package puj.web.clinicahaven.controller.errorHandling;
+package puj.web.clinicahaven.errorHandling;
 
 public class petNotFoundException extends RuntimeException{
     private Long petId;

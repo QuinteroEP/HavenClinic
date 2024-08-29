@@ -9,10 +9,9 @@ public interface petService {
 
     public Collection<mascot> findAll();
     
-    public mascot findPet(Long id);
-
+    public mascot findById(Long id);
     @Transactional
-    public void deletePet(Long id);
+    public void deleteById(Long id);   
     @Transactional
     public void update(mascot mascota);
     @Transactional

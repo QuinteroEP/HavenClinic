@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import puj.web.clinicahaven.controller.errorHandling.petNotFoundException;
 import puj.web.clinicahaven.entity.mascot;
+import puj.web.clinicahaven.errorHandling.petNotFoundException;
 import puj.web.clinicahaven.servicio.petService;
 
 
@@ -21,9 +21,9 @@ public class infoPageController {
     public String petInfo(Model model, @PathVariable("id") Long id) {
 
 
-        mascot mascota = servicio.findPet(id);
+        mascot mascota = servicio.findById(id);
         if(mascota!=null){
-            model.addAttribute("pet", servicio.findPet(id));
+            model.addAttribute("pet", servicio.findById(id));
         }
         else{
             throw new petNotFoundException(id);

@@ -66,10 +66,8 @@
 
 
         <!-- Pop Up de login-->
-
-
         <div class="form-popup" id="loginForm">
-            <form id="popUp" class="form-container">
+            <form id="popUp" class="form-container" th:action="@{/login}" method="post">
                 <h1>Iniciar Sesion</h1>
 
                 <label for="Loginemail"><b>Email</b></label>
@@ -80,6 +78,7 @@
 
                 <button type="submit" class="btn">Iniciar Sesion</button>
                 <button id="cancel" class="btn cancel">Cancelar</button>
+                <pth:if="${error}" th:text="${error}"></p>
             </form>
         </div>
 
@@ -242,9 +241,9 @@
     <footer>
         <div class="footer-info">
           <p>&copy; 2024 Haven - Clínica Veterinaria. Todos los derechos reservados.</p>
-          <img src="../../Images/contacts/facebook.png" alt="facebook" class="contacto-icono">
-          <img src="../../Images/contacts/insta.png" alt="instagram" class="contacto-icono">
-          <img src="../../Images/contacts/twitter.png" alt="twitter" class="contacto-icono">
+          <a href=""><img src="../../Images/contacts/facebook.png" alt="facebook" class="contacto-icono"></a>
+          <a href=""><img src="../../Images/contacts/insta.png" alt="instagram" class="contacto-icono"></a>
+          <a href=""><img src="../../Images/contacts/twitter.png" alt="twitter" class="contacto-icono"></a>
         </div>
         <div >
           

@@ -22,12 +22,12 @@ public class petImplementation implements petService{
     }
 
     @Override
-    public mascot findPet(Long key){
+    public mascot findById(Long key){
         return repo.findById(key).get();
     }
     
     @Override
-    public void deletePet(Long key){
+    public void deleteById(Long key){
         repo.deleteById(key);
     }
 

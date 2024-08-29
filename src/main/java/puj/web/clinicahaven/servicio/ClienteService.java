@@ -2,7 +2,6 @@ package puj.web.clinicahaven.servicio;
 
 import java.util.Collection;
 
-
 import jakarta.transaction.Transactional;
 import puj.web.clinicahaven.entity.Cliente;
 
@@ -17,6 +16,7 @@ public interface ClienteService {
 
     public Cliente findByEmail(String correo);
 
+    public Cliente findByContraseña(String pass);
 
     public Collection<Cliente> findAll();
 
@@ -26,8 +26,4 @@ public interface ClienteService {
     public void update(Cliente cliente);
     @Transactional
     public void add(Cliente cliente);
-    
-
-
-
 }
