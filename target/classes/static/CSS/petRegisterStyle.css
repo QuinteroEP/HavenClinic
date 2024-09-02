@@ -77,8 +77,8 @@ header button{
     background-color:#d7a68f;
     border: solid 2px black;
 
-    padding: 10px;
-    margin: 20px;
+    padding: 20px;
+    margin: 25px;
 }
 
 #Description{
@@ -88,4 +88,8 @@ header button{
 #SubmitButton{
     margin-top: 10px;
     background-color: #E3CAA5;
+}
+
+#urlLabel{
+    margin-top: 20px;
 }

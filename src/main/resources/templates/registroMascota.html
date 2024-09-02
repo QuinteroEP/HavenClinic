@@ -54,6 +54,9 @@
                 <label ><b>descripcion de estado medico</b></label>
                 <br>
                 <textarea th:field="*{descripcion}" type="text" name="descripcion" id="descripcion"> </textarea>
+                <br>
+                <label for="url"><b>Foto</b></label>
+                <input  th:field="*{url}"type="text" placeholder="url" name="foto" id="foto">
             </div>
 
             <button type="submit" id="SubmitButton" class="btn btn-primary">Registrar</button>

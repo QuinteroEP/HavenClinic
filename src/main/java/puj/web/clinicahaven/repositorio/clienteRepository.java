@@ -12,10 +12,6 @@ public interface clienteRepository extends JpaRepository<Cliente, Long> {
     Cliente findByCorreo(String correo);
 
     Cliente findByContraseña(String pass);
-<<<<<<< Updated upstream
-    void deleteByCedula(int cedula);   
-=======
 
-    void deleteByCedula(int cedula);    
->>>>>>> Stashed changes
+    void deleteByCedula(int cedula);
 }

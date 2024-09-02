@@ -28,11 +28,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-<<<<<<< Updated upstream
-                        <a class="nav-link" href="/mascotas/informacion">Lista de Mascotas</a>
-=======
                         <a class="nav-link" href="/cliente/mis_mascotas">Lista de Mascotas</a>
->>>>>>> Stashed changes
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" >Agendar Cita</a>
@@ -48,7 +44,41 @@
     </header>
 
     <main>
+        <h2>Bienvenido <span></span></h2>
         <h2>Mis Mascotas</h2>
+    <table class="table table-hover shadow-sm p-3 mb-5 bg-white rounded">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Condición Médica</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterar sobre la lista de mascotas -->
+            
+                <tr th:each="pet : ${mascotas}">
+                    <td  th:text="${pet.nombre}"></td>
+                    <td><img th:src="${pet.url}" alt="Mascot Image" class="img-thumbnail" style="width: 100px; height: auto;"></td>
+                    <td th:text="${pet.condicion}"></td>
+
+                    <!--Botones-->
+                    <td id="botonDatos">
+                        <a href="/cliente/informacionmascota/${pet.id}" class="btn btn-info">Datos</a>
+                    </td>
+                    <td id="botonInfo">
+                        <a href="/cliente/actualizarmascota/${pet.id}" class="btn btn-info">Actualizar Información</a>
+                    </td>
+                    <td id="botonElim">
+                        <a href="/cliente/deletemascota/${pet.id}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
     </main>
 <!-- Footer -->
     <footer>

@@ -1,10 +1,12 @@
 package puj.web.clinicahaven.servicio;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.mascot;
 import puj.web.clinicahaven.repositorio.petRepository;
 
@@ -37,14 +39,14 @@ public class petImplementation implements petService{
     public void agregar(mascot mascota){
         repo.save(mascota);
     }
-
-
     
     @Override
     public List<mascot> findByDueñoId(Long id){
         return repo.findByDueñoId(id);
     }
 
-
-
+    @Override
+    public List<mascot> findByDueño(Cliente dueño) {
+        return repo.findByDueño(dueño);
+    }
 }

@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/cliente/menu">Menu Principal</a>
+                        <a class="nav-link" href="/cliente/mis_mascotas">Volver</a>
                     </li>
                 </ul>
             </div>
@@ -30,7 +30,7 @@
     </header>
 
     <main>
-        <form  id="form" th:object="${mascota}" th:action="@{/mascota/actualizar_mascota/{id}(id=${mascota.id})}" method="post"  >
+        <form  id="form" th:object="${mascota}" th:action="@{/mascotas/actualizar_mascota/{id}(id=${mascota.id})}" method="post"  >
 
             <div class="form-row">
                 <div class="form-column">
@@ -54,6 +54,11 @@
                 <label ><b>descripcion de estado medico</b></label>
                 <br>
                 <textarea th:field="*{descripcion}" type="text" name="descripcion" id="descripcion" rows="5" cols="50"> </textarea>
+                <br>
+                <label id="urlLabel" for="url"><b>Foto</b></label>
+                <input th:field="*{url}"type="text" placeholder="url" name="foto" id="foto" size="47">
+
+                <input  th:field="*{genero}"type="hidden" name="gender" id="gender">
             </div>
 
             <button type="submit" id="SubmitButton" class="btn btn-primary">Actualizar</button>

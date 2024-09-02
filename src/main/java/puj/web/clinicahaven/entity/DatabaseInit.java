@@ -73,12 +73,8 @@ public class DatabaseInit implements ApplicationRunner {
         clienteRepository1.save(new Cliente("Héctor Rodríguez", 4563789, 101345, "hector.rodriguez@example.com", "Clave8384!"));
         clienteRepository1.save(new Cliente("Samantha Gómez", 5678940, 102456, "samantha.gomez@example.com", "Secreta8586!"));
         clienteRepository1.save(new Cliente("Rodrigo Castro", 6782901, 103567, "rodrigo.castro@example.com", "Contraseña8788!"));
-        
-<<<<<<< Updated upstream
+
         //datos quemados de mascotas
-=======
-        //datos quemados de mascotas       
->>>>>>> Stashed changes
         petRepository1.save(new mascot("Moira", 10, "Labrador Negro", "/Images/pets/perroMoira.jpg", "Hembra",  "displacia de cadera", "Animal de edad mayor; su condicion le causa dolor en la pata trazera derecha"));
         petRepository1.save(new mascot("Trufa", 8, "Labrador Chocolate", "/Images/pets/perroTrufa.jpg", "Hembra", "en recuperacion de cesarea", "El animal dio a luz a 4 cachorros labrador (3 chocolate, 1 negro - todos hembras) por medio de cesarea"));
         petRepository1.save(new mascot("Bill", 4, "Criollo", "/Images/pets/perroBill.jpg", "Macho", "fractura en la pata izquierda trasera", "El animal callejero fue golpeado por un carro; presenta dificultad para caminar"));
@@ -88,13 +84,9 @@ public class DatabaseInit implements ApplicationRunner {
         petRepository1.save(new mascot("Milan", 7, "Labrador Negro", "", "Macho", "Cataratas", ""));
         petRepository1.save(new mascot("Lucia", 6, "Criollo", "", "Hembra", "Ansiedad", ""));
         petRepository1.save(new mascot("Suco", 7, "Gran Danes", "", "Macho", "Artritis", ""));
-<<<<<<< Updated upstream
-        
         petRepository1.save(new mascot("Firulais", 5, "Labrador", "", "Macho", "Dolor de pierna", "Dolor de pierna"));
-=======
-        petRepository1.save(new mascot("Napoleon", 0, "Chihahua", "", "Macho", "Recien Nacido", ""));
+        petRepository1.save(new mascot("Napoleon", 0, "Chihuahua", "", "Macho", "Recien Nacido", ""));
         
->>>>>>> Stashed changes
         petRepository1.save(new mascot("Mishi", 4, "Siames", "", "Hembra", "Parasitos", " "));
         petRepository1.save(new mascot("Piolin", 9, "Canario", "" , "Macho", "Ansiedad", " "));
         petRepository1.save(new mascot("Nemo", 7, "Pez Payaso", "", "Macho", "Poco apetito", " "));
@@ -182,11 +174,8 @@ public class DatabaseInit implements ApplicationRunner {
         petRepository1.save(new mascot("Oscar", 7, "Perro", "", "Macho", "Síndrome de Cushing", ""));
         petRepository1.save(new mascot("Luna", 1, "Gato", "", "Hembra", "Gastroenteritis", ""));
         petRepository1.save(new mascot("Jax", 3, "Perro", "", "Macho", "Infección Ocular", ""));
-<<<<<<< Updated upstream
         petRepository1.save(new mascot("Mimi",6, "Gato", "", "Hembra", "Anemia", ""));
-=======
         petRepository1.save(new mascot("Mimi", 6, "Gato", "", "Hembra", "Anemia", ""));
->>>>>>> Stashed changes
         petRepository1.save(new mascot("Teddy", 5, "Perro", "", "Macho", "Problemas Renales", ""));
         petRepository1.save(new mascot("Ginger", 2, "Gato", "", "Hembra", "Dermatitis", ""));
 
@@ -195,21 +184,12 @@ public class DatabaseInit implements ApplicationRunner {
         Cliente p = clienteRepository1.findByCedula(1005);
         List<mascot> mascotas = petRepository1.findAll();
 
-<<<<<<< Updated upstream
         Cliente P = clienteRepository1.findByCedula(1005);
         for (int j = 0; j < 9; j++){
             mascotas.get(j).setDueño(P);
         }
 
-        for (int i = 9; i < mascotas.size(); i++) {
-=======
-        for(int j = 0; j<10; j++){
-            mascotas.get(j).setDueño(p);
-            petRepository1.save(mascotas.get(j));
-        }
-
         for (int i = 10; i < mascotas.size(); i++) {
->>>>>>> Stashed changes
             mascotas.get(i).setDueño(clientes.get(i % clientes.size()));
             petRepository1.save(mascotas.get(i));
         }

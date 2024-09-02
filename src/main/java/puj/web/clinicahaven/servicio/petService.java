@@ -1,8 +1,10 @@
 package puj.web.clinicahaven.servicio;
 
 import java.util.Collection;
+import java.util.List;
 
 import jakarta.transaction.Transactional;
+import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.mascot;
 
 public interface petService {
@@ -16,11 +18,8 @@ public interface petService {
     public void update(mascot mascota);
     @Transactional
     public void agregar(mascot mascota);
-<<<<<<< Updated upstream
-=======
 
     public List<mascot> findByDueño(Cliente dueño);
     
     public List<mascot> findByDueñoId(Long id);
->>>>>>> Stashed changes
 }

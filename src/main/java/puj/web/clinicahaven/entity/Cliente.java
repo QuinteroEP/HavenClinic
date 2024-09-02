@@ -26,6 +26,14 @@ public class Cliente {
     @OneToMany(mappedBy = "dueño", cascade = CascadeType.ALL)
     private List<mascot> mascotas = new ArrayList<>();
 
+    public List<mascot> getMascotas() {
+        return mascotas;
+    }
+
+    public void setMascotas(List<mascot> mascotas) {
+        this.mascotas = mascotas;
+    }
+
 
     public Cliente(String nombre, long clienteId, int cedula, int celular, String correo, String contraseña) {
         this.nombre = nombre;
