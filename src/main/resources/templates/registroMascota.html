@@ -30,8 +30,7 @@
     </header>
 
     <main>
-        <form  id="form" th:object="${mascota}" th:action="@{/agregarmascota}" method="post"  >
-            <h1>Registrar una mascota</h1>
+        <form  id="form" th:object="${mascota}" th:action="@{/mascota/agregarmascota}" method="post"  >
 
             <div class="form-row">
                 <div class="form-column">
@@ -42,11 +41,11 @@
                     <input th:field="*{edad}" type="text" placeholder="edad" name="edad" id="edad_mascota" required>
 
                     <label for="raza"><b>Raza</b></label>
-                    <input  th:field="*{raza}"type="email" placeholder="raza" name="raza" id="raza" required>
+                    <input  th:field="*{raza}"type="text" placeholder="raza" name="raza" id="raza" required>
                 </div>
                 <div class="form-column">
                     <label for="condicion"><b>Condicion</b></label>
-                    <input th:field="*{condicion}" type="text" placeholder="condicion" name="condicion" id="condicion" required>
+                    <input th:field="*{condicion}" type="text" placeholder="condicion" name="condicion" id="condicion">
                 </div>
                 
             </div>

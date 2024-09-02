@@ -13,9 +13,6 @@ public class petImplementation implements petService{
     @Autowired
     petRepository repo;
 
-
-
-
     @Override
     public Collection<mascot> findAll() {
         return repo.findAll(); 
@@ -42,7 +39,11 @@ public class petImplementation implements petService{
     }
 
 
-
+    
+    @Override
+    public List<mascot> findByDueñoId(Long id){
+        return repo.findByDueñoId(id);
+    }
 
 
 

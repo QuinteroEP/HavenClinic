@@ -8,7 +8,7 @@
   --color-principal: #754b36;
   --color-secundario: #d7a68f;
   --color-terciario: #E3CAA5;
-  --color-ndo: #fbf2e4;
+  --color-fondo: #fbf2e4;
     --color-texto: #000;
 }
 
@@ -69,4 +69,12 @@ header button{
 
 .table a{
   text-align: center;
+}
+
+.btn-info{
+  background-color: #E3CAA5;
+}
+
+.btn-danger{
+  background-color: #754b36;
 }

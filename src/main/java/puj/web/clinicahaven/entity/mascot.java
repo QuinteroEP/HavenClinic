@@ -7,16 +7,27 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class mascot {
+<<<<<<< Updated upstream
     private String nombre;
     private int edad;
     private String raza;
     private String url;
     private String genero;
 
+=======
+>>>>>>> Stashed changes
     @Id
     @GeneratedValue
     private Long id;
 
+<<<<<<< Updated upstream
+=======
+    private String nombre;
+    private int edad;
+    private String raza;
+    private String url;
+    private String genero;
+>>>>>>> Stashed changes
     private String condicion;
     private String descripcion;
 

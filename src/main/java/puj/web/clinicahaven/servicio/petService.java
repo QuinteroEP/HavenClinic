@@ -16,4 +16,11 @@ public interface petService {
     public void update(mascot mascota);
     @Transactional
     public void agregar(mascot mascota);
+<<<<<<< Updated upstream
+=======
+
+    public List<mascot> findByDueño(Cliente dueño);
+    
+    public List<mascot> findByDueñoId(Long id);
+>>>>>>> Stashed changes
 }

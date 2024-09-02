@@ -55,11 +55,19 @@
                     <td th:text="${pet.condicion}"></td>
 
                     <!--Botones-->
+<<<<<<< Updated upstream
                     <td id="botonDatos">
                         <a th:href="@{informacion/{id}(id=${pet.id})}" class="btn btn-info">Datos</a>
                     </td>
                     <td id="botonInfo">
                         <a class="btn btn-info">Actualizar Informacion</a>
+=======
+                    <td>
+                        <a class="btn btn-info" th:href="@{/cliente/informacionmascota/{id}(id=${pet.id})}">Informacion</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-info" th:href="@{/mascota/actualizar_mascota/{id}(id=${pet.id})}">Actualizar Informacion</a>
+>>>>>>> Stashed changes
                     </td>
                     <td id="botonElim">
                         <a class="btn btn-danger" th:href="@{/delete/{id}(id=${pet.id})}">Eliminar</a>
