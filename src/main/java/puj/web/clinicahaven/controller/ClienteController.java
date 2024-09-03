@@ -191,8 +191,9 @@ public String petInfo(Model model, @PathVariable("id") Long id) {
 
 //localhost:8090/cliente/agregarCliente
 @PostMapping("/agregarCliente")
-public String agregarCliente(@ModelAttribute("cliente") Cliente cliente) {
+public String agregarCliente(@ModelAttribute("cliente") Cliente cliente, HttpSession session) {
    clienteService.add(cliente);
+    SessionUtil.setLoggedInClient(session, cliente);
     return "redirect:/menu";
 }
 
