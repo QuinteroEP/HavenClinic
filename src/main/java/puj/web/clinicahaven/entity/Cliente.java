@@ -13,6 +13,7 @@ public class Cliente {
     @GeneratedValue
     private long clienteId;
 
+
     private int cedula;
     private String nombre;
     private int celular;

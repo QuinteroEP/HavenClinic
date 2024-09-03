@@ -48,8 +48,17 @@ public class ClienteImplementation implements ClienteService{
     @Override
     @Transactional
     public void update(Cliente cliente) {
-     
-        repoCliente.save(cliente);
+
+        Cliente existingCliente = repoCliente.findById(cliente.getId()).orElse(null);
+        if (existingCliente != null) {
+            existingCliente.setNombre(cliente.getNombre());
+            existingCliente.setCelular(cliente.getCelular());
+            existingCliente.setCorreo(cliente.getCorreo());
+
+            repoCliente.save(existingCliente);
+        } else {
+            repoCliente.save(cliente);
+        }
     }
 
     @Override

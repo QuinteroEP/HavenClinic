@@ -206,19 +206,16 @@ public String Eliminarcliente(@PathVariable("cedula") int cedula) {
 
 }
 
-@GetMapping("/update/{cedula}")
-public String ActualizarDatos(@PathVariable("cedula") int cedula, Model model) {
-    model.addAttribute("cliente", clienteService.findByCedula(cedula));
-    return "editar_perfil";
-}
+    @GetMapping("/update/{cedula}")
+    public String mostrarFormularioActualizar(@PathVariable("cedula") int cedula, Model model) {
+        model.addAttribute("cliente", clienteService.findByCedula(cedula));
+        return "editar_cliente";
+    }
 
-@PostMapping("/update/{cedula}")
-public String actualizarCliente(@PathVariable("cedula") int cedula, @ModelAttribute("cliente") Cliente cliente) {
-   
-    clienteService.update(cliente);
-    return "redirect:/cliente/all";
-    
- 
-}
+    @PostMapping("/update/{cedula}")
+    public String actualizarCliente(@PathVariable("cedula") int cedula, @ModelAttribute("cliente") Cliente cliente) {
+        clienteService.update(cliente);
+        return "redirect:/cliente/all";
+    }
 
 }
