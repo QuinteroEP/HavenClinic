@@ -2,8 +2,6 @@ package puj.web.clinicahaven.controller;
 
 import java.util.Collection;
 
-import jakarta.servlet.http.HttpSession;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.SessionUtil;
 import puj.web.clinicahaven.entity.mascot;
@@ -66,7 +66,6 @@ public String agregarCliente(@ModelAttribute("mascota") mascot mascota, HttpSess
   @GetMapping("/actualizar_mascota/{id}")
   public String mostrarFormulario(@PathVariable("id") Long id, Model model) {
     model.addAttribute("mascota", mascotaservice.findById(id));
-    //mascotaservice.update(mascota);
     return "modificar_mascota";
   }
 

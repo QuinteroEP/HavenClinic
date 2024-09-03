@@ -1,5 +1,7 @@
 package puj.web.clinicahaven.errorHandling;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,5 +14,10 @@ public class petErrorController {
 
         model.addAttribute("id", ex.getPetId());
         return ("errorFindPet");
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public String handleNoSuchElementException(Model model) {
+        return "errorFindPet";
     }
 }

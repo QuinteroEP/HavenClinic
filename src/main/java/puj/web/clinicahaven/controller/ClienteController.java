@@ -2,9 +2,6 @@ package puj.web.clinicahaven.controller;
 
 import java.util.Collection;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
-import jakarta.servlet.http.HttpSession;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.SessionUtil;
 import puj.web.clinicahaven.entity.mascot;
@@ -84,7 +83,7 @@ public String CrearNuevoCliente(Model model) {
     Cliente cliente = new Cliente ("", 0, 0, "", "");
     model.addAttribute("cliente", cliente);
     //model.addAttribute("mascotas", mascotas);
-    return "redirect:/cliente/menu";
+    return "registro_cliente";
 }
 
 //menu
@@ -191,10 +190,11 @@ public String petInfo(Model model, @PathVariable("id") Long id) {
 
 //localhost:8090/cliente/agregarCliente
 @PostMapping("/agregarCliente")
+@Transactional
 public String agregarCliente(@ModelAttribute("cliente") Cliente cliente, HttpSession session) {
    clienteService.add(cliente);
     SessionUtil.setLoggedInClient(session, cliente);
-    return "redirect:/menu";
+    return "redirect:/cliente/all";
 }
 
 //localhost:8080/cliente/eliminarCliente/{cedula}

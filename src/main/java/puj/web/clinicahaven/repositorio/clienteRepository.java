@@ -13,5 +13,7 @@ public interface clienteRepository extends JpaRepository<Cliente, Long> {
 
     Cliente findByContraseña(String pass);
 
+    Cliente findByclienteId(Long id);
+
     void deleteByCedula(int cedula);
 }

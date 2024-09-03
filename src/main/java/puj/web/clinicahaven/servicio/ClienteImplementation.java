@@ -31,6 +31,11 @@ public class ClienteImplementation implements ClienteService{
     public Cliente findByContraseña(String pass) {
         return repoCliente.findByContraseña(pass);
     }
+    
+    @Override
+    public Cliente findByclienteId(Long id){
+        return repoCliente.findById(id).orElse(null);
+    }
 
     @Override //override es para sobreescribir un metodo
     public Collection<Cliente> findAll() {

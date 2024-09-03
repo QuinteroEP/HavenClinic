@@ -5,16 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/veterinaria")
 public class adminPageController {
+    
 
-
-    @GetMapping("/veterinaria/administrador")
+    @GetMapping("/administrador")
     public String getMenu() {
         return "adminPage";
     }
-
-
-
-
 }

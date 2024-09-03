@@ -57,7 +57,13 @@ body {
     margin-right: 1rem;
 }
 
-
+.btn-info{
+    background-color: #E3CAA5;
+  }
+  
+.btn-danger{
+    background-color: #754b36;
+}
 
 
 button{

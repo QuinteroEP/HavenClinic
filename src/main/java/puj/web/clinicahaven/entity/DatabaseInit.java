@@ -84,9 +84,9 @@ public class DatabaseInit implements ApplicationRunner {
         petRepository1.save(new mascot("Milan", 7, "Labrador Negro", "", "Macho", "Cataratas", ""));
         petRepository1.save(new mascot("Lucia", 6, "Criollo", "", "Hembra", "Ansiedad", ""));
         petRepository1.save(new mascot("Suco", 7, "Gran Danes", "", "Macho", "Artritis", ""));
-        petRepository1.save(new mascot("Firulais", 5, "Labrador", "", "Macho", "Dolor de pierna", "Dolor de pierna"));
         petRepository1.save(new mascot("Napoleon", 0, "Chihuahua", "", "Macho", "Recien Nacido", ""));
         
+        petRepository1.save(new mascot("Firulais", 5, "Labrador", "", "Macho", "Dolor de pierna", "Dolor de pierna"));
         petRepository1.save(new mascot("Mishi", 4, "Siames", "", "Hembra", "Parasitos", " "));
         petRepository1.save(new mascot("Piolin", 9, "Canario", "" , "Macho", "Ansiedad", " "));
         petRepository1.save(new mascot("Nemo", 7, "Pez Payaso", "", "Macho", "Poco apetito", " "));

@@ -18,6 +18,8 @@ public interface ClienteService {
 
     public Cliente findByContraseña(String pass);
 
+    public Cliente findByclienteId(Long id);
+
     public Collection<Cliente> findAll();
 
     @Transactional
