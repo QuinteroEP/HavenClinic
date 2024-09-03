@@ -23,6 +23,9 @@ window.onload = () => {
         darkOverlay.style.display = "block";
     }
 
+    function handleCancel() {
+        window.location.href = '/'; // Cambia '/otraPagina' por la URL a la que deseas redirigir
+    }
     function closePopUp() {
         loginForm.style.display = "none";
         darkOverlay.style.display = "none";
@@ -40,11 +43,16 @@ window.onload = () => {
         darkOverlay.style.display = "none";
     }
 
-    loginForm.addEventListener("submit", (event) => {
+    /*loginForm.addEventListener("submit", (event) => {
         console.log("Redireccionando");
 
         event.preventDefault();
         window.location.href = "/menu";
+    });*/
+
+    botonCancelLogin.addEventListener("click", (event) => {
+        event.preventDefault();
+        closePopUp();
     });
 
     // Star animation

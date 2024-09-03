@@ -6,6 +6,9 @@
     <title>Haven - Menu Principal</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/CSS/mainMenuStyle.css">
+    <link rel="stylesheet" href="/CSS/header_footer.css">
+    
+
     <script src="/script/mainMenuScript.js"> </script>
 
      <!-- Fonts -->
@@ -25,13 +28,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/mascotas/informacion">Lista de Mascotas</a>
+                        <a class="nav-link" href="/cliente/mis_mascotas">Lista de Mascotas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" >Agendar Cita</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/mascotas/registrar">Registro de Mascota</a>
+                        <a class="nav-link" href="/cliente/registrarmascota">Registro de Mascota</a>
                     </li>
                 </ul>
             </div>
@@ -41,11 +44,56 @@
     </header>
 
     <main>
+        <h2>Bienvenido <span></span></h2>
         <h2>Mis Mascotas</h2>
-    </main>
+    <table class="table table-hover shadow-sm p-3 mb-5 bg-white rounded">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Condición Médica</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterar sobre la lista de mascotas -->
+            
+                <tr th:each="pet : ${mascotas}">
+                    <td  th:text="${pet.nombre}"></td>
+                    <td><img th:src="${pet.url}" alt="Mascot Image" class="img-thumbnail" style="width: 100px; height: auto;"></td>
+                    <td th:text="${pet.condicion}"></td>
 
+                    <!--Botones-->
+                    <td id="botonDatos">
+                        <a href="/cliente/informacionmascota/${pet.id}" class="btn btn-info">Datos</a>
+                    </td>
+                    <td id="botonInfo">
+                        <a href="/cliente/actualizarmascota/${pet.id}" class="btn btn-info">Actualizar Información</a>
+                    </td>
+                    <td id="botonElim">
+                        <a href="/cliente/deletemascota/${pet.id}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+    </main>
+<!-- Footer -->
     <footer>
-        <p>&copy; 2024 Haven - Clínica Veterinaria. Todos los derechos reservados.</p>
-    </footer>
+        <div class="footer-info">
+          <p>&copy; 2024 Haven - Clínica Veterinaria. Todos los derechos reservados.</p>
+          <img src="../../Images/contacts/facebook.png" alt="facebook" class="contacto-icono">
+          <img src="../../Images/contacts/insta.png" alt="instagram" class="contacto-icono">
+          <img src="../../Images/contacts/twitter.png" alt="twitter" class="contacto-icono">
+        </div>
+        <div >
+          
+          
+          <img src="../../Images/logo.png" alt="logo" id="logo_footer">
+        </div>
+      </footer>
+
 </body>
 </html>

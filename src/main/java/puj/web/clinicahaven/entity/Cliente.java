@@ -4,37 +4,46 @@ package puj.web.clinicahaven.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 @Entity
 public class Cliente {
 
     @Id
-    @Column(unique = true, nullable = false)
+    @GeneratedValue
+    private long clienteId;
+
+
     private int cedula;
     private String nombre;
     private int celular;
     private String correo;
     private String contraseña;
 
-    @OneToMany(mappedBy = "dueño", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "dueño",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<mascot> mascotas = new ArrayList<>();
 
+    public List<mascot> getMascotas() {
+        return mascotas;
+    }
 
-    public Cliente(String nombre, int cedula, int celular, String correo, String contraseña) {
+    public void setMascotas(List<mascot> mascotas) {
+        this.mascotas = mascotas;
+    }
+
+
+    public Cliente(String nombre, long clienteId, int cedula, int celular, String correo, String contraseña) {
         this.nombre = nombre;
         this.cedula = cedula;
+        this.clienteId = clienteId;
         this.celular = celular;
         this.correo = correo;
         this.contraseña = contraseña;
     }
 
-    public Cliente(String nombre, int celular, String correo, String contraseña) {
+    public Cliente(String nombre, int cedula, int celular, String correo, String contraseña) {
         this.nombre = nombre;
+        this.cedula = cedula;
         this.celular = celular;
         this.correo = correo;
         this.contraseña = contraseña;
@@ -93,7 +102,14 @@ public class Cliente {
         this.contraseña = contraseña;
     }
 
+    public long getId() {
+        return clienteId;
+    }
 
+
+    public void setId(long clienteId) {
+        this.clienteId = clienteId;
+    }
     
     }
 

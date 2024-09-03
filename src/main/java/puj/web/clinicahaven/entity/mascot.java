@@ -7,21 +7,22 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class mascot {
-    private String nombre;
-    private String edad;
-    private String raza;
-    private String url;
-    private String genero;
     @Id
     @GeneratedValue
     private Long id;
+
+    private String nombre;
+    private int edad;
+    private String raza;
+    private String url;
+    private String genero;
     private String condicion;
     private String descripcion;
 
     @ManyToOne
     private Cliente dueño;
     
-    public mascot(String nombre, String edad, String raza, String url, String genero, Long id, String condicion, String descripcion) {
+    public mascot(String nombre, int edad, String raza, String url, String genero, Long id, String condicion, String descripcion) {
         this.nombre = nombre;
         this.edad = edad;
         this.raza = raza;
@@ -35,7 +36,7 @@ public class mascot {
     public mascot() {
     }
 
-    public mascot(String nombre, String edad, String raza, String url, String genero, String condicion, String descripcion) {
+    public mascot(String nombre, int edad, String raza, String url, String genero, String condicion, String descripcion) {
         this.nombre = nombre;
         this.edad = edad;
         this.raza = raza;
@@ -61,11 +62,11 @@ public class mascot {
         this.nombre = nombre;
     }
 
-    public String getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(String edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 

@@ -8,6 +8,12 @@ import puj.web.clinicahaven.entity.Cliente;
 @Repository
 public interface clienteRepository extends JpaRepository<Cliente, Long> {
     Cliente findByCedula(int cedula);
+    
     Cliente findByCorreo(String correo);
+
+    Cliente findByContraseña(String pass);
+
+    Cliente findByclienteId(Long id);
+
     void deleteByCedula(int cedula);
 }
