@@ -207,8 +207,8 @@ public String Eliminarcliente(@PathVariable("cedula") int cedula) {
 }
 
     @GetMapping("/update/{id}")
-    public String mostrarFormularioActualizar(@PathVariable("id") long id, Model model) {
-        model.addAttribute("cliente", clienteService.findByclienteId(id));
+    public String mostrarFormularioActualizar(@PathVariable("id") int cedula, Model model) {
+        model.addAttribute("cliente", clienteService.findByCedula(cedula));
         return "editar_cliente";
     }
 
