@@ -2,6 +2,9 @@ package puj.web.clinicahaven.controller;
 
 import java.util.Collection;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import puj.web.clinicahaven.entity.Cliente;
+import puj.web.clinicahaven.entity.SessionUtil;
 import puj.web.clinicahaven.entity.mascot;
 import puj.web.clinicahaven.errorHandling.NotFoundException;
 import puj.web.clinicahaven.errorHandling.petNotFoundException;
@@ -93,8 +97,8 @@ public String getMenu(Model model, @ModelAttribute("cliente") Cliente cliente) {
 }
 
 //todas las mascotas
-//localhost:8090/cliente/mis_mascotas
-@GetMapping("/mis_mascotas")
+//localhost:8090/cliente/mis_mascotasall
+@GetMapping("/mis_mascotasall")
 public String petList(Model model) {
     Collection<mascot> mascotas = mascotaservice.findAll();
     model.addAttribute("pets", mascotas);
@@ -109,6 +113,19 @@ public String clientPetInfo(Model model, @PathVariable("id") Long id) {
     Collection<mascot> mascotas = mascotaservice.findByDueñoId(id);
     model.addAttribute("pets", mascotas);
 
+    return "listPage";
+}
+
+//mascotas del cliente loggeado
+@GetMapping("/mis_mascotas")
+public String showClientPets(Model model, HttpSession session) {
+    Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
+    if (loggedInClient == null) {
+        return "redirect:/";
+    }
+    System.out.println("Cliente loggeado: " + loggedInClient.getNombre() + "id: " + loggedInClient.getId());
+    Collection<mascot> mascotas = mascotaservice.findByDueñoId(loggedInClient.getId());
+    model.addAttribute("pets", mascotas);
     return "listPage";
 }
 
@@ -140,14 +157,29 @@ public String petInfo(Model model, @PathVariable("id") Long id) {
   //registrar Mascota
   //localhost:8090/cliente/registrarmascota
   @GetMapping("/registrarmascota")
-  public String CrearNuevaMascota(Model model) {
+  public String CrearNuevaMascota(Model model, HttpSession session) {
 
-      mascot mascota = new mascot("nombre", 0, "", "", "", "", "");
-
-      model.addAttribute("mascota", mascota);
+      Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
+      if (loggedInClient == null) {
+          return "redirect:/";
+      }
+      model.addAttribute("mascota", new mascot());
 
       return "registroMascota";
   }
+    @PostMapping("/registrarmascota")
+    @Transactional
+    public String addPet(@RequestParam("nombre") String nombre, @RequestParam("edad") int edad, @RequestParam("raza") String raza, @RequestParam("url") String url, @RequestParam("genero") String genero, @RequestParam("condicion") String condicion, @RequestParam("descripcion") String descripcion, HttpSession session) {
+        Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
+        if (loggedInClient == null) {
+            return "redirect:/";
+        }
+        mascot nuevaMascota = new mascot(nombre, edad, raza, url, genero, condicion, descripcion);
+        nuevaMascota.setDueño(loggedInClient);
+        loggedInClient.getMascotas().add(nuevaMascota);
+        clienteService.update(loggedInClient);
+        return "redirect:/cliente/mis_mascotas";
+    }
 
 //ver todas las mascotas
    @GetMapping("/informacion_mascotas")

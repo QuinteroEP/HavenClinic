@@ -3,6 +3,7 @@ package puj.web.clinicahaven.servicio;
 import java.util.Collection;
 import java.util.List;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,16 +27,19 @@ public class petImplementation implements petService{
     }
     
     @Override
+    @Transactional
     public void deleteById(Long key){
         repo.deleteById(key);
     }
 
     @Override
+    @Transactional
     public void update(mascot mascota){
         repo.save(mascota);
     }
 
     @Override
+    @Transactional
     public void agregar(mascot mascota){
         repo.save(mascota);
     }

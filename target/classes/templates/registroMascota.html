@@ -30,11 +30,11 @@
     </header>
 
     <main>
-        <form  id="form" th:object="${mascota}" th:action="@{/mascota/agregarmascota}" method="post"  >
+        <form  id="form" th:object="${mascota}" th:action="@{/mascotas/agregarmascota}" method="post"  >
 
             <div class="form-row">
                 <div class="form-column">
-                    <label for=""><b>Nombre</b></label>
+                    <label for="nombre_mascota"><b>Nombre</b></label>
                     <input th:field="*{nombre}" type="text" placeholder="nombre" name="nombre" id="nombre_mascota" required>
 
                     <label for="edad_mascota"><b>Edad</b></label>
@@ -42,6 +42,9 @@
 
                     <label for="raza"><b>Raza</b></label>
                     <input  th:field="*{raza}"type="text" placeholder="raza" name="raza" id="raza" required>
+
+                    <label for="genero"><b>Genero</b></label>
+                    <input  th:field="*{genero}"type="text" placeholder="genero" name="genero" id="genero" required>
                 </div>
                 <div class="form-column">
                     <label for="condicion"><b>Condicion</b></label>
@@ -56,7 +59,7 @@
                 <textarea th:field="*{descripcion}" type="text" name="descripcion" id="descripcion"> </textarea>
                 <br>
                 <label for="url"><b>Foto</b></label>
-                <input  th:field="*{url}"type="text" placeholder="url" name="foto" id="foto">
+                <input  th:field="*{url}"type="text" placeholder="url" name="foto" id="url">
             </div>
 
             <button type="submit" id="SubmitButton" class="btn btn-primary">Registrar</button>
