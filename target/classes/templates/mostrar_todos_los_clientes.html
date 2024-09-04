@@ -56,7 +56,7 @@
                     <td>
                     <!--<a  class="btn btn-info" th:href>Editar</a>-->
                         <div id="botones">
-                            <a class="btn btn-info" th:href="@{/cliente/update/{cedula}(cedula=${cliente.cedula})} ">Editar</a>
+                            <a class="btn btn-info" th:href="@{/cliente/update/{clienteId}(clienteId=${cliente.id})} ">Editar</a>
                             <a class="btn btn-info" th:href="@{/cliente/find/{cedula}(cedula=${cliente.cedula})}" >Informacion</a>
                             <a class="btn btn-danger" th:href="@{/cliente/eliminarCliente/{cedula}(cedula=${cliente.cedula})} ">Eliminar</a>
                         </div>

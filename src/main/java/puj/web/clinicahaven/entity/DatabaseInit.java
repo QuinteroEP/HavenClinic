@@ -8,6 +8,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 
 import jakarta.transaction.Transactional;
+import puj.web.clinicahaven.repositorio.VeterinarioRepository;
 import puj.web.clinicahaven.repositorio.clienteRepository;
 import puj.web.clinicahaven.repositorio.petRepository;
 
@@ -19,6 +20,8 @@ public class DatabaseInit implements ApplicationRunner {
     clienteRepository clienteRepository1;
     @Autowired
     petRepository petRepository1;
+    @Autowired
+    VeterinarioRepository veterinarioRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -178,6 +181,10 @@ public class DatabaseInit implements ApplicationRunner {
         petRepository1.save(new mascot("Mimi", 6, "Gato", "", "Hembra", "Anemia", ""));
         petRepository1.save(new mascot("Teddy", 5, "Perro", "", "Macho", "Problemas Renales", ""));
         petRepository1.save(new mascot("Ginger", 2, "Gato", "", "Hembra", "Dermatitis", ""));
+
+        //Datos quemados de veterinario
+        veterinarioRepository.save(new Veterinario(1234, "Admin", 111, "nose", "abc", "", 0, "qwe@m.c"));
+
 
         // Asociar mascotas a dueños ciclicamente
         List<Cliente> clientes = clienteRepository1.findAll();

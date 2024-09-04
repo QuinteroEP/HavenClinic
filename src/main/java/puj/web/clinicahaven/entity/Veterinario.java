@@ -15,6 +15,7 @@ public class Veterinario {
     @GeneratedValue
     private long vetId;
 
+    private String correo;
     private int cedula;
     private String nombre;
     private int celular;
@@ -27,7 +28,7 @@ public class Veterinario {
     private List<Tratamiento> tratamiento = new ArrayList<>();
 
 
-    public Veterinario(long vetId, int cedula, String nombre, int celular, String especialidad, String contraseña, String foto, int numAtenciones) {
+    public Veterinario(long vetId, int cedula, String nombre, int celular, String especialidad, String contraseña, String foto, int numAtenciones, String correo) {
         this.vetId = vetId;
         this.cedula = cedula;
         this.nombre = nombre;
@@ -36,9 +37,10 @@ public class Veterinario {
         this.contraseña = contraseña;
         this.foto = foto;
         this.numAtenciones = numAtenciones;
+        this.correo = correo;
     }
 
-    public Veterinario(int cedula, String nombre, int celular, String especialidad, String contraseña, String foto, int numAtenciones) {
+    public Veterinario(int cedula, String nombre, int celular, String especialidad, String contraseña, String foto, int numAtenciones, String correo) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.celular = celular;
@@ -46,10 +48,18 @@ public class Veterinario {
         this.contraseña = contraseña;
         this.foto = foto;
         this.numAtenciones = numAtenciones;
+        this.correo = correo;
     }
 
     public Veterinario() {}
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
 
     public long getVetId() {
         return this.vetId;
