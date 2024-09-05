@@ -1,0 +1,103 @@
+/* Para debug
+*{
+  border: solid red;
+}*/
+
+/* Colores de la paleta */
+:root {
+    --color-principal: #754b36;
+    --color-secundario: #d7a68f;
+    --color-terciario: #E3CAA5;
+    --color-fondo: #fbf2e4;
+    --color-texto: #000;
+}
+
+/* General */
+html{
+    scroll-behavior: smooth;
+    scroll-padding: 120px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
+}
+
+
+#splash{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#splash img{
+    width: 40%;
+    height: auto;
+}
+
+#splash p{
+    font-size: 50px;
+    color: #754b36;
+}
+
+#Botones{
+    font-size: 25px;
+    border-radius: 2px;
+}
+
+#logo {
+    width: 100px;
+    height: 100px;
+
+    margin-right: 1rem;
+}
+
+.btn-info{
+    background-color: #E3CAA5;
+  }
+  
+.btn-danger{
+    background-color: #754b36;
+}
+
+
+button{
+    background-color: red;
+}
+
+#tabla{
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+
+    border: solid 1px grey;
+}
+
+#tabla tr:nth-child(even){
+    background-color: lightgrey;
+}
+
+h1{
+    padding-left: 10px;
+    padding-top: 5px;
+
+    font-style: italic;
+}
+
+#buttonAdd{
+    margin: 10px;
+}
+
+#cerrar{
+    border: solid 1px black;
+}
+
+#botones{
+    display: flex;
+    justify-content: space-around;
+}

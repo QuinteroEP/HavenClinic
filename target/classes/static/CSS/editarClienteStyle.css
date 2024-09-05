@@ -1,0 +1,62 @@
+/* Asegúrate de que el header ocupa todo el ancho */
+header {
+    width: 100%;
+}
+
+:root {
+    --color-principal: #754b36;
+    --color-secundario: #d7a68f;
+    --color-terciario: #E3CAA5;
+    --color-fondo: #fbf2e4;
+      --color-texto: #000;
+  }
+
+html{
+    scroll-behavior: smooth;
+    scroll-padding: 120px;
+  }
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    list-style-type: none
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Espacio entre el título y el botón */
+    align-items: center; /* Alinear verticalmente al centro */
+    padding: 0 1rem; /* Ajustar el espaciado en los laterales */
+    box-sizing: border-box; /* Incluye el padding en el tamaño total del contenedor */
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin: 0;
+}
+
+#cerrar {
+    background-color: var(--primary-color); /* Puedes personalizar el color del botón */
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem; /* Ajustar el tamaño de la fuente si es necesario */
+    box-sizing: border-box; /* Incluye el padding en el tamaño total del botón */
+}
+
+#cerrar:hover {
+    background-color: var(--primary-dark);
+}
+main {
+    margin-top: 0; /* O un valor menor si es necesario */
+}

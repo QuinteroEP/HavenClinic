@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!---->
+  <link rel="stylesheet" href="/CSS/vetMenu.css">
+  <link rel="stylesheet" href="/CSS/vetForm.css">
+
+  <link rel="stylesheet" href="/CSS/header_footer.css">
+  <link rel="stylesheet" href="/CSS/editarClienteStyle.css">
+  <title>Editar Perfil</title>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <h1>Editar Perfil</h1>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                  <a id="cerrar" href="/menu">Volver</a>
+              </li>
+          </ul>
+      </div>
+    </nav>
+
+</header>
+<main>
+<section class="container">
+  <div class="main">
+    <div class="detail">
+
+      <form class="form" action="/cliente/update" method="post">
+        <p class="title">Editar Cliente</p>
+  <p class="message">Complete el formulario para actualizar la información del cliente.</p>
+  
+        <label>
+          <input class="input" type="number" id="cedula" th:value="${cliente.cedula}"name="cedula" required>
+          <span>Cedula</span>
+        </label>
+        <label>
+          <input class="input" type="text" id="nombre" th:value="${cliente.nombre}" name="nombre" required>
+          <span>Nombre</span>
+        </label>
+        <label>
+          <input class="input" type="text" id="correo" th:value="${cliente.correo}" name="correo" required>
+          <span>Correo</span>
+        </label>
+      
+        <label>
+          <input class="input" type="number" id="celular" th:value="${cliente.celular}"name="celular" required>
+          <span>Celular</span>
+        </label>
+        <label>
+          <input class="input" type="text" id="condition" name="Contraseña" required>
+          <span>Contraseña</span>
+        </label>
+      
+        <button class="submit">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+<!-- Footer -->
+<footer>
+  <div class="footer-info">
+    <p>&copy; 2024 Haven - Clínica Veterinaria. Todos los derechos reservados.</p>
+    <img src="../../Images/contacts/facebook.png" alt="facebook" class="contacto-icono">
+    <img src="../../Images/contacts/insta.png" alt="instagram" class="contacto-icono">
+    <img src="../../Images/contacts/twitter.png" alt="twitter" class="contacto-icono">
+  </div>
+  <div >
+    
+    
+    <img src="../../Images/logo.png" alt="logo" id="logo_footer">
+  </div>
+</footer>
+<script>
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  const body = document.body;
+  const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
+  if (isDarkMode) {
+    body.classList.add('dark-mode');
+    darkModeToggle.checked = true;
+  }
+  darkModeToggle.addEventListener('change', () => {
+    if (darkModeToggle.checked) {
+      body.classList.add('dark-mode');
+      localStorage.setItem('darkMode', 'enabled');
+    } else {
+      body.classList.remove('dark-mode');
+      localStorage.setItem('darkMode', 'disabled');
+    }
+  });
+</script>
+</body>
+
+</html>
