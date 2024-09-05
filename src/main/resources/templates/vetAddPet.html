@@ -5,13 +5,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="/CSS/vetMenu.css">
-  <link rel="stylesheet" href="/CSS/listPageStyle.css">
-  <script src="/script/listPage.js"> </script>
-
-  <title>Lista de Mascotas</title>
+  <link rel="stylesheet" href="/CSS/vetForm.css">
+  <title>Añadir Mascota</title>
 </head>
 
 <body>
@@ -41,44 +38,50 @@
   </div>
 </header>
 
-<main>
-  <div class="container mt-5">
-    <h1 id="tableTitle">Lista de Mascotas</h1>
-    <table class="table table-hover shadow-sm p-3 mb-5 bg-white rounded">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Imagen</th>
-        <th scope="col">Condicion Medica</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="pet : ${mascotas}">
-        <td  th:text="${pet.nombre}"></td>
-        <td><img th:src="${pet.url}" alt="Imagen No Registrada" class="img-thumbnail" style="width: 100px; height: auto;"></td>
-        <td th:text="${pet.condicion}"></td>
-
-        <!--Botones-->
-        <td>
-          <a class="btn btn-info" th:href="@{/cliente/informacionmascota/{id}(id=${pet.id})}">Informacion</a>
-        </td>
-        <td>
-          <a class="btn btn-info" th:href="@{/mascotas/actualizar_mascota/{id}(id=${pet.id})}">Actualizar Informacion</a>
-        </td>
-        <td id="botonElim">
-          <a class="btn btn-danger" th:href="@{/mascotas/delete/{id}(id=${pet.id})}">Eliminar</a>
-        </td>
-      </tr>
-      <tr>
-
-      </tr>
-      </tbody>
-    </table>
+<section class="container">
+  <div class="main">
+    <div class="detail">
+      <h1>Añadir Mascota</h1>
+      <form class="form" action="/addPet" method="post">
+        <p class="title">Añadir Mascota</p>
+        <p class="message">Complete el formulario para añadir una nueva mascota.</p>
+        <label>
+          <input class="input" type="text" id="name" name="name" required>
+          <span>Nombre de la Mascota</span>
+        </label>
+        <label>
+          <input class="input" type="number" id="age" name="age" required>
+          <span>Edad</span>
+        </label>
+        <label>
+          <input class="input" type="text" id="breed" name="breed" required>
+          <span>Raza</span>
+        </label>
+        <label>
+          <input class="input" type="text" id="url" name="url">
+          <span>URL de la Imagen</span>
+        </label>
+        <label>
+          <input class="input" type="text" id="gender" name="gender" required>
+          <span>Género</span>
+        </label>
+        <label>
+          <input class="input" type="text" id="condition" name="condition" required>
+          <span>Condición Médica</span>
+        </label>
+        <label>
+          <input class="input" type="text" id="description" name="description" required>
+          <span>Descripción</span>
+        </label>
+        <label>
+          <input class="input" type="text" id="owner" name="owner" required>
+          <span>Id del Dueño</span>
+        </label>
+        <button class="submit">Añadir</button>
+      </form>
+    </div>
   </div>
-</main>
+</section>
 
 <script>
   const darkModeToggle = document.getElementById('darkModeToggle');

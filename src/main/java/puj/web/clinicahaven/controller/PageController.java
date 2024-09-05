@@ -18,4 +18,9 @@ public class PageController {
         model.addAttribute("cliente", new Cliente()); // Agrega el objeto cliente al modelo
         return "index";
     }
+
+    @GetMapping("/vetmain")
+    public String getVetMain() {
+        return "vetMainMenu";
+    }
 }
