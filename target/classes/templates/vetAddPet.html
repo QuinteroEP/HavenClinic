@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/CSS/vetMenu.css">
+  <link rel="stylesheet" href="/CSS/vetForm.css">
+  <title>Añadir Mascota</title>
+</head>
+
+<body>
+<header class="container">
+  <div class="page-header">
+    <div class="logo">
+      <a href="#">Logo.</a>
+    </div>
+    <input type="checkbox" id="click">
+
+    <label for="click" class="mainicon">
+      <div class="menu">
+        <i class='bx bx-menu'></i>
+      </div>
+    </label>
+    <ul>
+      <li><a href="/vetmain" class="active" style="--navAni:1">Home</a></li>
+      <li><a href="/vetmascota" style="--navAni:2">Lista</a></li>
+      <li><a href="/vetAddPet" style="--navAni:3">Añadir</a></li>
+      <li><a href="#" style="--navAni:4">Buscar</a></li>
+      <li><a href="/" style="--navAni:5">Salir</a></li>
+    </ul>
+    <label class="mode">
+      <input type="checkbox" id="darkModeToggle">
+      <i class='bx bxs-moon'></i>
+    </label>
+  </div>
+</header>
+
+<section class="container">
+  <div class="main">
+    <div class="detail">
+      <h1>Añadir Mascota</h1>
+      <form class="form" action="/addPet" method="post">
+        <p class="title">Añadir Mascota</p>
+        <p class="message">Complete el formulario para añadir una nueva mascota.</p>
+        <label>
+          <input class="input" type="text" id="name" name="name" required>
+          <span>Nombre de la Mascota</span>
+        </label>
+        <label>
+          <input class="input" type="number" id="age" name="age" required>
+          <span>Edad</span>
+        </label>
+        <label>
+          <input class="input" type="text" id="breed" name="breed" required>
+          <span>Raza</span>
+        </label>
+        <label>
+          <input class="input" type="text" id="url" name="url">
+          <span>URL de la Imagen</span>
+        </label>
+        <label>
+          <input class="input" type="text" id="gender" name="gender" required>
+          <span>Género</span>
+        </label>
+        <label>
+          <input class="input" type="text" id="condition" name="condition" required>
+          <span>Condición Médica</span>
+        </label>
+        <label>
+          <input class="input" type="text" id="description" name="description" required>
+          <span>Descripción</span>
+        </label>
+        <label>
+          <input class="input" type="text" id="owner" name="owner" required>
+          <span>Id del Dueño</span>
+        </label>
+        <button class="submit">Añadir</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  const body = document.body;
+  const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
+  if (isDarkMode) {
+    body.classList.add('dark-mode');
+    darkModeToggle.checked = true;
+  }
+  darkModeToggle.addEventListener('change', () => {
+    if (darkModeToggle.checked) {
+      body.classList.add('dark-mode');
+      localStorage.setItem('darkMode', 'enabled');
+    } else {
+      body.classList.remove('dark-mode');
+      localStorage.setItem('darkMode', 'disabled');
+    }
+  });
+</script>
+</body>
+
+</html>
