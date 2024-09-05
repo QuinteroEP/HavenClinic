@@ -35,7 +35,7 @@ public class loginController {
                 SessionUtil.setLoggedInVeterinarian(session, veterinario);
                 model.addAttribute("veterinarianName", veterinario.getNombre());
 
-                return "vetMainMenu";
+                return "redirect:/vetmain";
             }
         } else {
             Cliente cliente = clienteService.findByEmail(email);

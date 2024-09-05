@@ -81,13 +81,13 @@ public class DatabaseInit implements ApplicationRunner {
         petRepository1.save(new mascot("Moira", 10, "Labrador Negro", "/Images/pets/perroMoira.jpg", "Hembra",  "displacia de cadera", "Animal de edad mayor; su condicion le causa dolor en la pata trazera derecha"));
         petRepository1.save(new mascot("Trufa", 8, "Labrador Chocolate", "/Images/pets/perroTrufa.jpg", "Hembra", "en recuperacion de cesarea", "El animal dio a luz a 4 cachorros labrador (3 chocolate, 1 negro - todos hembras) por medio de cesarea"));
         petRepository1.save(new mascot("Bill", 4, "Criollo", "/Images/pets/perroBill.jpg", "Macho", "fractura en la pata izquierda trasera", "El animal callejero fue golpeado por un carro; presenta dificultad para caminar"));
-        petRepository1.save(new mascot("Joseph", 6, "Labrador Negro", " ", "Macho" , "herida de mordida cerca del ojo derecho", "El animal fue mordido por uno de sus hermanos mientras jugaban. Presenta secrecion en el ojo e inflamacion en la zona del parpado"));
-        petRepository1.save(new mascot("Venus", 6, "Labrador Negro", " ", "Hembra" , "Vomito", ""));
-        petRepository1.save(new mascot("Belen", 8, "Labrador Negro", "", "Hembra", "Ansiedad", ""));
-        petRepository1.save(new mascot("Milan", 7, "Labrador Negro", "", "Macho", "Cataratas", ""));
-        petRepository1.save(new mascot("Lucia", 6, "Criollo", "", "Hembra", "Ansiedad", ""));
-        petRepository1.save(new mascot("Suco", 7, "Gran Danes", "", "Macho", "Artritis", ""));
-        petRepository1.save(new mascot("Napoleon", 0, "Chihuahua", "", "Macho", "Recien Nacido", ""));
+        petRepository1.save(new mascot("Joseph", 6, "Labrador Negro", "/Images/pets/perroJoseph.jpg", "Macho" , "herida de mordida cerca del ojo derecho", "El animal fue mordido por uno de sus hermanos mientras jugaban. Presenta secrecion en el ojo e inflamacion en la zona del parpado"));
+        petRepository1.save(new mascot("Venus", 1, "Labrador Negro", "/Images/pets/perroVenus.jpg", "Hembra" , "Vomito", ""));
+        petRepository1.save(new mascot("Belen", 9, "Labrador Negro", "/Images/pets/perroBelen.jpg", "Hembra", "Ansiedad", ""));
+        petRepository1.save(new mascot("Milan", 7, "Labrador Negro", "/Images/pets/perroMilan.jpg", "Macho", "Corneas inflamadas", "Los parpado del perro estan invertidos hacia sus ojos, causandole inflamacion en la cornea por sus pestañas, pero su vision no se ve afectada de forma significante"));
+        petRepository1.save(new mascot("Lucia", 6, "Criollo", "/Images/pets/perroLucia.jpg", "Hembra", "Ansiedad", ""));
+        petRepository1.save(new mascot("Suco", 8, "Gran Danes", "/Images/pets/perroSuco.jpg", "Macho", "Artritis", "Presenta dolor en la pata trazera izquierda"));
+        petRepository1.save(new mascot("Napoleon", 0, "Chihuahua", "/Images/pets/perroNapo.jpg", "Macho", "Recien Nacido", ""));
         
         petRepository1.save(new mascot("Firulais", 5, "Labrador", "", "Macho", "Dolor de pierna", "Dolor de pierna"));
         petRepository1.save(new mascot("Mishi", 4, "Siames", "", "Hembra", "Parasitos", " "));
@@ -187,12 +187,13 @@ public class DatabaseInit implements ApplicationRunner {
 
 
         // Asociar mascotas a dueños ciclicamente
-        List<Cliente> clientes = clienteRepository1.findAll();
-        Cliente p = clienteRepository1.findByCedula(1005);
         List<mascot> mascotas = petRepository1.findAll();
+        List<Cliente> clientes = clienteRepository1.findAll();
+
+        clientes.removeIf(cliente -> cliente.getCedula() == 1005);
 
         Cliente P = clienteRepository1.findByCedula(1005);
-        for (int j = 0; j < 9; j++){
+        for (int j = 0; j < 10; j++){
             mascotas.get(j).setDueño(P);
         }
 

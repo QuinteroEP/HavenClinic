@@ -3,6 +3,31 @@ header {
     width: 100%;
 }
 
+:root {
+    --color-principal: #754b36;
+    --color-secundario: #d7a68f;
+    --color-terciario: #E3CAA5;
+    --color-fondo: #fbf2e4;
+      --color-texto: #000;
+  }
+
+html{
+    scroll-behavior: smooth;
+    scroll-padding: 120px;
+  }
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    list-style-type: none
+}
+
 .navbar {
     display: flex;
     justify-content: space-between; /* Espacio entre el título y el botón */
