@@ -39,20 +39,20 @@
   <p class="message">Complete el formulario para actualizar la información del cliente.</p>
   
         <label>
-          <input class="input" type="number" id="name" name="Cedula" required>
+          <input class="input" type="number" id="cedula" th:value="${cliente.cedula}"name="cedula" required>
           <span>Cedula</span>
         </label>
         <label>
-          <input class="input" type="text" id="age" name="Nombre" required>
+          <input class="input" type="text" id="nombre" th:value="${cliente.nombre}" name="nombre" required>
           <span>Nombre</span>
         </label>
         <label>
-          <input class="input" type="text" id="breed" name="Correo" required>
+          <input class="input" type="text" id="correo" th:value="${cliente.correo}" name="correo" required>
           <span>Correo</span>
         </label>
       
         <label>
-          <input class="input" type="number" id="gender" name="Celular" required>
+          <input class="input" type="number" id="celular" th:value="${cliente.celular}"name="celular" required>
           <span>Celular</span>
         </label>
         <label>

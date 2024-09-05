@@ -231,6 +231,7 @@ public String mostrarFormularioActualizar(HttpSession session, Model model) {
 @PostMapping("/update")
 public String actualizarCliente(HttpSession session, @ModelAttribute("cliente") Cliente cliente) {
     Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
+    
     if (loggedInClient == null) {
         return "redirect:/"; // Redirect if not logged in
     }
