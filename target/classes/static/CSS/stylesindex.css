@@ -499,7 +499,7 @@ main {
       top: 50%;
       height: 2rem;
       width: 2rem;
-      transform: translateX(-120%) translateY(-50%);
+      transform: translateX(-300%) translateY(-38%);
       transition: stroke-dashoffset 0.5s ease-out;
       stroke-dasharray: 100;
       stroke-dashoffset: 100;
