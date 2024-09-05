@@ -74,7 +74,7 @@ public String agregarCliente(@ModelAttribute("mascota") mascot mascota, HttpSess
       mascot existingMascota = mascotaservice.findById(id);
       mascota.setDueño(existingMascota.getDueño());
       mascotaservice.update(mascota);
-    return "redirect:/cliente/mis_mascotas";
+    return "redirect:/vetmascota";
   }
   
 //Eliminar Mascota
