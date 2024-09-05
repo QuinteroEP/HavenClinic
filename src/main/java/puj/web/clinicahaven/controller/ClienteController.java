@@ -206,16 +206,44 @@ public String Eliminarcliente(@PathVariable("cedula") int cedula) {
 
 }
 
-    @GetMapping("/update/{cedula}")
-    public String mostrarFormularioActualizar(@PathVariable("cedula") int cedula, Model model) {
-        model.addAttribute("cliente", clienteService.findByCedula(cedula));
+    @GetMapping("/update/{id}")
+    public String mostrarFormularioActualizar(@PathVariable("id") long id, Model model) {
+        model.addAttribute("cliente", clienteService.findByclienteId(id));
         return "editar_cliente";
     }
 
-    @PostMapping("/update/{cedula}")
-    public String actualizarCliente(@PathVariable("cedula") int cedula, @ModelAttribute("cliente") Cliente cliente) {
+    @PostMapping("/update/{id}")
+    public String actualizarCliente(@PathVariable("id") long id, @ModelAttribute("cliente") Cliente cliente) {
         clienteService.update(cliente);
         return "redirect:/cliente/all";
     }
+
+    @GetMapping("/update")
+public String mostrarFormularioActualizar(HttpSession session, Model model) {
+    Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
+    if (loggedInClient == null) {
+        return "redirect:/"; // Redirect to home if not logged in
+    }
+    model.addAttribute("cliente", loggedInClient); // Preload form with logged-in client data
+    return "editar_cliente"; // Render the update form
+}
+
+@PostMapping("/update")
+public String actualizarCliente(HttpSession session, @ModelAttribute("cliente") Cliente cliente) {
+    Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
+    
+    if (loggedInClient == null) {
+        return "redirect:/"; // Redirect if not logged in
+    }
+
+    // Ensure the logged-in client is updating their own data
+    //if (loggedInClient.getId() == cliente.getId()) {
+        clienteService.update(cliente); // Proceed with the update
+        return "redirect:/cliente/menu"; // Redirect to profile or any other page
+   // } else {
+    //    return "redirect:/"; // If ID mismatch, redirect to prevent unauthorized updates
+    //}
+}
+
 
 }

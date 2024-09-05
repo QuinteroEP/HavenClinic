@@ -17,6 +17,10 @@ public class ClienteImplementation implements ClienteService{
     clienteRepository repoCliente;
 
     @Override
+    public Cliente findByd(Long id) {
+        return repoCliente.findById(id).orElse(null);
+    }
+    @Override
     public Cliente findByCedula(int cedula) {
 
         return repoCliente.findByCedula(cedula);
@@ -48,6 +52,13 @@ public class ClienteImplementation implements ClienteService{
     public void deleteByCedula(int cedula) {
        
         repoCliente.deleteByCedula(cedula);
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(Long id) {
+
+        repoCliente.deleteById(id);
     }
 
     @Override

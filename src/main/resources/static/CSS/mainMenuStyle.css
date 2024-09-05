@@ -15,20 +15,25 @@
 html{
     scroll-behavior: smooth;
     scroll-padding: 120px;
+    height: 100%;
   }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
-    margin: 0;
-    padding: 0;
-}
+  body {
+      font-family: Arial, sans-serif;
+      background-color: var(--color-terciario);
+      color: var(--color-texto);
+      margin: 0;
+      padding: 0;
+      background-image: url('https://www.gaulan.es/795454-large_default/kids-clouds-126580.jpg'); /* Ensure this path is correct */
+  /*    background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;*/
+  }
 
 
 /*Sección de la tarjeta*/
   .card {
-      background-color: #f8f9fa;
+      background-color: var(--color-fondo);
       border: none;
       border-radius: 15px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
@@ -65,3 +70,26 @@ body {
 
     color: #754b36;
 }
+
+  .welcome-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-top: 2rem;
+  }
+
+  .welcome-container h2 {
+      font-size: 2.5rem;
+      color: var(--color-principal);
+  }
+
+  .welcome-container .welcome-intro {
+      font-size: 1.2rem;
+      color: var(--color-secundario);
+      margin-top: 1rem;
+  }
+  .gallery-container {
+      margin-top: 1rem;
+  }

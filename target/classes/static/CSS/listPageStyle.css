@@ -31,18 +31,22 @@ header button{
   color: white;
   border: 1px solid black;
   cursor: pointer;
-  
+
   justify-content: right;
 }
 
-
+  .container {
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Add padding to the container */
+  }
 
 /*Estilo de la tabla*/
-.table {
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-}
+  .table {
+    margin: 20px 0; /* Add margin to the table */
+    padding: 10px; /* Add padding to the table */
+    width: 100%; /* Ensure the table takes full width */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  }
 
 .table img{
   height: auto;

@@ -65,17 +65,31 @@ public String agregarCliente(@ModelAttribute("mascota") mascot mascota, HttpSess
 //localhost:8090/mascota/actualizar_mascota/1
   @GetMapping("/actualizar_mascota/{id}")
   public String mostrarFormulario(@PathVariable("id") Long id, Model model) {
-    model.addAttribute("mascota", mascotaservice.findById(id));
+    model.addAttribute("pet", mascotaservice.findById(id));
     return "modificar_mascota";
   }
 
   @PostMapping("/actualizar_mascota/{id}")
-  public String actualizarMascota(@PathVariable("id") Long id, @ModelAttribute("mascota") mascot mascota) {
+  public String actualizarMascota(@PathVariable("id") Long id, @ModelAttribute("pet") mascot mascota) {
       mascot existingMascota = mascotaservice.findById(id);
       mascota.setDueño(existingMascota.getDueño());
       mascotaservice.update(mascota);
     return "redirect:/cliente/mis_mascotas";
   }
+
+  @GetMapping("/updatePet/{id}")
+    public String updatePetForm( @PathVariable("id") Long id, Model model) {
+        mascot pet = mascotaservice.findById(id);
+        model.addAttribute("pet", pet);
+        return "vetUpdatePet";
+    }
+    @PostMapping("/updatePet/{id}")
+    public String actualizarMascotavet(@PathVariable("id") Long id, @ModelAttribute("pet") mascot pet) {
+        mascot existingMascota = mascotaservice.findById(id);
+        pet.setDueño(existingMascota.getDueño());
+        mascotaservice.update(pet);
+        return "redirect:/vetmascota";
+    }
   
 //Eliminar Mascota
 //localhost:8090/mascotas/delete/2
@@ -95,5 +109,13 @@ public String deletePet(@PathVariable("id") Long id, HttpSession session) {
     clienteService.update(clienteWithMascotas);
     mascotaservice.deleteById(mascotaToDelete.getId());
     return "redirect:/cliente/mis_mascotas";
+}
+//Eliminar mascota veterinario
+//localhost:8090/mascotas/deletePet/2
+@GetMapping("/deletePet/{id}")
+@Transactional
+public String deletePetVet(@PathVariable("id") Long id) {
+    mascotaservice.deleteById(id);
+    return "redirect:/vetmascota";
 }
 }
