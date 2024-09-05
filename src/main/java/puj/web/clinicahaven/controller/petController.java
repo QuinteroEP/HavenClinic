@@ -65,16 +65,16 @@ public String agregarCliente(@ModelAttribute("mascota") mascot mascota, HttpSess
 //localhost:8090/mascota/actualizar_mascota/1
   @GetMapping("/actualizar_mascota/{id}")
   public String mostrarFormulario(@PathVariable("id") Long id, Model model) {
-    model.addAttribute("mascota", mascotaservice.findById(id));
+    model.addAttribute("pet", mascotaservice.findById(id));
     return "modificar_mascota";
   }
 
   @PostMapping("/actualizar_mascota/{id}")
-  public String actualizarMascota(@PathVariable("id") Long id, @ModelAttribute("mascota") mascot mascota) {
+  public String actualizarMascota(@PathVariable("id") Long id, @ModelAttribute("pet") mascot mascota) {
       mascot existingMascota = mascotaservice.findById(id);
       mascota.setDueño(existingMascota.getDueño());
       mascotaservice.update(mascota);
-    return "redirect:/vetmascota";
+    return "redirect:/cliente/mis_mascotas";
   }
 
   @GetMapping("/updatePet/{id}")
