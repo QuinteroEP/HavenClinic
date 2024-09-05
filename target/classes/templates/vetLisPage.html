@@ -63,13 +63,13 @@
 
         <!--Botones-->
         <td>
-          <a class="btn btn-info" th:href="@{/cliente/informacionmascota/{id}(id=${pet.id})}">Informacion</a>
+          <a class="btn btn-info" th:href="@{/petInfo/{id}(id=${pet.id})}">Informacion</a>
         </td>
         <td>
-          <a class="btn btn-info" th:href="@{/mascotas/actualizar_mascota/{id}(id=${pet.id})}">Actualizar Informacion</a>
+          <a class="btn btn-info" th:href="@{/mascotas/updatePet/{id}(id=${pet.id})}">Actualizar Informacion</a>
         </td>
         <td id="botonElim">
-          <a class="btn btn-danger" th:href="@{/mascotas/delete/{id}(id=${pet.id})}">Eliminar</a>
+          <a class="btn btn-danger" th:href="@{/mascotas/deletePet/{id}(id=${pet.id})}">Eliminar</a>
         </td>
       </tr>
       <tr>

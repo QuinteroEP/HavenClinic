@@ -3,11 +3,10 @@ package puj.web.clinicahaven.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.mascot;
+import puj.web.clinicahaven.errorHandling.petNotFoundException;
 import puj.web.clinicahaven.servicio.ClienteImplementation;
 import puj.web.clinicahaven.servicio.petImplementation;
 
@@ -35,6 +34,17 @@ public class VeterinarioController {
        Cliente cliente = clienteService.findByclienteId(ownerid);
         newPet.setDueño(cliente);
         mascotaService.agregar(newPet);
-        return "redirect:/vetListPage";
+        return "redirect:/vetmascota";
     }
+    @GetMapping("/petInfo/{id}")
+    public String petInfo(Model model, @PathVariable("id") Long id) {
+        mascot mascota = mascotaService.findById(id);
+        if (mascota == null) {
+            throw new petNotFoundException(id);
+        }
+
+        model.addAttribute("pet", mascota);
+        return "vetPetInfo";
+    }
+
 }
