@@ -75,21 +75,8 @@ public class petController {
     return "redirect:/cliente/mis_mascotas";
   }
 
-  @GetMapping("/updatePet/{id}")
-    public String updatePetForm( @PathVariable("id") Long id, Model model) {
-        mascot pet = mascotaService.findById(id);
-        model.addAttribute("pet", pet);
-        return "vetUpdatePet";
-    }
-    @PostMapping("/updatePet/{id}")
-    public String actualizarMascotavet(@PathVariable("id") Long id, @ModelAttribute("pet") mascot pet) {
-        mascot existingMascota = mascotaService.findById(id);
-        pet.setDueño(existingMascota.getDueño());
-        mascotaService.update(pet);
-        return "redirect:/vetmascota";
-    }
   
-//Eliminar Mascota
+//Eliminar Mascota (No se usa, era en caso de que el cliente pudiera eliminar su mascota)
 //localhost:8090/mascotas/delete/2
 @GetMapping("/delete/{id}")
 @Transactional
@@ -108,6 +95,7 @@ public String deletePet(@PathVariable("id") Long id, HttpSession session) {
     mascotaService.deleteById(mascotaToDelete.getId());
     return "redirect:/cliente/mis_mascotas";
 }
+
 //Eliminar mascota veterinario
 //localhost:8090/mascotas/deletePet/2
 @GetMapping("/deletePet/{id}")

@@ -1,7 +1,5 @@
 package puj.web.clinicahaven.controller;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +14,9 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.SessionUtil;
-import puj.web.clinicahaven.entity.mascot;
+
 import puj.web.clinicahaven.errorHandling.NotFoundException;
-import puj.web.clinicahaven.errorHandling.petNotFoundException;
-import puj.web.clinicahaven.repositorio.petRepository;
+
 import puj.web.clinicahaven.servicio.ClienteService;
 import puj.web.clinicahaven.servicio.petService;
 
@@ -37,7 +34,14 @@ public class ClienteController {
     petService mascotaservice;
   
 
-
+//menu principal del cliente
+//localhost:8090/cliente/menu
+@GetMapping("/menu")
+public String getMenu(Model model, @ModelAttribute("cliente") Cliente cliente) {
+  // Agregar las mascotas del cliente al modelo
+  model.addAttribute("mascotas", cliente.getMascotas());
+  return "mainMenu";
+}
 
 //localhost:8090/cliente/all
 //usada para ver a todos los clientes
@@ -80,7 +84,12 @@ public String getMethodName( Model model,@RequestParam("cedula") int cedula) {
 }
 
 
+
+
+
+//registra al cliente (no se uso, se dejo como pop up de index)
 //localhost:8090/cliente/registrar
+
 @GetMapping("/registrar") 
 public String CrearNuevoCliente(Model model) {
     Cliente cliente = new Cliente ("", 0, 0, "", "");
@@ -88,23 +97,15 @@ public String CrearNuevoCliente(Model model) {
     //model.addAttribute("mascotas", mascotas);
     return "registro_cliente";
 }
-
-//menu principal del cliente
-//localhost:8090/cliente/menu
-@GetMapping("/menu")
-public String getMenu(Model model, @ModelAttribute("cliente") Cliente cliente) {
-  // Agregar las mascotas del cliente al modelo
-  model.addAttribute("mascotas", cliente.getMascotas());
-  return "mainMenu";
-}
-
+//agrega el cliente despues de registrarse
 //localhost:8090/cliente/agregarCliente
+
 @PostMapping("/agregarCliente")
 @Transactional
 public String agregarCliente(@ModelAttribute("cliente") Cliente cliente, HttpSession session) {
    clienteService.add(cliente);
     SessionUtil.setLoggedInClient(session, cliente);
-    return "redirect:/cliente/all";
+    return "redirect:/cliente/menu";
 }
 
 //localhost:8080/cliente/eliminarCliente/{cedula}
@@ -115,29 +116,15 @@ public String Eliminarcliente(@PathVariable("cedula") int cedula) {
     return "redirect:/cliente/all";
 
 }
-
+//localhost:8080/cliente/update
+//redirecciona a la pagina para actualizar el cliente
     @GetMapping("/update/{id}")
     public String mostrarFormularioActualizar(@PathVariable("id") long id, Model model) {
         model.addAttribute("cliente", clienteService.findByclienteId(id));
         return "editar_cliente";
     }
 
-    @PostMapping("/update/{id}")
-    public String actualizarCliente(@PathVariable("id") long id, @ModelAttribute("cliente") Cliente cliente) {
-        clienteService.update(cliente);
-        return "redirect:/cliente/all";
-    }
-
-    @GetMapping("/update")
-public String mostrarFormularioActualizar(HttpSession session, Model model) {
-    Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
-    if (loggedInClient == null) {
-        return "redirect:/"; // Redirect to home if not logged in
-    }
-    model.addAttribute("cliente", loggedInClient); // Preload form with logged-in client data
-    return "editar_cliente"; // Render the update form
-}
-
+//guarda los cambios del cliente
 @PostMapping("/update")
 public String actualizarCliente(HttpSession session, @ModelAttribute("cliente") Cliente cliente) {
     Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
