@@ -13,11 +13,6 @@ import puj.web.clinicahaven.servicio.petImplementation;
 @Controller
 public class VeterinarioController {
 
-    @Autowired
-    private petImplementation mascotaService;
-    @Autowired
-    private ClienteImplementation clienteService;
-
   
     @GetMapping("/vetmain")
     public String getVetMain() {

@@ -34,13 +34,27 @@ public class petController {
     ClienteService clienteService;
 
 
-    //Mostrar las mascotas para el veterinario
+    //Mostrar todas las mascotas para el veterinario
       //localhost:8090/vetmascota
       @GetMapping("/vetmascota")
       public String listPage(Model model) {
           model.addAttribute("mascotas", mascotaService.findAll());
           return "vetLisPage";
       }
+
+//mascotas del cliente loggeado
+//localhost:8090/mascotas/mis_mascotas
+@GetMapping("/mis_mascotas")
+public String showClientPets(Model model, HttpSession session) {
+    Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
+    if (loggedInClient == null) {
+        return "redirect:/";
+    }
+    System.out.println("Cliente loggeado: " + loggedInClient.getNombre() + "id: " + loggedInClient.getId());
+    Collection<mascot> mascotas = mascotaService.findByDueñoId(loggedInClient.getId());
+    model.addAttribute("pets", mascotas);
+    return "listPage";
+}
 
 //registrar mascota nueva
 
@@ -118,19 +132,7 @@ public String deletePetVet(@PathVariable("id") Long id) {
         return "vetPetInfo";
     }
 
-    //mascotas del cliente loggeado
-//localhost:8090/mascotas/mis_mascotas
-@GetMapping("/mis_mascotas")
-public String showClientPets(Model model, HttpSession session) {
-    Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
-    if (loggedInClient == null) {
-        return "redirect:/";
-    }
-    System.out.println("Cliente loggeado: " + loggedInClient.getNombre() + "id: " + loggedInClient.getId());
-    Collection<mascot> mascotas = mascotaService.findByDueñoId(loggedInClient.getId());
-    model.addAttribute("pets", mascotas);
-    return "listPage";
-}
+
 
    
 }

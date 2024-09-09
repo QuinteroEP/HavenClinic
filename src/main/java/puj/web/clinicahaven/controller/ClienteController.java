@@ -18,7 +18,7 @@ import puj.web.clinicahaven.entity.SessionUtil;
 import puj.web.clinicahaven.errorHandling.NotFoundException;
 
 import puj.web.clinicahaven.servicio.ClienteService;
-import puj.web.clinicahaven.servicio.petService;
+
 
 
 
@@ -29,10 +29,7 @@ public class ClienteController {
     
     @Autowired
     ClienteService clienteService;
-  
-  @Autowired
-    petService mascotaservice;
-  
+
 
 //menu principal del cliente
 //localhost:8090/cliente/menu
