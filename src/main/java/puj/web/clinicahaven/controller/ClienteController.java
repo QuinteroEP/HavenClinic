@@ -41,6 +41,7 @@ public class ClienteController {
 
 
 //localhost:8090/cliente/all
+//usada para ver a todos los clientes
 @GetMapping("/all")
 public String getMethodName(Model model) {
     model.addAttribute("clientes", clienteService.findAll());
