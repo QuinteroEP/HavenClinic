@@ -31,19 +31,9 @@ public class petController {
     @Autowired
     ClienteService clienteService;
 
-    @Autowired
-    private final petRepository petRepo;
 
-    public petController(petRepository petRepo) {
-        this.petRepo = petRepo;
-    }
 
-    @GetMapping("/informacion")
-    public String list(Model model) {
-        Collection<mascot> pets = petRepo.findAll();
-        model.addAttribute("pets", pets);
-        return "listPage";
-    }
+   
 
 //registrar Mascota
 //localhost:8090/mascotas/agregarmascota

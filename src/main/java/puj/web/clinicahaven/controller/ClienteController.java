@@ -36,8 +36,7 @@ public class ClienteController {
   @Autowired
     petService mascotaservice;
   
-    @Autowired
-    petRepository petRepo;
+
 
 
 //localhost:8090/cliente/all
@@ -50,6 +49,7 @@ public String getMethodName(Model model) {
 
 
 //localhost:8090/cliente/find/10
+//usada en el cliente/all para ver la info de un cliente
 @GetMapping("/find/{cedula}")
 public String MostrarInfoCliente( Model model,@PathVariable("cedula") int cedula) {
     Cliente client = clienteService.findByCedula(cedula);
@@ -62,7 +62,8 @@ public String MostrarInfoCliente( Model model,@PathVariable("cedula") int cedula
     return "mostrar_cliente";
 }
 
-
+//localhost:8090/cliente/findEmail? correo=10
+//buscar por corr  v  eeo
 @GetMapping("/findEmail/{correo}")
 public String MostrarInfoCliente( Model model,@RequestParam("correo") String correo) {
     model.addAttribute("cliente", clienteService.findByEmail(correo));
@@ -181,13 +182,6 @@ public String petInfo(Model model, @PathVariable("id") Long id) {
         return "redirect:/cliente/mis_mascotas";
     }
 
-//ver todas las mascotas
-   @GetMapping("/informacion_mascotas")
-    public String list(Model model) {
-        
-        model.addAttribute("pets", petRepo.findAll());
-        return "listPage";
-    }
 
 //localhost:8090/cliente/agregarCliente
 @PostMapping("/agregarCliente")
