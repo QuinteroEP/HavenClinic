@@ -1,6 +1,10 @@
 <h1 align="center">
-  Proyecto Final Desarrollo Web - Haven
+  Clinica Veterinaria Haven - Proyecto Final Desarrollo Web 
 </h1>
+
+<p align="center">
+  <img src="https://github.com/QuinteroEP/HavenClinic/blob/main/documentacion/Logo.png" alt="Logo de Haven"/>
+</p>
 
 <details>
   <summary>Contenido</summary>
