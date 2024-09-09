@@ -18,33 +18,11 @@ public class VeterinarioController {
     @Autowired
     private ClienteImplementation clienteService;
 
-    @GetMapping("/vetmascota")
-    public String listPage(Model model) {
-        model.addAttribute("mascotas", mascotaService.findAll());
-        return "vetLisPage";
-    }
-    @GetMapping("/vetAddPet")
-    public String vetAddPet() {
-        return "vetAddPet";
+  
+    @GetMapping("/vetmain")
+    public String getVetMain() {
+        return "vetMainMenu";
     }
 
-    @PostMapping("/addPet")
-    public String addPet(@RequestParam String name, @RequestParam Long ownerid, @RequestParam int edad, @RequestParam String raza,  @RequestParam String image, @RequestParam String genero,@RequestParam String condicion, @RequestParam String descripcion) {
-        mascot newPet = new mascot(name, edad, raza, image, genero, condicion, descripcion);
-       Cliente cliente = clienteService.findByclienteId(ownerid);
-        newPet.setDueño(cliente);
-        mascotaService.agregar(newPet);
-        return "redirect:/vetmascota";
-    }
-    @GetMapping("/petInfo/{id}")
-    public String petInfo(Model model, @PathVariable("id") Long id) {
-        mascot mascota = mascotaService.findById(id);
-        if (mascota == null) {
-            throw new petNotFoundException(id);
-        }
-
-        model.addAttribute("pet", mascota);
-        return "vetPetInfo";
-    }
 
 }

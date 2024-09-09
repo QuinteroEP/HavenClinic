@@ -49,7 +49,7 @@ public String getMethodName(Model model) {
 
 
 //localhost:8090/cliente/find/10
-//usada en el cliente/all para ver la info de un cliente
+//usada en el cliente/all para ver la info de un cliente por su cedula
 @GetMapping("/find/{cedula}")
 public String MostrarInfoCliente( Model model,@PathVariable("cedula") int cedula) {
     Cliente client = clienteService.findByCedula(cedula);
@@ -63,7 +63,7 @@ public String MostrarInfoCliente( Model model,@PathVariable("cedula") int cedula
 }
 
 //localhost:8090/cliente/findEmail? correo=10
-//buscar por corr  v  eeo
+//buscar por correo (no se usa)
 @GetMapping("/findEmail/{correo}")
 public String MostrarInfoCliente( Model model,@RequestParam("correo") String correo) {
     model.addAttribute("cliente", clienteService.findByEmail(correo));
@@ -72,6 +72,7 @@ public String MostrarInfoCliente( Model model,@RequestParam("correo") String cor
 
 
 //localhost:8080/cliente/find? cedula=10
+//(no se usa)
 @GetMapping("/find")
 public String getMethodName( Model model,@RequestParam("cedula") int cedula) {
     model.addAttribute("cliente", clienteService.findByCedula(cedula));
@@ -88,7 +89,7 @@ public String CrearNuevoCliente(Model model) {
     return "registro_cliente";
 }
 
-//menu
+//menu principal del cliente
 //localhost:8090/cliente/menu
 @GetMapping("/menu")
 public String getMenu(Model model, @ModelAttribute("cliente") Cliente cliente) {
@@ -96,92 +97,6 @@ public String getMenu(Model model, @ModelAttribute("cliente") Cliente cliente) {
   model.addAttribute("mascotas", cliente.getMascotas());
   return "mainMenu";
 }
-
-//todas las mascotas
-//localhost:8090/cliente/mis_mascotasall
-@GetMapping("/mis_mascotasall")
-public String petList(Model model) {
-    Collection<mascot> mascotas = mascotaservice.findAll();
-    model.addAttribute("pets", mascotas);
-
-    return "listPage";
-}
-
-//mascotas del cliente
-//localhost:8090/cliente/mis_mascotas/id
-@GetMapping("/mis_mascotas/{id}")
-public String clientPetInfo(Model model, @PathVariable("id") Long id) {
-    Collection<mascot> mascotas = mascotaservice.findByDueñoId(id);
-    model.addAttribute("pets", mascotas);
-
-    return "listPage";
-}
-
-//mascotas del cliente loggeado
-@GetMapping("/mis_mascotas")
-public String showClientPets(Model model, HttpSession session) {
-    Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
-    if (loggedInClient == null) {
-        return "redirect:/";
-    }
-    System.out.println("Cliente loggeado: " + loggedInClient.getNombre() + "id: " + loggedInClient.getId());
-    Collection<mascot> mascotas = mascotaservice.findByDueñoId(loggedInClient.getId());
-    model.addAttribute("pets", mascotas);
-    return "listPage";
-}
-
-/*@GetMapping("/mis_mascotas")
-public String list(Model model, @RequestParam("correo") String correo) {
-    Cliente cliente = clienteService.findByEmail(correo);
-    if (cliente == null) {
-        //throw new NotFoundException("Cliente no encontrado");
-    }
-    model.addAttribute("mascotas", cliente.getMascotas());
-    return "informacion_mascotas";
-}*/
-
-
-//informacion mascota
-//localhost:8090/cliente/informacionmascota/2
-@GetMapping("/informacionmascota/{id}")
-public String petInfo(Model model, @PathVariable("id") Long id) {
-    mascot mascota = mascotaservice.findById(id);
-    if (mascota == null) {
-        throw new petNotFoundException(id);
-    }
-
-    model.addAttribute("pet", mascota);
-    return "petInfo";
-}
-
-
-  //registrar Mascota
-  //localhost:8090/cliente/registrarmascota
-  @GetMapping("/registrarmascota")
-  public String CrearNuevaMascota(Model model, HttpSession session) {
-
-      Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
-      if (loggedInClient == null) {
-          return "redirect:/";
-      }
-      model.addAttribute("mascota", new mascot());
-
-      return "registroMascota";
-  }
-    @PostMapping("/registrarmascota")
-    @Transactional
-    public String addPet(@RequestParam("nombre") String nombre, @RequestParam("edad") int edad, @RequestParam("raza") String raza, @RequestParam("url") String url, @RequestParam("genero") String genero, @RequestParam("condicion") String condicion, @RequestParam("descripcion") String descripcion, HttpSession session) {
-        Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
-        if (loggedInClient == null) {
-            return "redirect:/";
-        }
-        mascot nuevaMascota = new mascot(nombre, edad, raza, url, genero, condicion, descripcion);
-        nuevaMascota.setDueño(loggedInClient);
-        loggedInClient.getMascotas().add(nuevaMascota);
-        clienteService.update(loggedInClient);
-        return "redirect:/cliente/mis_mascotas";
-    }
-
 
 //localhost:8090/cliente/agregarCliente
 @PostMapping("/agregarCliente")

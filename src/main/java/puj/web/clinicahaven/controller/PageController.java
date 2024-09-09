@@ -19,8 +19,5 @@ public class PageController {
         return "index";
     }
 
-    @GetMapping("/vetmain")
-    public String getVetMain() {
-        return "vetMainMenu";
-    }
+
 }
