@@ -25,6 +25,7 @@ public class DatabaseInit implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        
         //datos quemados de clientes
         clienteRepository1.save(new Cliente("Juan", 123, 1222, "a@c.m", "abc"));
         clienteRepository1.save(new Cliente("Pedro", 124, 1223, "b@c.m", "abc"));
@@ -182,9 +183,27 @@ public class DatabaseInit implements ApplicationRunner {
         petRepository1.save(new mascot("Teddy", 5, "Perro", "", "Macho", "Problemas Renales", ""));
         petRepository1.save(new mascot("Ginger", 2, "Gato", "", "Hembra", "Dermatitis", ""));
 
-        //Datos quemados de veterinario
-        veterinarioRepository.save(new Veterinario(1234, "Admin", 111, "nose", "abc", "", 0, "qwe@m.c"));
-
+        //Datos quemados de veterinarios
+        veterinarioRepository.save(new Veterinario(1234, "Admin", 111, "Cardilogia", "abc", "", 0, "qwe@m.c"));
+        veterinarioRepository.save(new Veterinario(0301, "Juan Pérez", 1234, "Cirugia", "vetpass1", " ", 0, "juan.perez@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(1103, "Carlos Ramírez", 3456, "Cardilogia", "vetpass3", " ", 0, "carlos.ramirez@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(4004, "Ana González", 4567, "Nutricion", "vetpass4", " ", 0, "ana.gonzalez@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(0065, "Luis Fernández", 5678, "Dentista", "vetpass5", " ", 0, "luis.fernandez@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(0406, "Laura Martínez", 6789, "Oftamologia", "vetpass6", " ", 0, "laura.martinez@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(3007, "José Sánchez", 7890, "Cirugia", "vetpass7", " ", 0, "jose.sanchez@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(5010, "Marta Ruiz", 0123, "Nutricion", "vetpass10", " ", 0, "marta.ruiz@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(6011, "Fernando Morales", 1235, "Dentista", "vetpass11", " ", 0, "fernando.morales@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(0412, "Patricia Soto", 2346, "Oftamologia", "vetpass12", " ", 0, "patricia.soto@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(2213, "Andrés Gil", 3457, "Cirugia", "vetpass13", " ", 0, "andres.gil@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(1114, "Cristina Núñez", 4568, "Dermatologia", "vetpass14", " ", 0, "cristina.nunez@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(0315, "Miguel Herrera", 5679, "Cardilogia", "vetpass15", " ", 0, "miguel.herrera@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(4416, "Sofía Flores", 6780, "Nutricion", "vetpass16", " ", 0, "sofia.flores@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(0717, "Víctor Delgado", 7891, "Dentista", "vetpass17", " ", 0, "victor.delgado@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(8820, "Claudia Ríos", 0124, "Dermatologia", "vetpass20", " ", 0, "claudia.rios@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(3021, "Daniel Ortega", 1236, "Cirugia", "vetpass21", " ", 0, "daniel.ortega@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(0422, "Lucía Vargas", 2347, "Dermatologia", "vetpass22", " ", 0, "lucia.vargas@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(6023, "Roberto Salinas", 3458, "Cardilogia", "vetpass23", " ", 0, "roberto.salinas@vetclinic.com"));
+        veterinarioRepository.save(new Veterinario(7024, "Verónica Paredes", 4569, "Nutricion", "vetpass24", " ", 0, "veronica.paredes@vetclinic.com"));
 
         // Asociar mascotas a dueños ciclicamente
         List<mascot> mascotas = petRepository1.findAll();
