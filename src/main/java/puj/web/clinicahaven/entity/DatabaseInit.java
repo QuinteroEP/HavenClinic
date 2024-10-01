@@ -10,7 +10,10 @@ import org.springframework.stereotype.Controller;
 import jakarta.transaction.Transactional;
 import puj.web.clinicahaven.repositorio.VeterinarioRepository;
 import puj.web.clinicahaven.repositorio.clienteRepository;
+import puj.web.clinicahaven.repositorio.drogaRepository;
 import puj.web.clinicahaven.repositorio.petRepository;
+import puj.web.clinicahaven.repositorio.tratamientoRepository;
+import puj.web.clinicahaven.servicio.csvService;
 
 @Controller
 @Transactional
@@ -22,6 +25,12 @@ public class DatabaseInit implements ApplicationRunner {
     petRepository petRepository1;
     @Autowired
     VeterinarioRepository veterinarioRepository;
+    @Autowired
+    drogaRepository drogaRepository;
+    @Autowired
+    csvService csvService;
+    @Autowired
+    tratamientoRepository tratamientoRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -204,6 +213,11 @@ public class DatabaseInit implements ApplicationRunner {
         veterinarioRepository.save(new Veterinario(0422, "Lucía Vargas", 2347, "Dermatologia", "vetpass22", " ", 0, "lucia.vargas@vetclinic.com"));
         veterinarioRepository.save(new Veterinario(6023, "Roberto Salinas", 3458, "Cardilogia", "vetpass23", " ", 0, "roberto.salinas@vetclinic.com"));
         veterinarioRepository.save(new Veterinario(7024, "Verónica Paredes", 4569, "Nutricion", "vetpass24", " ", 0, "veronica.paredes@vetclinic.com"));
+
+        //Datos de drogas
+        csvService.uploadCsv("src/main/resources/MEDICAMENTOS_VETERINARIA.csv");
+
+        //datos de tratamiento
 
         // Asociar mascotas a dueños ciclicamente
         List<mascot> mascotas = petRepository1.findAll();

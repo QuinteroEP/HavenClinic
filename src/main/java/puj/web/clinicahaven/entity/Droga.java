@@ -95,5 +95,4 @@ public class Droga {
     public void setUnidadesVendidas(int unidadesVendidas) {
         this.unidadesVendidas = unidadesVendidas;
     }
-
 }
