@@ -1,5 +1,7 @@
 package puj.web.clinicahaven.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -19,6 +21,7 @@ public class mascot {
     private String condicion;
     private String descripcion;
 
+    @JsonIgnore
     @ManyToOne
     private Cliente dueño;
     

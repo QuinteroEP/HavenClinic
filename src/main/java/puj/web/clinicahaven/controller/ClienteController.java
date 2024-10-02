@@ -1,15 +1,22 @@
 package puj.web.clinicahaven.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import puj.web.clinicahaven.entity.Cliente;
@@ -23,8 +30,9 @@ import puj.web.clinicahaven.servicio.ClienteService;
 
 
 
-@Controller
+@RestController   //pasa de controller a restcontroller
 @RequestMapping("/cliente")
+@CrossOrigin (origins = "http://localhost:4200") //especifica al backend que paginas le pueden hacer peticiones//conecta con angular
 public class ClienteController {
     
     @Autowired
@@ -43,24 +51,21 @@ public String getMenu(Model model, @ModelAttribute("cliente") Cliente cliente) {
 //localhost:8090/cliente/all
 //usada para ver a todos los clientes
 @GetMapping("/all")
-public String getMethodName(Model model) {
-    model.addAttribute("clientes", clienteService.findAll());
-    return "mostrar_todos_los_clientes";
+public List<Cliente> MostrarEstudiantes(Model model) {
+    //model.addAttribute("clientes", clienteService.findAll());
+   // return "mostrar_todos_los_clientes";
+   return clienteService.findAll();
 }
 
 
 //localhost:8090/cliente/find/10
 //usada en el cliente/all para ver la info de un cliente por su cedula
 @GetMapping("/find/{cedula}")
-public String MostrarInfoCliente( Model model,@PathVariable("cedula") int cedula) {
+@Operation(summary = "find student by id ")
+public Cliente MostrarInfoCliente(@PathVariable("cedula") int cedula) {
     Cliente client = clienteService.findByCedula(cedula);
-    if(client!=null) {
-        model.addAttribute("cliente", clienteService.findByCedula(cedula));
- 
-    }else{
-     throw new NotFoundException(cedula);
-    }
-    return "mostrar_cliente";
+
+    return client;  
 }
 
 //localhost:8090/cliente/findEmail? correo=10
@@ -98,19 +103,19 @@ public String CrearNuevoCliente(Model model) {
 //localhost:8090/cliente/agregarCliente
 
 @PostMapping("/agregarCliente")
-@Transactional
-public String agregarCliente(@ModelAttribute("cliente") Cliente cliente, HttpSession session) {
+
+public void agregarCliente(@RequestBody Cliente cliente, HttpSession session) {
    clienteService.add(cliente);
     SessionUtil.setLoggedInClient(session, cliente);
-    return "redirect:/cliente/menu";
+
 }
 
 //localhost:8080/cliente/eliminarCliente/{cedula}
 //path variable para mandar el parametro de la url a la base de datos
-@GetMapping("/eliminarCliente/{cedula}")
-public String Eliminarcliente(@PathVariable("cedula") int cedula) {
+@DeleteMapping("/eliminarCliente/{cedula}")
+public void Eliminarcliente(@PathVariable("cedula") int cedula) {
     clienteService.deleteByCedula(cedula);
-    return "redirect:/cliente/all";
+    
 
 }
 //localhost:8080/cliente/update
@@ -122,21 +127,14 @@ public String Eliminarcliente(@PathVariable("cedula") int cedula) {
     }
 
 //guarda los cambios del cliente
-@PostMapping("/update")
-public String actualizarCliente(HttpSession session, @ModelAttribute("cliente") Cliente cliente) {
+@PutMapping("/update")
+public void actualizarCliente(HttpSession session, @RequestBody Cliente cliente) {
     Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
     
-    if (loggedInClient == null) {
-        return "redirect:/"; // Redirect if not logged in
+    if (loggedInClient != null) {
+        clienteService.update(cliente); // Proceed with the update
     }
 
-    // Ensure the logged-in client is updating their own data
-    //if (loggedInClient.getId() == cliente.getId()) {
-        clienteService.update(cliente); // Proceed with the update
-        return "redirect:/cliente/menu"; // Redirect to profile or any other page
-   // } else {
-    //    return "redirect:/"; // If ID mismatch, redirect to prevent unauthorized updates
-    //}
 }
 
 

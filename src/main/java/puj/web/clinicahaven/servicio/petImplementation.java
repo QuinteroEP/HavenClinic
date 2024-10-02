@@ -17,7 +17,7 @@ public class petImplementation implements petService{
     petRepository repo;
 
     @Override
-    public Collection<mascot> findAll() {
+    public List<mascot> findAll() {
         return repo.findAll(); 
     }
 

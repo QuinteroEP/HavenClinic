@@ -9,7 +9,7 @@ import puj.web.clinicahaven.entity.mascot;
 
 public interface petService {
 
-    public Collection<mascot> findAll();
+    public List<mascot> findAll();
     
     public mascot findById(Long id);
     @Transactional

@@ -1,6 +1,7 @@
 package puj.web.clinicahaven.servicio;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +43,7 @@ public class ClienteImplementation implements ClienteService{
     }
 
     @Override //override es para sobreescribir un metodo
-    public Collection<Cliente> findAll() {
+    public List<Cliente> findAll() {
         
         return repoCliente.findAll();
     }

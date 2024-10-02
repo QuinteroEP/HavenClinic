@@ -4,6 +4,8 @@ package puj.web.clinicahaven.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -20,6 +22,7 @@ public class Cliente {
     private String correo;
     private String contraseña;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "dueño",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<mascot> mascotas = new ArrayList<>();
 
