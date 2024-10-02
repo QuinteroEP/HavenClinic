@@ -40,7 +40,7 @@ Este es un portal web de la clinica veterinaria ficticia Haven, en el cual los d
          <p>Java</p>
        </li>
         <li>
-         <p>JavaScript</p>
+         <p>TypeScript</p>
        </li>
      </ol>
    </li>
