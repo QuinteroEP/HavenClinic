@@ -49,6 +49,7 @@ Este es un portal web de la clinica veterinaria ficticia Haven, en el cual los d
       <ol>
        <li>
          <p>Springboot</p>
+         <p>Angular</p>
        </li>
      </ol>
     </li>
@@ -56,7 +57,7 @@ Este es un portal web de la clinica veterinaria ficticia Haven, en el cual los d
       <p>APIs</p>
       <ol>
        <li>
-         <p>JPA</p>
+         <p>REST</p>
        </li>
      </ol>
     </li>
