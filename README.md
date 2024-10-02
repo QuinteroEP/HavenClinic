@@ -47,10 +47,12 @@ Este es un portal web de la clinica veterinaria ficticia Haven, en el cual los d
     <li>
       <p>Frameworks</p>
       <ol>
-       <li>
+         <li>
          <p>Springboot</p>
-         <p>Angular</p>
-       </li>
+        </li>
+        <li>
+          <p>Angular</p>
+        </li>
      </ol>
     </li>
    <li>
