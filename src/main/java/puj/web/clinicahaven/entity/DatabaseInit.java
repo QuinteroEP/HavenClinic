@@ -218,6 +218,16 @@ public class DatabaseInit implements ApplicationRunner {
         csvService.uploadCsv("src/main/resources/MEDICAMENTOS_VETERINARIA.csv");
 
         //datos de tratamiento
+        tratamientoRepository.save(new Tratamiento("2023-01-01","ACOLAN"));
+        tratamientoRepository.save(new Tratamiento("2023-01-02","ACTIONIS"));
+        tratamientoRepository.save(new Tratamiento("2023-01-03",  "ACUIMIX"));
+        tratamientoRepository.save(new Tratamiento("2023-01-04", "ALSIR"));
+        tratamientoRepository.save(new Tratamiento("2023-01-05", "AUROFAC"));
+        tratamientoRepository.save(new Tratamiento("2023-01-06",  "CEBIN"));
+        tratamientoRepository.save(new Tratamiento("2023-01-07", "CEMAY"));
+        tratamientoRepository.save(new Tratamiento("2023-01-08",  "CENDOX"));
+        tratamientoRepository.save(new Tratamiento("2023-01-09", "COLFIVE"));
+        tratamientoRepository.save(new Tratamiento("2023-01-10",  "COLIMIX"));
 
         // Asociar mascotas a dueños ciclicamente
         List<mascot> mascotas = petRepository1.findAll();

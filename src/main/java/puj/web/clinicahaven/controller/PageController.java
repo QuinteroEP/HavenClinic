@@ -12,7 +12,7 @@ import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.SessionUtil;
 import puj.web.clinicahaven.entity.Veterinario;
 import puj.web.clinicahaven.servicio.ClienteService;
-import puj.web.clinicahaven.servicio.VeterinarioService;
+import puj.web.clinicahaven.servicio.veterinarioService;
 
 @Controller
 public class PageController {
@@ -22,7 +22,7 @@ public class PageController {
     private ClienteService clienteService;
 
     @Autowired
-    private VeterinarioService veterinarioService;
+    private veterinarioService veterinarioService;
     
     @GetMapping("/menu")
     public String getMenu() {

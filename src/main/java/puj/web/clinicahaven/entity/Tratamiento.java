@@ -1,5 +1,7 @@
 package puj.web.clinicahaven.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -12,11 +14,15 @@ public class Tratamiento {
     private Long id;
 
     private String fecha;
+    private String Nombredroga;
+    
     private int idVeterinario;
     private int idMascota;
 
+    @JsonIgnore
     @OneToOne
     private Droga droga;
+
 
 
     public Tratamiento(Long id, String fecha, int idVeterinario, int idMascota, Droga droga) {
@@ -26,10 +32,12 @@ public class Tratamiento {
         this.idMascota = idMascota;
     }
 
-    public Tratamiento(String fecha, int idVeterinario, int idMascota, Droga droga) {
+    public Tratamiento(String fecha, String Nombredroga) {
         this.fecha = fecha;
-        this.idVeterinario = idVeterinario;
-        this.idMascota = idMascota;
+        this.Nombredroga = Nombredroga;
+    }
+    public Tratamiento (String fecha) {
+        this.fecha = fecha;
     }
 
     public Tratamiento() {}
@@ -72,6 +80,14 @@ public class Tratamiento {
 
     public void setDroga(Droga droga) {
         this.droga = droga;
+    }
+
+    public String getNombredroga() {
+        return Nombredroga;
+    }
+
+    public void setNombredroga(String nombredroga) {
+        Nombredroga = nombredroga;
     }
 
 }
