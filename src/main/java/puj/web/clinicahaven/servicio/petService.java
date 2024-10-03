@@ -1,25 +1,24 @@
 package puj.web.clinicahaven.servicio;
 
-import java.util.Collection;
 import java.util.List;
 
 import jakarta.transaction.Transactional;
 import puj.web.clinicahaven.entity.Cliente;
-import puj.web.clinicahaven.entity.mascot;
+import puj.web.clinicahaven.entity.mascota;
 
 public interface petService {
 
-    public List<mascot> findAll();
+    public List<mascota> findAll();
     
-    public mascot findById(Long id);
+    public mascota findById(Long id);
     @Transactional
     public void deleteById(Long id);   
     @Transactional
-    public void update(mascot mascota);
+    public void update(mascota mascota);
     @Transactional
-    public void agregar(mascot mascota);
+    public void agregar(mascota mascota);
 
-    public List<mascot> findByDueño(Cliente dueño);
+    public List<mascota> findByDueño(Cliente dueño);
     
-    public List<mascot> findByDueñoId(Long id);
+    public List<mascota> findByDueñoId(Long id);
 }

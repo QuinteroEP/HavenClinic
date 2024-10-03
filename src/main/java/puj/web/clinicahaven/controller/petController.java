@@ -22,7 +22,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.SessionUtil;
-import puj.web.clinicahaven.entity.mascot;
+import puj.web.clinicahaven.entity.mascota;
 import puj.web.clinicahaven.errorHandling.petNotFoundException;
 import puj.web.clinicahaven.repositorio.petRepository;
 import puj.web.clinicahaven.servicio.ClienteService;
@@ -44,26 +44,25 @@ public class petController {
     //Mostrar todas las mascotas para el veterinario
       //localhost:8090/mascotas/vetmascota
       @GetMapping("/vetmascota")
-      public List<mascot> listPage() {
-         return mascotaService  .findAll();
-         
+      public List<mascota> listPage() {
+         return mascotaService.findAll();
       }
 
 
       //mascotas de cada cliente por id //no se usa por ahora
       //localhost:8090/mascotas/mascotascliente/1
       @GetMapping("/mascotascliente/{id}")
-      public List<mascot> Mascotacliente(@PathVariable("id") Long id) {
+      public List<mascota> Mascotacliente(@PathVariable("id") Long id) {
           return mascotaService.findByDueñoId(id);
       }
       
 //mascotas del cliente loggeado
 //localhost:8090/mascotas/mis_mascotas
 @GetMapping("/mis_mascotas")
-public List<mascot> showClientPets( HttpSession session) {
+public List<mascota> showClientPets( HttpSession session) {
     Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
     System.out.println("Cliente loggeado: " + loggedInClient.getNombre() + "id: " + loggedInClient.getId());
-    List<mascot> mascotas = mascotaService.findByDueñoId(loggedInClient.getId());
+    List<mascota> mascotas = mascotaService.findByDueñoId(loggedInClient.getId());
 
     return mascotas;
 }
@@ -77,7 +76,7 @@ public List<mascot> showClientPets( HttpSession session) {
     }
 
     @PostMapping("/addPet")
-    public void addPet(@PathVariable("ownerCedula") int ownerCedula,@RequestBody mascot mascota){
+    public void addPet(@PathVariable("ownerCedula") int ownerCedula,@RequestBody mascota mascota){
         Cliente cliente = clienteService.findByCedula(ownerCedula);
         mascota.setDueño(cliente);
         mascotaService.agregar(mascota);
@@ -93,8 +92,8 @@ public List<mascot> showClientPets( HttpSession session) {
   }
 
   @PostMapping("/actualizar_mascota/{id}")
-  public void actualizarMascota(@RequestBody mascot mascota, @PathVariable("id") Long id) {
-      mascot existingMascota = mascotaService.findById(id);
+  public void actualizarMascota(@RequestBody mascota mascota, @PathVariable("id") Long id) {
+      mascota existingMascota = mascotaService.findById(id);
       mascota.setDueño(existingMascota.getDueño());
       mascotaService.update(mascota);
 
@@ -112,7 +111,7 @@ public String deletePet(@PathVariable("id") Long id, HttpSession session) {
         return "redirect:/";
     }
     Cliente clienteWithMascotas = clienteService.findByCedula(loggedInClient.getCedula());
-    mascot mascotaToDelete = clienteWithMascotas.getMascotas().stream()
+    mascota mascotaToDelete = clienteWithMascotas.getMascotas().stream()
             .filter(m -> m.getId().equals(id))
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException("Mascota no encontrada"));
@@ -135,8 +134,8 @@ public void deletePetVet(@PathVariable("id") Long id) {
 //ver la mascotas desde el veterinario
     @GetMapping("/petInfo/{id}")
     @Operation(summary = "ver la Mascota seleccionada")
-    public mascot petInfo(Model model, @PathVariable("id") Long id) {
-        mascot mascota = mascotaService.findById(id);
+    public mascota petInfo(Model model, @PathVariable("id") Long id) {
+        mascota mascota = mascotaService.findById(id);
         return  mascota;
     }
 

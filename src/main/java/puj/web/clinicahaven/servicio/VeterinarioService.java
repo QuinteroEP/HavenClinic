@@ -1,9 +1,10 @@
 package puj.web.clinicahaven.servicio;
 
 import java.util.List;
+
 import puj.web.clinicahaven.entity.Veterinario;
 
-public interface veterinarioService {
+public interface VeterinarioService {
     List<Veterinario> findAll();
     Veterinario findById(Long id);
     Veterinario findByEmail(String email);

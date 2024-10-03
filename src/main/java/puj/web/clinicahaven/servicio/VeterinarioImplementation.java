@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import puj.web.clinicahaven.entity.Veterinario;
-import puj.web.clinicahaven.repositorio.veterinarioRepository;
+import puj.web.clinicahaven.repositorio.VeterinarioRepository;
 
 
 @Service
-public class veterinarioImplementation implements veterinarioService {
+public class VeterinarioImplementation implements VeterinarioService {
 
     @Autowired
-    private veterinarioRepository repoVeterinario;
+    private VeterinarioRepository repoVeterinario;
 
     @Override
     public Veterinario findById(Long id) {

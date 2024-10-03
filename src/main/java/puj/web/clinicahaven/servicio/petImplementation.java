@@ -1,14 +1,13 @@
 package puj.web.clinicahaven.servicio;
 
-import java.util.Collection;
 import java.util.List;
 
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import puj.web.clinicahaven.entity.Cliente;
-import puj.web.clinicahaven.entity.mascot;
+import puj.web.clinicahaven.entity.mascota;
 import puj.web.clinicahaven.repositorio.petRepository;
 
 @Service
@@ -17,12 +16,12 @@ public class petImplementation implements petService{
     petRepository repo;
 
     @Override
-    public List<mascot> findAll() {
+    public List<mascota> findAll() {
         return repo.findAll(); 
     }
 
     @Override
-    public mascot findById(Long key){
+    public mascota findById(Long key){
         return repo.findById(key).get();
     }
     
@@ -34,23 +33,23 @@ public class petImplementation implements petService{
 
     @Override
     @Transactional
-    public void update(mascot mascota){
+    public void update(mascota mascota){
         repo.save(mascota);
     }
 
     @Override
     @Transactional
-    public void agregar(mascot mascota){
+    public void agregar(mascota mascota){
         repo.save(mascota);
     }
     
     @Override
-    public List<mascot> findByDueñoId(Long id){
+    public List<mascota> findByDueñoId(Long id){
         return repo.findByDueñoId(id);
     }
 
     @Override
-    public List<mascot> findByDueño(Cliente dueño) {
+    public List<mascota> findByDueño(Cliente dueño) {
         return repo.findByDueño(dueño);
     }
 }
