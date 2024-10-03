@@ -8,7 +8,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 
 import jakarta.transaction.Transactional;
-import puj.web.clinicahaven.repositorio.VeterinarioRepository;
+import puj.web.clinicahaven.repositorio.veterinarioRepository;
 import puj.web.clinicahaven.repositorio.clienteRepository;
 import puj.web.clinicahaven.repositorio.drogaRepository;
 import puj.web.clinicahaven.repositorio.petRepository;
@@ -24,7 +24,7 @@ public class DatabaseInit implements ApplicationRunner {
     @Autowired
     petRepository petRepository1;
     @Autowired
-    VeterinarioRepository veterinarioRepository;
+    veterinarioRepository veterinarioRepository;
     @Autowired
     drogaRepository drogaRepository;
     @Autowired
