@@ -64,12 +64,11 @@ public Cliente MostrarInfoCliente(@PathVariable("cedula") int cedula) {
     return client;  
 }
 
-//localhost:8090/cliente/findEmail? correo=10
-//buscar por correo (no se usa)
+//localhost:8090/cliente/findEmail/pq@c.m
 @GetMapping("/findEmail/{correo}")
-public String MostrarInfoCliente( Model model,@RequestParam("correo") String correo) {
-    model.addAttribute("cliente", clienteService.findByEmail(correo));
-    return "mostrar_cliente";
+public Cliente MostrarInfoCliente(@PathVariable("correo") String correo) {
+    Cliente cliente = clienteService.findByEmail(correo);
+    return cliente;
 }
 
 
@@ -80,9 +79,6 @@ public String getMethodName( Model model,@RequestParam("cedula") int cedula) {
     model.addAttribute("cliente", clienteService.findByCedula(cedula));
     return "mostrar_cliente";
 }
-
-
-
 
 
 //registra al cliente (no se uso, se dejo como pop up de index)
