@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.Veterinario;
 import puj.web.clinicahaven.servicio.VeterinarioService;
 
@@ -62,5 +63,12 @@ public class VeterinarioController {
         }
         veterinarioService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    //localhost:8090/veterinario/findEmail/pq@c.m
+    @GetMapping("/findEmail/{correo}")
+    public Veterinario MostrarInfoVet(@PathVariable("correo") String correo) {
+        Veterinario veterinario = veterinarioService.findByEmail(correo);
+        return veterinario;
     }
 }

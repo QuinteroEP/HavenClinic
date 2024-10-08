@@ -62,37 +62,24 @@ public class petController {
     }
 
     //registrar mascota nueva
-    //localhost:8090/mascota/vetAddPet
-        @GetMapping("/vetAddPet")
-        public String vetAddPet() {
-            return "vetAddPet";
-        }
-
-        @PostMapping("/addPet")
-        public void addPet(@PathVariable("ownerCedula") int ownerCedula,@RequestBody mascota mascota){
-            Cliente cliente = clienteService.findByCedula(ownerCedula);
+    //localhost:8090/mascotas/vetAddPet
+        @PostMapping("/addPet/{id}")
+        public void addPet(@PathVariable("id") int id,@RequestBody mascota mascota){
+            Cliente cliente = clienteService.findByCedula(id);
             mascota.setDueño(cliente);
             mascotaService.agregar(mascota);
         
         }
 
     //Actualizar Mascota
-    //localhost:8090/mascota/actualizar_mascota/1
-    @GetMapping("/actualizar_mascota/{id}")
-    public String mostrarFormulario(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("pet", mascotaService.findById(id));
-        return "modificar_mascota";
-    }
-
+    //localhost:8090/mascotas/actualizar_mascota/1
     @PostMapping("/actualizar_mascota/{id}")
     public void actualizarMascota(@RequestBody mascota mascota, @PathVariable("id") Long id) {
         mascota existingMascota = mascotaService.findById(id);
         mascota.setDueño(existingMascota.getDueño());
         mascotaService.update(mascota);
-
     }
 
-    
     //Eliminar Mascota (No se usa, era en caso de que el cliente pudiera eliminar su mascota)
     //localhost:8090/mascotas/delete/2
     //NO SE USA
