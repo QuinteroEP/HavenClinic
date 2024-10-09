@@ -3,12 +3,14 @@ package puj.web.clinicahaven.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -73,33 +75,18 @@ public class petController {
 
     //Actualizar Mascota
     //localhost:8090/mascotas/actualizar_mascota/1
-    @PostMapping("/actualizar_mascota/{id}")
-    public void actualizarMascota(@RequestBody mascota mascota, @PathVariable("id") Long id) {
+     @PutMapping("/actualizar_mascota/{id}")
+    public ResponseEntity<mascota> actualizarMascota(@RequestBody mascota mascota, @PathVariable("id") Long id) {
         mascota existingMascota = mascotaService.findById(id);
+        if (existingMascota == null) {
+            return ResponseEntity.notFound().build();
+        }
         mascota.setDueño(existingMascota.getDueño());
         mascotaService.update(mascota);
+        return ResponseEntity.ok(mascota);
     }
 
-    //Eliminar Mascota (No se usa, era en caso de que el cliente pudiera eliminar su mascota)
-    //localhost:8090/mascotas/delete/2
-    //NO SE USA
-    @GetMapping("/delete/{id}")
-    @Transactional
-    public String deletePet(@PathVariable("id") Long id, HttpSession session) {
-        Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
-        if (loggedInClient == null) {
-            return "redirect:/";
-        }
-        Cliente clienteWithMascotas = clienteService.findByCedula(loggedInClient.getCedula());
-        mascota mascotaToDelete = clienteWithMascotas.getMascotas().stream()
-                .filter(m -> m.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Mascota no encontrada"));
-        clienteWithMascotas.getMascotas().remove(mascotaToDelete);
-        clienteService.update(clienteWithMascotas);
-        mascotaService.deleteById(mascotaToDelete.getId());
-        return "redirect:/cliente/mis_mascotas";
-    }
+
 
     //Eliminar mascota veterinario
     //localhost:8090/mascotas/deletePet/2
