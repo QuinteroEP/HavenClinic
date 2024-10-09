@@ -1,12 +1,14 @@
 package puj.web.clinicahaven.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class mascot {
+public class mascota {
     @Id
     @GeneratedValue
     private Long id;
@@ -19,10 +21,11 @@ public class mascot {
     private String condicion;
     private String descripcion;
 
+    @JsonIgnore
     @ManyToOne
     private Cliente dueño;
     
-    public mascot(String nombre, int edad, String raza, String url, String genero, Long id, String condicion, String descripcion) {
+    public mascota(String nombre, int edad, String raza, String url, String genero, Long id, String condicion, String descripcion) {
         this.nombre = nombre;
         this.edad = edad;
         this.raza = raza;
@@ -33,10 +36,10 @@ public class mascot {
         this.descripcion = descripcion;
     }
 
-    public mascot() {
+    public mascota() {
     }
 
-    public mascot(String nombre, int edad, String raza, String url, String genero, String condicion, String descripcion) {
+    public mascota(String nombre, int edad, String raza, String url, String genero, String condicion, String descripcion) {
         this.nombre = nombre;
         this.edad = edad;
         this.raza = raza;

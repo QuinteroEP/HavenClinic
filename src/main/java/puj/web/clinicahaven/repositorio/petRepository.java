@@ -7,16 +7,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import puj.web.clinicahaven.entity.Cliente;
-import puj.web.clinicahaven.entity.mascot;
+import puj.web.clinicahaven.entity.mascota;
 
 @Repository
-public interface petRepository extends JpaRepository<mascot, Long> {
-    mascot findPetById(Long id);
+public interface petRepository extends JpaRepository<mascota, Long> {
+    mascota findPetById(Long id);
 
     public void deleteById(Long key);
 
-    List<mascot> findByDueño(Cliente dueño);
+    List<mascota> findByDueño(Cliente dueño);
 
-    @Query("select m from mascot m where m.dueño.id = ?1")
-    List<mascot> findByDueñoId(Long id);
+    @Query("select m from mascota m where m.dueño.id = ?1")
+    List<mascota> findByDueñoId(Long id);
 }
