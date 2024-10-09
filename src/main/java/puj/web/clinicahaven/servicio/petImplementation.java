@@ -27,8 +27,8 @@ public class petImplementation implements petService{
     
     @Override
     @Transactional
-    public void deleteById(Long key){
-        repo.deleteById(key);
+    public void deleteById(Long id){
+        repo.deleteById(id);
     }
 
     @Override
