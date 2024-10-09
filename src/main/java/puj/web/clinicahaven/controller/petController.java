@@ -36,6 +36,7 @@ public class petController {
     @Autowired
     ClienteService clienteService;
 
+    
 
     //Mostrar todas las mascotas para el veterinario
       //localhost:8090/mascotas/vetmascota
@@ -91,7 +92,7 @@ public class petController {
     //Eliminar mascota veterinario
     //localhost:8090/mascotas/deletePet/2
     @DeleteMapping("/deletePet/{id}")
-
+    @Operation(summary = "Eliminar la Mascota seleccionada")
     public void deletePetVet(@PathVariable("id") Long id) {
         mascotaService.deleteById(id);
     
