@@ -1,6 +1,5 @@
 package puj.web.clinicahaven.servicio;
 
-import java.util.Collection;
 import java.util.List;
 
 import jakarta.transaction.Transactional;
@@ -13,7 +12,7 @@ import puj.web.clinicahaven.entity.Cliente;
 public interface ClienteService {
 
 
-    public Cliente findByd(Long id);
+    public Cliente findByid(Long id);
 
     public Cliente findByCedula(int cedula);
 

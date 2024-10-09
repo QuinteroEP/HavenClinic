@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -57,10 +56,9 @@ public List<Cliente> MostrarEstudiantes(Model model) {
 //localhost:8090/cliente/find/10
 //usada en el cliente/all para ver la info de un cliente por su cedula
 @GetMapping("/find/{cedula}")
-@Operation(summary = "find student by id ")
+@Operation(summary = "find client by id number")
 public Cliente MostrarInfoCliente(@PathVariable("cedula") int cedula) {
     Cliente client = clienteService.findByCedula(cedula);
-
     return client;  
 }
 
@@ -70,16 +68,6 @@ public Cliente MostrarInfoCliente(@PathVariable("correo") String correo) {
     Cliente cliente = clienteService.findByEmail(correo);
     return cliente;
 }
-
-
-//localhost:8080/cliente/find? cedula=10
-//(no se usa)
-@GetMapping("/find")
-public String getMethodName( Model model,@RequestParam("cedula") int cedula) {
-    model.addAttribute("cliente", clienteService.findByCedula(cedula));
-    return "mostrar_cliente";
-}
-
 
 //registra al cliente (no se uso, se dejo como pop up de index)
 //localhost:8090/cliente/registrar

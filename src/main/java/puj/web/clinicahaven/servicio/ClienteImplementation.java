@@ -1,6 +1,5 @@
 package puj.web.clinicahaven.servicio;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class ClienteImplementation implements ClienteService{
     clienteRepository repoCliente;
 
     @Override
-    public Cliente findByd(Long id) {
+    public Cliente findByid(Long id) {
         return repoCliente.findById(id).orElse(null);
     }
     @Override
