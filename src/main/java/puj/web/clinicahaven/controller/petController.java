@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpSession;
-import jakarta.transaction.Transactional;
 import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.SessionUtil;
 import puj.web.clinicahaven.entity.mascota;
