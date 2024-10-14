@@ -1,9 +1,9 @@
 package puj.web.clinicahaven.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Droga {
@@ -17,8 +17,15 @@ public class Droga {
     private int unidadesDisponibles;
     private int unidadesVendidas;
 
-    @OneToOne
-    private Tratamiento tratamiento;
+    @OneToMany(mappedBy = "droga")
+    private List<Tratamiento> tratamientos = new ArrayList<>();
+
+    public List<Tratamiento> getTratamientos() {
+        return tratamientos;
+    }
+    public void setTratamientos(List<Tratamiento> tratamientos) {
+        this.tratamientos = tratamientos;
+    }
 
     public Droga(Long id, String nombre, float precioVenta, float precioCompra, int unidadesDisponibles, int unidadesVendidas){
         this.id = id;
@@ -40,13 +47,6 @@ public class Droga {
     public Droga(){}
 
 
-    public Tratamiento getTratamiento() {
-        return this.tratamiento;
-    }
-
-    public void setTratamiento(Tratamiento tratamiento) {
-        this.tratamiento = tratamiento;
-    }
 
     public Long getId() {
         return this.id;

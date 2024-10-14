@@ -19,4 +19,6 @@ public interface petRepository extends JpaRepository<mascota, Long> {
 
     @Query("select m from mascota m where m.dueño.id = ?1")
     List<mascota> findByDueñoId(Long id);
+
+    long countByEnTratamiento(boolean enTratamiento);
 }

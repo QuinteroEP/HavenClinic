@@ -25,6 +25,7 @@ public class Veterinario {
     private String contraseña;
     private String foto;
     private int numAtenciones;
+    private boolean activo;
 
     @JsonIgnore
     @OneToMany(mappedBy="idVeterinario", cascade = CascadeType.ALL)
@@ -41,6 +42,7 @@ public class Veterinario {
         this.foto = foto;
         this.numAtenciones = numAtenciones;
         this.correo = correo;
+        this.activo = false;
     }
 
     public Veterinario(int cedula, String nombre, int celular, String especialidad, String contraseña, String foto, int numAtenciones, String correo) {
@@ -52,6 +54,7 @@ public class Veterinario {
         this.foto = foto;
         this.numAtenciones = numAtenciones;
         this.correo = correo;
+        this.activo = false;
     }
 
     public Veterinario() {}
@@ -136,5 +139,11 @@ public class Veterinario {
         this.tratamiento = tratamiento;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
 
+    public void setActivo(boolean activo) {
+        this.activo = true;
+    }
 }
