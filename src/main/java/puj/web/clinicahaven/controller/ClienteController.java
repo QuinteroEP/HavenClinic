@@ -3,6 +3,7 @@ package puj.web.clinicahaven.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -98,24 +99,16 @@ public void Eliminarcliente(@PathVariable("cedula") int cedula) {
     
 
 }
-//localhost:8080/cliente/update
-//redirecciona a la pagina para actualizar el cliente
-    @GetMapping("/update/{id}")
-    public String mostrarFormularioActualizar(@PathVariable("id") long id, Model model) {
-        model.addAttribute("cliente", clienteService.findByclienteId(id));
-        return "editar_cliente";
+
+//actualizar cliente
+//localhost:8080/cliente/update/1
+@PutMapping("/update/{id}")
+public ResponseEntity<Cliente> actualizarCliente(HttpSession session, @RequestBody Cliente cliente, @PathVariable("id") Long id) {
+        Cliente existingCliente = clienteService.findByid(id);
+        if (existingCliente == null) {
+            return ResponseEntity.notFound().build();
+        }
+        clienteService.update(cliente);
+        return ResponseEntity.ok(cliente);
     }
-
-//guarda los cambios del cliente
-@PutMapping("/update")
-public void actualizarCliente(HttpSession session, @RequestBody Cliente cliente) {
-    Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
-    
-    if (loggedInClient != null) {
-        clienteService.update(cliente); // Proceed with the update
-    }
-
-}
-
-
 }
