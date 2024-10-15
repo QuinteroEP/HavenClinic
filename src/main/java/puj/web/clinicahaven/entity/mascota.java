@@ -25,6 +25,9 @@ public class mascota {
     @JsonIgnore
     @ManyToOne
     private Cliente dueño;
+
+    @ManyToOne
+    private Tratamiento tratamiento;
     
     public mascota(String nombre, int edad, String raza, String url, String genero, Long id, String condicion, String descripcion) {
         this.nombre = nombre;
@@ -58,6 +61,14 @@ public class mascota {
 
     public void setDueño(Cliente dueño) {
         this.dueño = dueño;
+    }
+
+    public Tratamiento getTratamiento() {
+        return tratamiento;
+    }
+
+    public void setTratamiento(Tratamiento Tratamiento) {
+        this.tratamiento = Tratamiento;
     }
 
     public String getNombre() {

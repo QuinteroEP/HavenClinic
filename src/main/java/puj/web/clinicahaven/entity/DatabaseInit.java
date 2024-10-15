@@ -263,7 +263,7 @@ public class DatabaseInit implements ApplicationRunner {
             tratamiento.setNombredroga(drogas.get(i % drogas.size()).getNombre());
             tratamientoRepository.save(tratamiento);
         }*/
-        // Assign treatments with the specified repetition pattern
+        //Asignar tratamientos
         int[] repetitions = {4, 3, 2, 1};
         int mascotaIndex = 0;
         int veterinarioIndex = 0;
@@ -290,5 +290,11 @@ public class DatabaseInit implements ApplicationRunner {
             }
         }
 
+        for (int i = 0; i < mascotas.size(); i++) {
+            if(mascotas.get(i).isEnTratamiento()){
+                mascotas.get(i).setTratamiento(tratamientos.get(i % tratamientos.size()));
+            }
+            petRepository1.save(mascotas.get(i));
+        }
     }
 }
