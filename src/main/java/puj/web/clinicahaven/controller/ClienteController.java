@@ -57,7 +57,7 @@ public List<Cliente> MostrarEstudiantes(Model model) {
 //localhost:8090/cliente/find/10
 //usada en el cliente/all para ver la info de un cliente por su cedula
 @GetMapping("/find/{cedula}")
-@Operation(summary = "find client by id number")
+@Operation(summary = "find client by cedula number")
 public Cliente MostrarInfoCliente(@PathVariable("cedula") int cedula) {
     Cliente client = clienteService.findByCedula(cedula);
     return client;  
@@ -85,9 +85,10 @@ public String CrearNuevoCliente(Model model) {
 
 @PostMapping("/agregarCliente")
 
-public void agregarCliente(@RequestBody Cliente cliente, HttpSession session) {
-   clienteService.add(cliente);
-    SessionUtil.setLoggedInClient(session, cliente);
+public void agregarCliente(@RequestBody Cliente cliente) {
+// HttpSession session
+    clienteService.add(cliente);
+    //SessionUtil.setLoggedInClient(session, cliente);
 
 }
 

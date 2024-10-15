@@ -2,7 +2,8 @@ package puj.web.clinicahaven.servicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import puj.web.clinicahaven.dto.DashboardDTO;
+
+import puj.web.clinicahaven.entity.DashboardDTO;
 import puj.web.clinicahaven.repositorio.*;
 
 import java.time.LocalDate;

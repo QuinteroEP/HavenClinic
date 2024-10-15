@@ -25,7 +25,7 @@ public class Cliente {
     private String nombre;
     private int celular;
     private String correo;
-    private String contraseña;
+    private String contrasena;
 
     @JsonIgnore
     @OneToMany(mappedBy = "dueño",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -40,21 +40,21 @@ public class Cliente {
     }
 
 
-    public Cliente(String nombre, long clienteId, int cedula, int celular, String correo, String contraseña) {
+    public Cliente(String nombre, long clienteId, int cedula, int celular, String correo, String contrasena) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.clienteId = clienteId;
         this.celular = celular;
         this.correo = correo;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
     }
 
-    public Cliente(String nombre, int cedula, int celular, String correo, String contraseña) {
+    public Cliente(String nombre, int cedula, int celular, String correo, String contrasena) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.celular = celular;
         this.correo = correo;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
     }
 
     public Cliente() {
@@ -101,13 +101,13 @@ public class Cliente {
     }
 
 
-    public String getcontraseña() {
-        return contraseña;
+    public String getcontrasena() {
+        return contrasena;
     }
 
 
-    public void setcontraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setcontrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public long getId() {

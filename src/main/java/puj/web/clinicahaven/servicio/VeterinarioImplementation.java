@@ -44,6 +44,13 @@ public class VeterinarioImplementation implements VeterinarioService {
 
     @Override
     @Transactional
+    public void deleteByCedula(int cedula) {
+        repoVeterinario.deleteByCedula(cedula);
+    }
+
+
+    @Override
+    @Transactional
     public void add(Veterinario veterinario) {
         repoVeterinario.save(veterinario);
     }
@@ -57,10 +64,9 @@ public class VeterinarioImplementation implements VeterinarioService {
             existingVeterinario.setCelular(veterinario.getCelular());
             existingVeterinario.setCorreo(veterinario.getCorreo());
             existingVeterinario.setEspecialidad(veterinario.getEspecialidad());
-            existingVeterinario.setContraseña(veterinario.getContraseña());
-            existingVeterinario.setFoto(veterinario.getFoto());
-            existingVeterinario.setNumAtenciones(veterinario.getNumAtenciones());
-
+            existingVeterinario.setContrasena(veterinario.getContrasena());
+            
+            
             repoVeterinario.save(existingVeterinario);
         } else {
             repoVeterinario.save(veterinario);

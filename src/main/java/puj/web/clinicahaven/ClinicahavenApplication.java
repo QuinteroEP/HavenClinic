@@ -10,5 +10,6 @@ public class ClinicahavenApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ClinicahavenApplication.class, args);
 	}
+	
 
 }

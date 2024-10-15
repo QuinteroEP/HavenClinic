@@ -1,4 +1,4 @@
-package puj.web.clinicahaven.dto;
+package puj.web.clinicahaven.entity;
 
 import java.util.List;
 import java.util.Map;

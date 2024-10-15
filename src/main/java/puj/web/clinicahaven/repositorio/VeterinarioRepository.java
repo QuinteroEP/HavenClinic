@@ -11,4 +11,6 @@ public interface VeterinarioRepository extends JpaRepository<Veterinario, Long> 
 
     long countByActivo(boolean activo);
 
+    void deleteByCedula(int cedula);
+
 }
