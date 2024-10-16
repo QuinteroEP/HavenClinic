@@ -36,10 +36,18 @@ public class VeterinarioImplementation implements VeterinarioService {
         return repoVeterinario.findAll();
     }
 
+    //no se usa, se usa el de cedula
     @Override
     @Transactional
     public void deleteById(Long id) {
         repoVeterinario.deleteById(id);
+    }
+
+    //elimina al vet por cedula
+    @Override
+    @Transactional
+    public void deleteByCedula(int cedula) {
+        repoVeterinario.deleteByCedula(cedula);
     }
 
     @Override
@@ -58,8 +66,7 @@ public class VeterinarioImplementation implements VeterinarioService {
             existingVeterinario.setCorreo(veterinario.getCorreo());
             existingVeterinario.setEspecialidad(veterinario.getEspecialidad());
             existingVeterinario.setContrasena(veterinario.getContrasena());
-            existingVeterinario.setFoto(veterinario.getFoto());
-            existingVeterinario.setNumAtenciones(veterinario.getNumAtenciones());
+
 
             repoVeterinario.save(existingVeterinario);
         } else {

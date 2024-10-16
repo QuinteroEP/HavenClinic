@@ -70,6 +70,7 @@ public class ClienteImplementation implements ClienteService{
             existingCliente.setNombre(cliente.getNombre());
             existingCliente.setCelular(cliente.getCelular());
             existingCliente.setCorreo(cliente.getCorreo());
+            existingCliente.setcontrasena(cliente.getcontrasena());
 
             repoCliente.save(existingCliente);
         } else {
