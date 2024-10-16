@@ -22,7 +22,7 @@ public class Veterinario {
     private String nombre;
     private int celular;
     private String especialidad;
-    private String contraseña;
+    private String contrasena;
     private String foto;
     private int numAtenciones;
     private boolean activo;
@@ -32,25 +32,25 @@ public class Veterinario {
     private List<Tratamiento> tratamiento = new ArrayList<>();
 
 
-    public Veterinario(long vetId, int cedula, String nombre, int celular, String especialidad, String contraseña, String foto, int numAtenciones, String correo) {
+    public Veterinario(long vetId, int cedula, String nombre, int celular, String especialidad, String contrasena, String foto, int numAtenciones, String correo) {
         this.vetId = vetId;
         this.cedula = cedula;
         this.nombre = nombre;
         this.celular = celular;
         this.especialidad = especialidad;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
         this.foto = foto;
         this.numAtenciones = numAtenciones;
         this.correo = correo;
         this.activo = false;
     }
 
-    public Veterinario(int cedula, String nombre, int celular, String especialidad, String contraseña, String foto, int numAtenciones, String correo) {
+    public Veterinario(int cedula, String nombre, int celular, String especialidad, String contrasena, String foto, int numAtenciones, String correo) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.celular = celular;
         this.especialidad = especialidad;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
         this.foto = foto;
         this.numAtenciones = numAtenciones;
         this.correo = correo;
@@ -107,12 +107,12 @@ public class Veterinario {
         this.especialidad = especialidad;
     }
 
-    public String getContraseña() {
-        return this.contraseña;
+    public String getContrasena() {
+        return this.contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getFoto() {

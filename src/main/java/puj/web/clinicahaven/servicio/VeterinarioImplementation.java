@@ -57,7 +57,7 @@ public class VeterinarioImplementation implements VeterinarioService {
             existingVeterinario.setCelular(veterinario.getCelular());
             existingVeterinario.setCorreo(veterinario.getCorreo());
             existingVeterinario.setEspecialidad(veterinario.getEspecialidad());
-            existingVeterinario.setContraseña(veterinario.getContraseña());
+            existingVeterinario.setContrasena(veterinario.getContrasena());
             existingVeterinario.setFoto(veterinario.getFoto());
             existingVeterinario.setNumAtenciones(veterinario.getNumAtenciones());
 

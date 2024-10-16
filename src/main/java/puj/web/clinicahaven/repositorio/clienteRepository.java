@@ -11,7 +11,7 @@ public interface clienteRepository extends JpaRepository<Cliente, Long> {
     
     Cliente findByCorreo(String correo);
 
-    Cliente findByContraseña(String pass);
+    Cliente findByContrasena(String pass);
 
     Cliente findByclienteId(Long id);
 

@@ -41,7 +41,7 @@ public class PageController {
     public String login(@RequestParam("email") String email, @RequestParam("psw") String password, @RequestParam("userType") String userType, Model model, HttpSession session) {
         if ("veterinarian".equals(userType)) {
             Veterinario veterinario = veterinarioService.findByEmail(email);
-            if (veterinario != null && veterinario.getCorreo().equals(email) && veterinario.getContraseña().equals(password)) {
+            if (veterinario != null && veterinario.getCorreo().equals(email) && veterinario.getContrasena().equals(password)) {
                 SessionUtil.setLoggedInVeterinarian(session, veterinario);
                 model.addAttribute("veterinarianName", veterinario.getNombre());
 
@@ -49,7 +49,7 @@ public class PageController {
             }
         } else {
             Cliente cliente = clienteService.findByEmail(email);
-            if (cliente != null && cliente.getCorreo().equals(email) && cliente.getcontraseña().equals(password)) {
+            if (cliente != null && cliente.getCorreo().equals(email) && cliente.getcontrasena().equals(password)) {
                 SessionUtil.setLoggedInClient(session, cliente);
                 return "redirect:/menu";
             }
