@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpSession;
-import jakarta.transaction.Transactional;
 import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.SessionUtil;
 import puj.web.clinicahaven.entity.mascota;
@@ -77,6 +76,7 @@ public class petController {
     //Actualizar Mascota
     //localhost:8090/mascotas/actualizar_mascota/1
      @PutMapping("/actualizar_mascota/{id}")
+     @Operation(summary = "actualizar la informacion de la Mascota seleccionada")
     public ResponseEntity<mascota> actualizarMascota(@RequestBody mascota mascota, @PathVariable("id") Long id) {
         mascota existingMascota = mascotaService.findById(id);
         if (existingMascota == null) {

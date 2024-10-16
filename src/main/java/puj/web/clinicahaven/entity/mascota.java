@@ -20,10 +20,14 @@ public class mascota {
     private String genero;
     private String condicion;
     private String descripcion;
+    private boolean enTratamiento;
 
     @JsonIgnore
     @ManyToOne
     private Cliente dueño;
+
+    @ManyToOne
+    private Tratamiento tratamiento;
     
     public mascota(String nombre, int edad, String raza, String url, String genero, Long id, String condicion, String descripcion) {
         this.nombre = nombre;
@@ -34,6 +38,7 @@ public class mascota {
         this.id = id;
         this.condicion = condicion;
         this.descripcion = descripcion;
+        this.enTratamiento = false;
     }
 
     public mascota() {
@@ -47,6 +52,7 @@ public class mascota {
         this.genero = genero;
         this.condicion = condicion;
         this.descripcion = descripcion;
+        this.enTratamiento = false;
     }
 
     public Cliente getDueño() {
@@ -55,6 +61,14 @@ public class mascota {
 
     public void setDueño(Cliente dueño) {
         this.dueño = dueño;
+    }
+
+    public Tratamiento getTratamiento() {
+        return tratamiento;
+    }
+
+    public void setTratamiento(Tratamiento Tratamiento) {
+        this.tratamiento = Tratamiento;
     }
 
     public String getNombre() {
@@ -119,5 +133,13 @@ public class mascota {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    public boolean isEnTratamiento() {
+        return enTratamiento;
+    }
+
+    public void setEnTratamiento(boolean enTratamiento) {
+        this.enTratamiento = enTratamiento;
     }
 }

@@ -2,10 +2,9 @@ package puj.web.clinicahaven.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
 
 @Entity
 public class Tratamiento {
@@ -13,30 +12,30 @@ public class Tratamiento {
     @GeneratedValue
     private Long id;
 
-    private String fecha;
+    private LocalDate fecha;
     private String Nombredroga;
     
-    private int idVeterinario;
-    private int idMascota;
+    private Long idVeterinario;
+    private Long idMascota;
 
     @JsonIgnore
-    @OneToOne
+    @ManyToOne
     private Droga droga;
 
 
 
-    public Tratamiento(Long id, String fecha, int idVeterinario, int idMascota, Droga droga) {
+    public Tratamiento(Long id, LocalDate fecha, Long idVeterinario, Long idMascota, Droga droga) {
         this.id = id;
         this.fecha = fecha;
         this.idVeterinario = idVeterinario;
         this.idMascota = idMascota;
     }
 
-    public Tratamiento(String fecha, String Nombredroga) {
+    public Tratamiento(LocalDate fecha, String Nombredroga) {
         this.fecha = fecha;
         this.Nombredroga = Nombredroga;
     }
-    public Tratamiento (String fecha) {
+    public Tratamiento (LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -50,27 +49,27 @@ public class Tratamiento {
         this.id = id;
     }
 
-    public String getFecha() {
+    public LocalDate getFecha() {
         return this.fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
-    public int getIdVeterinario() {
+    public Long getIdVeterinario() {
         return this.idVeterinario;
     }
 
-    public void setIdVeterinario(int idVeterinario) {
+    public void setIdVeterinario(Long idVeterinario) {
         this.idVeterinario = idVeterinario;
     }
 
-    public int getIdMascota() {
+    public Long getIdMascota() {
         return this.idMascota;
     }
 
-    public void setIdMascota(int idMascota) {
+    public void setIdMascota(Long idMascota) {
         this.idMascota = idMascota;
     }
 
