@@ -3,6 +3,7 @@ package puj.web.clinicahaven.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,6 +19,7 @@ import puj.web.clinicahaven.servicio.tratamientoService;
 
 @RestController
 @RequestMapping("/tratamientos")
+@CrossOrigin(origins = "http://localhost:4200")
 public class tratamientoController {
     @Autowired
     petService mascotaService;
@@ -31,15 +33,10 @@ public class tratamientoController {
     @Operation(summary = "agregar un tratamiento a una mascota")
     public ResponseEntity<mascota> newTreatment(Model model, @PathVariable("id") Long id, @RequestBody Tratamiento tratamiento  ) {
         mascota mascota = mascotaService.findById(id);
-        if(mascota.isEnTratamiento()){
-            mascota = mascotaService.findById(id);
-            mascota.setTratamiento(tratamiento);
-        }
-        else{
+        if(!mascota.isEnTratamiento()){
             mascota.setEnTratamiento(true);
-            mascota = mascotaService.findById(id);
-            mascota.setTratamiento(tratamiento);
         }
+        mascota.setTratamiento(tratamiento);
         mascotaService.update(mascota);
         return ResponseEntity.ok(mascota);
     }

@@ -1,8 +1,11 @@
 package puj.web.clinicahaven.servicio;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import java.util.List;
 
-public class drogaService {
+import puj.web.clinicahaven.entity.Droga;
+
+public interface drogaService {
+    public List<Droga> findAll();
     
+    public Droga findById(Long id);
 }
