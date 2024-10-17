@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
-import puj.web.clinicahaven.entity.Cliente;
+
 import puj.web.clinicahaven.entity.Veterinario;
 import puj.web.clinicahaven.repositorio.VeterinarioRepository;
 
@@ -41,15 +41,12 @@ public class VeterinarioImplementation implements VeterinarioService {
     @Override
     @Transactional
     public void deleteVetByCedula(int cedula) {
-        Veterinario existingVeterinario = repoVeterinario.findByCedula(cedula);
-       
-
-            existingVeterinario.setActivo(false);
-            repoVeterinario.save(existingVeterinario);
+     repoVeterinario.deleteByCedula(cedula);
 
         
     }
 
+  
     //no se usa, pero es para eliminar al veterinario por id
     @Override
     @Transactional
@@ -65,6 +62,7 @@ public class VeterinarioImplementation implements VeterinarioService {
         repoVeterinario.save(veterinario);
     }
 
+    //almacena la nueva informacion del veterinario
     @Override
     @Transactional
     public void updateVet(Veterinario veterinario) {
@@ -82,4 +80,19 @@ public class VeterinarioImplementation implements VeterinarioService {
             repoVeterinario.save(veterinario);
         }
     }
+    
+
+
+      //cambia el estado del veterinario en lugar de eliminarlo
+      @Override
+      @Transactional
+      public void cambiarEstado(Veterinario veterinario) {//cambiar el estado
+          Veterinario existingVeterinario = repoVeterinario.findByCedula(veterinario.getCedula());
+         
+  
+          existingVeterinario.setActivo(false );
+          repoVeterinario.save(existingVeterinario);
+  
+  
+      }
 }

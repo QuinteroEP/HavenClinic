@@ -144,6 +144,6 @@ public class Veterinario {
     }
 
     public void setActivo(boolean activo) {
-        this.activo = true;
+        this.activo = activo;
     }
 }

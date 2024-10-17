@@ -13,4 +13,5 @@ public interface VeterinarioService {
     void updateVet(Veterinario veterinario); // Declarar el método update
     void deleteById(Long id);//este no se usa
      void deleteVetByCedula(int cedula); 
+     void cambiarEstado(Veterinario veterinario);
 }

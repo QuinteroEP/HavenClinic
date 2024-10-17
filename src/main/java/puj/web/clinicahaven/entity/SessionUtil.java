@@ -1,7 +1,7 @@
 package puj.web.clinicahaven.entity;
 
 import jakarta.servlet.http.HttpSession;
-import puj.web.clinicahaven.entity.Cliente;
+
 
 public class SessionUtil {
 

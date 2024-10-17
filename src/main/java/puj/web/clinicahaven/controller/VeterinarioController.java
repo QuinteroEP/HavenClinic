@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+
 import puj.web.clinicahaven.entity.Veterinario;
 import puj.web.clinicahaven.servicio.VeterinarioService;
 
@@ -40,7 +41,7 @@ public class VeterinarioController {
         return ResponseEntity.ok(veterinario);
     }
 
-    @GetMapping("/findByCedula/{cedula}")
+      @GetMapping("/findByCedula/{cedula}")
     @Operation(summary = "find veterinario by cedula")
     public Veterinario getVeterinarioByCed(@PathVariable("cedula") int cedula) {
         Veterinario veterinario = veterinarioService.findVetByCedula(cedula);
@@ -53,6 +54,8 @@ public class VeterinarioController {
        
     }
 
+    //localhost:8090/veterinario/update/1
+    //se encarga de actualizar la info del vet
     @PutMapping("/update/{cedula}")
     public void updateVeterinario(@PathVariable("cedula") int cedula, @RequestBody Veterinario veterinarioDetails) {
         Veterinario veterinario = veterinarioService.findVetByCedula(cedula);
@@ -64,9 +67,20 @@ public class VeterinarioController {
 
     }
 
+    @PutMapping("/cambiarestado/{cedula}")
+    public void cambiarEstadoVeterinario(@PathVariable("cedula") int cedula, @RequestBody Veterinario veterinarioDetails) {
+        Veterinario veterinario = veterinarioService.findVetByCedula(cedula);
+        if (veterinario == null) {
+            return;
+        }
+
+        veterinarioService.cambiarEstado(veterinarioDetails);
+
+    }
+
 
    //no se usa
-    //localhost:8090/veterinarios/delete/1
+    //localhost:8090/veterinario/delete/1
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteVeterinario(@PathVariable Long id) {
         Veterinario veterinario = veterinarioService.findById(id);
@@ -78,15 +92,15 @@ public class VeterinarioController {
     }
 
     //eliminar por cedula//en este caso no eliminar al vet sino que cambia su estado de activo a desactivado
-    //localhost:8090/veterinarios/eliminarVeterinario/1
+    //localhost:8090/veterinario/eliminarVeterinario/1
     @DeleteMapping("/eliminarVeterinario/{cedula}")
 public void EliminarVeterinario(@PathVariable("cedula") int cedula) {
     veterinarioService.deleteVetByCedula(cedula);
 
 }
 
-    //Buscar por correo
-    //localhost:8090/veterinarios/findEmail/qwe@m.c
+
+    //localhost:8090/veterinario/findEmail/pq@c.m
     @GetMapping("/findEmail/{correo}")
     public Veterinario MostrarInfoVet(@PathVariable("correo") String correo) {
         Veterinario veterinario = veterinarioService.findByEmail(correo);
