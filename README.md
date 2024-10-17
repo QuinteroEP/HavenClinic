@@ -40,6 +40,9 @@ Este es un portal web de la clinica veterinaria ficticia Haven, en el cual los d
          <p>Java</p>
        </li>
         <li>
+         <p>JavaScript</p>
+       </li>
+       <li>
          <p>TypeScript</p>
        </li>
      </ol>
@@ -47,18 +50,21 @@ Este es un portal web de la clinica veterinaria ficticia Haven, en el cual los d
     <li>
       <p>Frameworks</p>
       <ol>
-         <li>
+       <li>
          <p>Springboot</p>
-        </li>
+       </li>
         <li>
-          <p>Angular</p>
-        </li>
+         <p>Angular</p>
+       </li>
      </ol>
     </li>
    <li>
       <p>APIs</p>
       <ol>
        <li>
+         <p>JPA</p>
+       </li>
+        <li>
          <p>REST</p>
        </li>
      </ol>
@@ -68,6 +74,9 @@ Este es un portal web de la clinica veterinaria ficticia Haven, en el cual los d
       <ol>
        <li>
          <p>Thymeleaf</p>
+       </li>
+        <li>
+         <p>RxJS</p>
        </li>
      </ol>
     </li>
