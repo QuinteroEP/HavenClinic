@@ -8,4 +8,8 @@ public interface drogaService {
     public List<Droga> findAll();
     
     public Droga findById(Long id);
+
+    public Number getQuantity(Long id);
+
+    public Droga findByName(String nombre);
 }

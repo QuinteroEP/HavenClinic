@@ -1,5 +1,7 @@
 package puj.web.clinicahaven.servicio;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,16 @@ public class tratamientoImplementation implements tratamientoService{
     @Override
     public Tratamiento findById(Long key){
         return repo.findById(key).get();
+    }
+
+    @Override
+    public List<Tratamiento> getHistorial(Long id) {
+        return repo.getHistorial(id);
+    }
+
+    @Override
+    public Tratamiento findByPetId(Long id) {
+        return repo.findByPetId(id);
     }
     
 }

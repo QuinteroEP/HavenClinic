@@ -1,11 +1,14 @@
 package puj.web.clinicahaven.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +32,7 @@ public class tratamientoController {
 
     //agregar tratamiento
     //localhost:8090/tratamientos/add/1
-    @PutMapping("/add/{id}")
+    @PostMapping("/add/{id}")
     @Operation(summary = "agregar un tratamiento a una mascota")
     public ResponseEntity<mascota> newTreatment(Model model, @PathVariable("id") Long id, @RequestBody Tratamiento tratamiento  ) {
         mascota mascota = mascotaService.findById(id);
@@ -64,4 +67,24 @@ public class tratamientoController {
       public Tratamiento infoTratamiento(@PathVariable("id") Long id) {
           return tratamientoService.findById(id);
       }
+
+      //Historial medico de la mascota
+        //localhost:8090/tratamientos/historial/1
+        @GetMapping("/historial/{id}")
+        @Operation(summary = "ver historial de la Mascota seleccionada")
+        public List<Tratamiento> petHistory(Model model, @PathVariable("id") Long id) {
+            mascota mascota = mascotaService.findById(id);
+            List<Tratamiento> historial = tratamientoService.getHistorial(mascota.getId());
+
+            return  historial;
+        }
+
+        //Obtener tratamiento apartir de la id de una mascota
+        //http://localhost:8090/tratamientos/mascota/1
+        @GetMapping("/mascota/{id}")
+        @Operation(summary = "ver historial de la Mascota seleccionada")
+        public Tratamiento petTreatment(Model model, @PathVariable("id") Long id) {
+            Tratamiento tratamiento = tratamientoService.findByPetId(id);
+            return  tratamiento;
+        }
 }
