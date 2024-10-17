@@ -41,6 +41,8 @@ public class tratamientoController {
         }
         mascota.setTratamiento(tratamiento);
         mascotaService.update(mascota);
+        
+        tratamientoService.add(tratamiento);
         return ResponseEntity.ok(mascota);
     }
 

@@ -10,4 +10,6 @@ public interface tratamientoService {
     public List<Tratamiento> getHistorial(Long id);
 
     public Tratamiento findByPetId(Long id);
+
+    public void add(Tratamiento tratamiento);
 }
