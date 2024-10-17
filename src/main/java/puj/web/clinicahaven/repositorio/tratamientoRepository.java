@@ -1,13 +1,14 @@
 package puj.web.clinicahaven.repositorio;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
-import puj.web.clinicahaven.entity.Tratamiento;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import puj.web.clinicahaven.entity.Tratamiento;
 
 @Repository
 public interface tratamientoRepository extends JpaRepository<Tratamiento, Long> {
@@ -23,4 +24,9 @@ public interface tratamientoRepository extends JpaRepository<Tratamiento, Long> 
     @Query("SELECT SUM(t.droga.precioVenta - t.droga.precioCompra) FROM Tratamiento t")
     double sumGananciasTotales();
 
+    @Query("select t from Tratamiento t where t.idMascota = ?1")
+    List<Tratamiento> getHistorial(Long id);
+
+    @Query("select t from Tratamiento t where t.idMascota = ?1")
+    Tratamiento findByPetId(Long id);
 }

@@ -12,6 +12,8 @@ import puj.web.clinicahaven.entity.mascota;
 @Repository
 public interface petRepository extends JpaRepository<mascota, Long> {
     mascota findPetById(Long id);
+    List<mascota> findByNombre(String nombre);
+
 
      void deleteById(Long id);
 

@@ -3,6 +3,7 @@ package puj.web.clinicahaven.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import puj.web.clinicahaven.servicio.ClienteService;
 import puj.web.clinicahaven.servicio.VeterinarioService;
 
 @Controller
+@CrossOrigin(origins = "http://localhost:4200")
 public class PageController {
 
     
@@ -41,7 +43,7 @@ public class PageController {
     public String login(@RequestParam("email") String email, @RequestParam("psw") String password, @RequestParam("userType") String userType, Model model, HttpSession session) {
         if ("veterinarian".equals(userType)) {
             Veterinario veterinario = veterinarioService.findByEmail(email);
-            if (veterinario != null && veterinario.getCorreo().equals(email) && veterinario.getContraseña().equals(password)) {
+            if (veterinario != null && veterinario.getCorreo().equals(email) && veterinario.getContrasena().equals(password)) {
                 SessionUtil.setLoggedInVeterinarian(session, veterinario);
                 model.addAttribute("veterinarianName", veterinario.getNombre());
 
@@ -49,7 +51,7 @@ public class PageController {
             }
         } else {
             Cliente cliente = clienteService.findByEmail(email);
-            if (cliente != null && cliente.getCorreo().equals(email) && cliente.getcontraseña().equals(password)) {
+            if (cliente != null && cliente.getCorreo().equals(email) && cliente.getcontrasena().equals(password)) {
                 SessionUtil.setLoggedInClient(session, cliente);
                 return "redirect:/menu";
             }

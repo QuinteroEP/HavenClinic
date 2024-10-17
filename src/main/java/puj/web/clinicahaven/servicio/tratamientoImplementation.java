@@ -1,8 +1,12 @@
 package puj.web.clinicahaven.servicio;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
+import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.Tratamiento;
 import puj.web.clinicahaven.repositorio.tratamientoRepository;
 
@@ -15,5 +19,24 @@ public class tratamientoImplementation implements tratamientoService{
     public Tratamiento findById(Long key){
         return repo.findById(key).get();
     }
+
+    @Override
+    public List<Tratamiento> getHistorial(Long id) {
+        return repo.getHistorial(id);
+    }
+
+    @Override
+    public Tratamiento findByPetId(Long id) {
+        return repo.findByPetId(id);
+    }
+
+     @Override
+    @Transactional
+    public void add(Tratamiento tratamiento) {
+     
+        repo.save(tratamiento);
+    }
+
+
     
 }

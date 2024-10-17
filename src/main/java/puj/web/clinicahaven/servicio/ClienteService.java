@@ -18,9 +18,11 @@ public interface ClienteService {
 
     public Cliente findByEmail(String correo);
 
-    public Cliente findByContraseña(String pass);
+    public Cliente findByContrasena(String pass);
 
     public Cliente findByclienteId(Long id);
+
+    public List<Cliente>  findClienteByNombre(String nombre);
 
     public List<Cliente> findAll();
 

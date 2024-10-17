@@ -32,4 +32,18 @@ public class drogaController {
     public Droga infoDroga(@PathVariable("id") Long id) {
         return drogaService.findById(id);
     }
+
+    //Obtener cantidad de drogas disponibles
+    //localhost:8090/drogas/quantity/1
+    @GetMapping("/quantity/{id}")
+    public Number cantidadDroga(@PathVariable("id") Long id) {
+        return drogaService.getQuantity(id);
+    }
+
+    //Buscar por nombre
+    //http://localhost:8090/drogas/nombre/ACOLAN
+    @GetMapping("/nombre/{nombre}")
+    public Droga drogaNombre(@PathVariable("nombre") String nombre) {
+        return drogaService.findByName(nombre);
+    }
 }
