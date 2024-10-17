@@ -31,6 +31,10 @@ public class VeterinarioImplementation implements VeterinarioService {
     public Veterinario findByEmail(String correo) {
         return repoVeterinario.findByCorreo(correo);
     }
+    @Override
+public List<Veterinario> findByNombre(String nombre) {
+    return repoVeterinario.findByNombre(nombre);
+}
 
     @Override
     public List<Veterinario> findAll() {

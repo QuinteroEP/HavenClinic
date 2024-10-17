@@ -106,4 +106,10 @@ public void EliminarVeterinario(@PathVariable("cedula") int cedula) {
         Veterinario veterinario = veterinarioService.findByEmail(correo);
         return veterinario;
     }
+
+    @GetMapping("/findByNombre/{nombre}")
+@Operation(summary = "Buscar veterinario por nombre")
+public List<Veterinario> findByNombre(@PathVariable("nombre") String nombre) {
+    return veterinarioService.findByNombre(nombre);
+}
 }

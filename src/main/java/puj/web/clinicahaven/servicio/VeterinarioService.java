@@ -8,6 +8,7 @@ public interface VeterinarioService {
     List<Veterinario> findAll();
     Veterinario findById(Long id);
     Veterinario findByEmail(String email);
+    List<Veterinario> findByNombre(String nombre);
     Veterinario findVetByCedula(int cedula);
     void add(Veterinario veterinario); // Declarar el método add
     void updateVet(Veterinario veterinario); // Declarar el método update
