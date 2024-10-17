@@ -30,6 +30,6 @@ public class drogaImplementation implements drogaService{
 
     @Override
     public Droga findByName(String nombre){
-        return repo.findByName(nombre);
+        return repo.findByNombre(nombre);
     }
 }
