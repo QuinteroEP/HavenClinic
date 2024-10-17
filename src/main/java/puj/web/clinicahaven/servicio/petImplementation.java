@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import jakarta.transaction.Transactional;
 import puj.web.clinicahaven.entity.Cliente;
@@ -51,5 +52,10 @@ public class petImplementation implements petService{
     @Override
     public List<mascota> findByDueño(Cliente dueño) {
         return repo.findByDueño(dueño);
+    }
+
+    @Override
+    public List<mascota> findByNombre(String nombre) {
+        return repo.findByNombre(nombre);
     }
 }

@@ -11,8 +11,11 @@ public interface petService {
     public List<mascota> findAll();
     
     public mascota findById(Long id);
+    public List<mascota> findByNombre(String nombre);
+
     @Transactional
     public void deleteById(Long id);   
+
     @Transactional
     public void update(mascota mascota);
     @Transactional

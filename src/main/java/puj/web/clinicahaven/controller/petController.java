@@ -106,4 +106,11 @@ public class petController {
             mascota mascota = mascotaService.findById(id);
             return  mascota;
         }
+
+        //ver informacio de la mascota pero por nombre, para la barra de busqueda
+        @GetMapping("/findByNombre/{nombre}")
+        @Operation(summary = "ver la Mascota a buscar")
+        public List<mascota> findByNombre(@PathVariable("nombre") String nombre) {
+            return mascotaService.findByNombre(nombre);
+        }
 }
