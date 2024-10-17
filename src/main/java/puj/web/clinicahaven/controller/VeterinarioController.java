@@ -41,10 +41,10 @@ public class VeterinarioController {
         return ResponseEntity.ok(veterinario);
     }
 
-      @GetMapping("/findByCed/{cedula}")
+      @GetMapping("/findByCedula/{cedula}")
     @Operation(summary = "find veterinario by cedula")
     public Veterinario getVeterinarioByCed(@PathVariable("cedula") int cedula) {
-        Veterinario veterinario = veterinarioService.findByCedula(cedula);
+        Veterinario veterinario = veterinarioService.findVetByCedula(cedula);
         return veterinario; 
     }
 
@@ -56,7 +56,7 @@ public class VeterinarioController {
 
     @PutMapping("/update/{cedula}")
     public void updateVeterinario(@PathVariable("cedula") int cedula, @RequestBody Veterinario veterinarioDetails) {
-        Veterinario veterinario = veterinarioService.findByCedula(cedula);
+        Veterinario veterinario = veterinarioService.findVetByCedula(cedula);
         if (veterinario == null) {
             return;
         }
@@ -78,12 +78,11 @@ public class VeterinarioController {
         return ResponseEntity.noContent().build();
     }
 
-    //eliminar por cedula//este se usa
+    //eliminar por cedula//en este caso no eliminar al vet sino que cambia su estado de activo a desactivado
     //localhost:8090/veterinario/eliminarVeterinario/1
     @DeleteMapping("/eliminarVeterinario/{cedula}")
-public void Eliminarcliente(@PathVariable("cedula") int cedula) {
-    veterinarioService.deleteByCedula(cedula);
-
+public void EliminarVeterinario(@PathVariable("cedula") int cedula) {
+    veterinarioService.deleteVetByCedula(cedula);
 
 }
 

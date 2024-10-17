@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
+import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.Veterinario;
 import puj.web.clinicahaven.repositorio.VeterinarioRepository;
 
@@ -14,7 +15,7 @@ import puj.web.clinicahaven.repositorio.VeterinarioRepository;
 public class VeterinarioImplementation implements VeterinarioService {
 
     @Autowired
-    private VeterinarioRepository repoVeterinario;
+    VeterinarioRepository repoVeterinario;
 
     @Override
     public Veterinario findById(Long id) {
@@ -22,7 +23,7 @@ public class VeterinarioImplementation implements VeterinarioService {
     }
 
     @Override
-    public Veterinario findByCedula(int cedula) {
+    public Veterinario findVetByCedula(int cedula) {
         return repoVeterinario.findByCedula(cedula);
     }
 
@@ -36,19 +37,27 @@ public class VeterinarioImplementation implements VeterinarioService {
         return repoVeterinario.findAll();
     }
 
-    //no se usa, se usa el de cedula
+    //no elimina realmente al vet sino que cambia el campo activo
+    @Override
+    @Transactional
+    public void deleteVetByCedula(int cedula) {
+        Veterinario existingVeterinario = repoVeterinario.findByCedula(cedula);
+       
+
+            existingVeterinario.setActivo(false);
+            repoVeterinario.save(existingVeterinario);
+
+        
+    }
+
+    //no se usa, pero es para eliminar al veterinario por id
     @Override
     @Transactional
     public void deleteById(Long id) {
         repoVeterinario.deleteById(id);
     }
 
-    //elimina al vet por cedula
-    @Override
-    @Transactional
-    public void deleteByCedula(int cedula) {
-        repoVeterinario.deleteByCedula(cedula);
-    }
+    
 
     @Override
     @Transactional
