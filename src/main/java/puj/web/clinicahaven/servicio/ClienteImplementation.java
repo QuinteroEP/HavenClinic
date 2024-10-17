@@ -84,4 +84,9 @@ public class ClienteImplementation implements ClienteService{
      
         repoCliente.save(cliente);
     }
+
+    @Override
+    public List<Cliente>  findClienteByNombre(String nombre) {
+        return repoCliente.findByNombre(nombre);
+    }
 }

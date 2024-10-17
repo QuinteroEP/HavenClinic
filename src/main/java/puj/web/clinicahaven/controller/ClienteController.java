@@ -112,4 +112,10 @@ public ResponseEntity<Cliente> actualizarCliente(HttpSession session, @RequestBo
         clienteService.update(cliente);
         return ResponseEntity.ok(cliente);
     }
+
+    //para la barra de busqueda, ver la informacion del cliente por nombre
+    @GetMapping("/findClienteByNombre/{nombre}")
+    public List<Cliente> findByNombre(@PathVariable("nombre") String nombre) {
+        return clienteService.findClienteByNombre(nombre);
+    }
 }

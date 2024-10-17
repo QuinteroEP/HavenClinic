@@ -22,6 +22,8 @@ public interface ClienteService {
 
     public Cliente findByclienteId(Long id);
 
+    public List<Cliente>  findClienteByNombre(String nombre);
+
     public List<Cliente> findAll();
 
     @Transactional
