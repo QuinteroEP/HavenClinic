@@ -42,7 +42,7 @@ public class Veterinario {
         this.foto = foto;
         this.numAtenciones = numAtenciones;
         this.correo = correo;
-        this.activo = false;
+        this.activo = true;
     }
 
     public Veterinario(int cedula, String nombre, int celular, String especialidad, String contrasena, String foto, int numAtenciones, String correo) {
@@ -54,7 +54,7 @@ public class Veterinario {
         this.foto = foto;
         this.numAtenciones = numAtenciones;
         this.correo = correo;
-        this.activo = false;
+        this.activo = true;
     }
 
     public Veterinario() {}

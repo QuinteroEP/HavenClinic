@@ -276,7 +276,7 @@ public class DatabaseInit implements ApplicationRunner {
                 mascotas.get(mascotaIndex % mascotas.size()).setEnTratamiento(true);
                 tratamiento.setIdVeterinario(veterinarios.get(veterinarioIndex % veterinarios.size()).getVetId());
                 veterinarios.get(veterinarioIndex % veterinarios.size()).setNumAtenciones(veterinarios.get(veterinarioIndex % veterinarios.size()).getNumAtenciones() + 1);
-                veterinarios.get(veterinarioIndex % veterinarios.size()).setActivo(true);
+              //  veterinarios.get(veterinarioIndex % veterinarios.size()).setActivo(true);
 
                 tratamiento.setDroga(drogas.get(i % drogas.size()));
                 drogas.get(i % drogas.size()).setUnidadesDisponibles(drogas.get(i % drogas.size()).getUnidadesDisponibles() - 1);

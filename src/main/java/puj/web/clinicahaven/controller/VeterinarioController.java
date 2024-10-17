@@ -74,7 +74,7 @@ public class VeterinarioController {
             return;
         }
 
-        veterinarioService.cambiarEstado(veterinarioDetails);
+        veterinarioService.cambiarEstado(veterinario);
 
     }
 
