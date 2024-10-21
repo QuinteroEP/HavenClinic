@@ -19,7 +19,7 @@ public interface petService {
     @Transactional
     public void update(mascota mascota);
     @Transactional
-    public void agregar(mascota mascota);
+    public mascota agregar(mascota mascota);
 
     public List<mascota> findByDueño(Cliente dueño);
     
