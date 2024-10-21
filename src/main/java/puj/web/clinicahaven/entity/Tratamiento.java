@@ -20,6 +20,7 @@ public class Tratamiento {
     
     private Long idVeterinario;
     private Long idMascota;
+    private Long idDroga;
 
     @JsonIgnore
     @ManyToOne
@@ -38,11 +39,22 @@ public class Tratamiento {
         this.fecha = fecha;
         this.Nombredroga = Nombredroga;
     }
+
+    public Tratamiento(LocalDate fecha, String nombredroga, Long idVeterinario, Long idMascota, Long idDroga) {
+        this.fecha = fecha;
+        Nombredroga = nombredroga;
+        this.idVeterinario = idVeterinario;
+        this.idMascota = idMascota;
+        this.idDroga = idDroga;
+    }
+
     public Tratamiento (LocalDate fecha) {
         this.fecha = fecha;
     }
 
     public Tratamiento() {}
+
+
 
     public Long getId() {
         return this.id;
