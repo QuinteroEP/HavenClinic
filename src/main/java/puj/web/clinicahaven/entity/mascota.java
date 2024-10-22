@@ -1,11 +1,16 @@
 package puj.web.clinicahaven.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class mascota {
@@ -22,13 +27,18 @@ public class mascota {
     private String descripcion;
     private boolean enTratamiento;
 
+    @OneToMany(mappedBy = "mascota")
+    private List<Tratamiento> historialTratamiento = new ArrayList<>();
+
+
     @JsonIgnore
     @ManyToOne
     private Cliente dueño;
 
-    @ManyToOne
-    private Tratamiento tratamiento;
-    
+@JsonIgnore
+@OneToOne(mappedBy = "mascota")
+    private Tratamiento tratamientoActual;
+
     public mascota(String nombre, int edad, String raza, String url, String genero, Long id, String condicion, String descripcion) {
         this.nombre = nombre;
         this.edad = edad;
@@ -55,20 +65,28 @@ public class mascota {
         this.enTratamiento = false;
     }
 
+    public List<Tratamiento> getHistorialTratamiento() {
+        return historialTratamiento;
+    }
+
+    public void setHistorialTratamiento(List<Tratamiento> historialTratamiento) {
+        this.historialTratamiento = historialTratamiento;
+    }
+
+    public Tratamiento getTratamientoActual() {
+        return tratamientoActual;
+    }
+
+    public void setTratamientoActual(Tratamiento tratamientoActual) {
+        this.tratamientoActual = tratamientoActual;
+    }
+
     public Cliente getDueño() {
         return dueño;
     }
 
     public void setDueño(Cliente dueño) {
         this.dueño = dueño;
-    }
-
-    public Tratamiento getTratamiento() {
-        return tratamiento;
-    }
-
-    public void setTratamiento(Tratamiento Tratamiento) {
-        this.tratamiento = Tratamiento;
     }
 
     public String getNombre() {

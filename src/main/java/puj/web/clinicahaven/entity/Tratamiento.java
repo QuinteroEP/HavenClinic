@@ -6,13 +6,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Tratamiento {
     @Id
-    @GeneratedValue
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalDate fecha;
@@ -25,6 +27,15 @@ public class Tratamiento {
     @JsonIgnore
     @ManyToOne
     private Droga droga;
+
+    @JsonIgnore
+    @ManyToOne
+    private Veterinario veterinario;
+
+    @JsonIgnore
+    @ManyToOne
+    private mascota mascota;
+
 
 
 

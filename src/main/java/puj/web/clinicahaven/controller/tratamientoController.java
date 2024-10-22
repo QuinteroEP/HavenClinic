@@ -33,16 +33,24 @@ public class tratamientoController {
     //agregar tratamiento
     //localhost:8090/tratamientos/add/1
     @PostMapping("/add/{id}")
-    @Operation(summary = "agregar un tratamiento a una mascota")
-    public ResponseEntity<mascota> newTreatment(Model model, @PathVariable("id") Long id, @RequestBody Tratamiento tratamiento  ) {
+    @Operation(summary = "Agregar un tratamiento a una mascota")
+    public ResponseEntity<mascota> newTreatment(@PathVariable("id") Long id, @RequestBody Tratamiento tratamiento) {
         mascota mascota = mascotaService.findById(id);
-        if(!mascota.isEnTratamiento()){
+        if (mascota == null) {
+            return ResponseEntity.notFound().build();
+        }
+    
+        if (!mascota.isEnTratamiento()) {
             mascota.setEnTratamiento(true);
         }
-        mascota.setTratamiento(tratamiento);
-        mascotaService.update(mascota);
-        
+    
+        tratamiento.setIdMascota(mascota.getId());
         tratamientoService.add(tratamiento);
+    
+        mascota.getHistorialTratamiento().add(tratamiento);
+        mascota.setTratamientoActual(tratamiento);
+        mascotaService.update(mascota);
+    
         return ResponseEntity.ok(mascota);
     }
 
