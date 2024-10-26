@@ -15,9 +15,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties.Web;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+
+import com.fasterxml.jackson.databind.JsonSerializable.Base;
 
 import java.time.Duration;
 import java.util.List;
@@ -25,7 +28,7 @@ import java.util.List;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT) //indica el puerto con el que se hara el test
 @ActiveProfiles("test")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD) //indica que se hara antes de cada prueba
-public class PetDetailTest {
+public class PetHomeTest {
 
     private final String BASE_URL = "http://localhost:4200";
 
@@ -47,43 +50,66 @@ public class PetDetailTest {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));   //espera maximo 10 segundos hasta que la maquina corra para continuar
     }
 
+    //Ver si esta  mostrando toda la informacion
+    @Test
+    public void SystemTest_VerMascotas() {
+        driver.get(BASE_URL + "/Mascotas/all?userType=veterinario&correo=qwe@m.c");
     
 
-    //con XPATH se puede buscar elementos en la pagina web
+    }
+
+//eliminar un estudiante
     @Test
-    public void SystemTest_PetDetail_PetName() {
-        driver.get(BASE_URL +"/Mascotas/informacion/2");//lanza la url(html) en el navegador
+    public void HomeTest_deleteStudent_listSize(){
+        driver.get(BASE_URL +"/Mascotas/all?userType=veterinario&correo=qwe@m.c");
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/app-root/app-informacion-mascota/main/div/div/div/div[2]/div[1]/h3"))); //Espera hasta que el elemento sea visible no continua
-        WebElement petName = driver.findElement(By.xpath("/html/body/app-root/app-informacion-mascota/main/div/div/div/div[2]/div[1]/h3"));
+        String path =  "/html/body/app-root/app-tabla-mascota/div[2]/table/tbody/tr[1]/td[6]/button[1]";
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(path)));     //espera hasta que lleguen los datos:
+        WebElement btnElement = driver.findElement(By.xpath(path));
+        btnElement.click();
 
-        String expected = "Trufa";
-        Assertions.assertThat(petName.getText()).isEqualTo(expected);//verifica que el nombre de la mascota sea Trufa(expected)
-
+        List<WebElement> list = driver.findElements(By.className("btn-danger"));
+        Assertions.assertThat(list.size()).isEqualTo(101);
 
     }
 
-    //BUSQUEDA por id
+    //Eliminar todas las entidades//es decir una lista vacia
     @Test
-    public void SystemTest_PetDetail_PetName_ID() {
-        driver.get(BASE_URL +"/Mascotas/informacion/2");//lanza la url(html) en el navegador
+    public void HomeTest_deleteStudent_lEmptylist (){
+        driver.get(BASE_URL +"/Mascotas/all?userType=veterinario&correo=qwe@m.c");
 
+        
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("btn-danger")));     //espera hasta que lleguen los datos:
+        List<WebElement> allButtons = driver.findElements(By.className("btn-danger"));
 
-        String idinfo=  "nombreMascotaInfo";
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id(idinfo))); //Espera hasta que el elemento sea visible no continua
-        WebElement petName = driver.findElement(By.id(idinfo));
+        for (WebElement button : allButtons) {
+            button.click();
+            
+        }
+    
 
-        String expected = "Trufa";
-        Assertions.assertThat(petName.getText()).isEqualTo(expected);//verifica que el nombre de la mascota sea Trufa(expected)
-
+        List<WebElement> list = driver.findElements(By.className("btn-danger"));
+        Assertions.assertThat(list.size()).isEqualTo(0);
 
     }
 
+
+    //agregar una nueva mascota
+    @Test
+    public void HomeTest_addStudent_listSize(){
+        driver.get(BASE_URL +"/Mascotas/all?userType=veterinario&correo=qwe@m.c");
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btn-agregar")));     //espera hasta que lleguen los datos:
+    WebElement btnAgregar = driver.findElement(By.id("btn-agregar"));
+
+    btnAgregar.click();
+
+
+    }
 
     @AfterEach
     void tearDown() {
         
-            driver.quit();
+           // driver.quit();
         
-    } 
+    }
 }
