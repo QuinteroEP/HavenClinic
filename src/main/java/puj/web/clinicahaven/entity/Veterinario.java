@@ -3,7 +3,7 @@ package puj.web.clinicahaven.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -27,8 +27,8 @@ public class Veterinario {
     private int numAtenciones;
     private boolean activo;
 
-    @JsonIgnore
-    @OneToMany(mappedBy="idVeterinario", cascade = CascadeType.ALL)
+    @JsonBackReference
+    @OneToMany(mappedBy="veterinario", cascade = CascadeType.ALL)
     private List<Tratamiento> tratamiento = new ArrayList<>();
 
 

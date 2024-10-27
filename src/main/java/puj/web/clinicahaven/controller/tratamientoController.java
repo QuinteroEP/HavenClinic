@@ -15,10 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import puj.web.clinicahaven.entity.Droga;
 import puj.web.clinicahaven.entity.Tratamiento;
+import puj.web.clinicahaven.entity.Veterinario;
 import puj.web.clinicahaven.entity.mascota;
+import puj.web.clinicahaven.servicio.VeterinarioService;
+import puj.web.clinicahaven.servicio.drogaService;
 import puj.web.clinicahaven.servicio.petService;
 import puj.web.clinicahaven.servicio.tratamientoService;
+
 
 @RestController
 @RequestMapping("/tratamientos")
@@ -30,19 +35,31 @@ public class tratamientoController {
     @Autowired
     tratamientoService tratamientoService;
 
+    @Autowired
+    drogaService drogaService;
+
+    @Autowired
+    VeterinarioService VeterinarioService;
+
     //agregar tratamiento
     //localhost:8090/tratamientos/add/1
     @PostMapping("/add/{id}")
     @Operation(summary = "agregar un tratamiento a una mascota")
     public ResponseEntity<mascota> newTreatment(Model model, @PathVariable("id") Long id, @RequestBody Tratamiento tratamiento  ) {
         mascota mascota = mascotaService.findById(id);
+        Droga droga = drogaService.findByName(tratamiento.getDroga().getNombre());
+        Veterinario veterinario = VeterinarioService.findById(tratamiento.getVeterinario().getVetId());
+        Tratamiento newTratamiento = new Tratamiento(tratamiento.getFecha());
+
         if(!mascota.isEnTratamiento()){
             mascota.setEnTratamiento(true);
         }
-        mascota.setTratamiento(tratamiento);
-        mascotaService.update(mascota);
+       
+        newTratamiento.setMascota(mascota);
+        newTratamiento.setVeterinario(veterinario);
+        newTratamiento.setDroga(droga);
         
-        tratamientoService.add(tratamiento);
+        tratamientoService.add(newTratamiento);
         return ResponseEntity.ok(mascota);
     }
 
@@ -75,8 +92,7 @@ public class tratamientoController {
         @GetMapping("/historial/{id}")
         @Operation(summary = "ver historial de la Mascota seleccionada")
         public List<Tratamiento> petHistory(Model model, @PathVariable("id") Long id) {
-            mascota mascota = mascotaService.findById(id);
-            List<Tratamiento> historial = tratamientoService.getHistorial(mascota.getId());
+            List<Tratamiento> historial = tratamientoService.getHistorial(id);
 
             return  historial;
         }
@@ -88,5 +104,13 @@ public class tratamientoController {
         public Tratamiento petTreatment(Model model, @PathVariable("id") Long id) {
             Tratamiento tratamiento = tratamientoService.findByPetId(id);
             return  tratamiento;
+        }
+
+        //Obtener el nombre de una droga a partir del id de un tratamiento
+        //http://localhost:8090/tratamientos/droga/1
+        @GetMapping("/droga/{id}")
+        @Operation(summary = "Obtener el nombre de una droga a partir del id de un tratamiento")
+        public Droga drogaNombre(Model model, @PathVariable("id") Long id){
+            return drogaService.findById(id);
         }
 }

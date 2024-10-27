@@ -1,22 +1,26 @@
 package puj.web.clinicahaven.repository;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
-import puj.web.clinicahaven.entity.*;
-import puj.web.clinicahaven.repositorio.*;
-import puj.web.clinicahaven.servicio.csvService;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
+import puj.web.clinicahaven.entity.Cliente;
+import puj.web.clinicahaven.entity.Droga;
+import puj.web.clinicahaven.entity.Tratamiento;
+import puj.web.clinicahaven.entity.Veterinario;
+import puj.web.clinicahaven.entity.mascota;
+import puj.web.clinicahaven.repositorio.VeterinarioRepository;
+import puj.web.clinicahaven.repositorio.clienteRepository;
+import puj.web.clinicahaven.repositorio.drogaRepository;
+import puj.web.clinicahaven.repositorio.petRepository;
+import puj.web.clinicahaven.repositorio.tratamientoRepository;
 
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
@@ -85,6 +89,7 @@ public class PetRepositoryTest {
 
 
         //datos de tratamiento
+        /*
         TratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-01"), "ACOLAN"));
         TratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-02"), "ACTIONIS"));
         TratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-03"), "ACUIMIX"));
@@ -95,7 +100,7 @@ public class PetRepositoryTest {
         TratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-08"),  "CENDOX"));
         TratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-09"), "COLFIVE"));
         TratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-10"),  "COLIMIX"));
-
+ */
         // Asociar mascotas a dueños ciclicamente
         List<mascota> mascotas = PetRepository.findAll();
         List<Cliente> clientes = ClienteRepository.findAll();
@@ -110,6 +115,7 @@ public class PetRepositoryTest {
 
 
         //Asignar tratamientos
+        /*
         int[] repetitions = {4, 3, 2, 1};
         int mascotaIndex = 0;
         int veterinarioIndex = 0;
@@ -135,7 +141,7 @@ public class PetRepositoryTest {
                 veterinarioIndex++;
             }
         }
-
+ */
         for (int i = 0; i < mascotas.size(); i++) {
             if(mascotas.get(i).isEnTratamiento()){
                 mascotas.get(i).setTratamiento(tratamientos.get(i % tratamientos.size()));

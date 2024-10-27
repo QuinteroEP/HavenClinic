@@ -8,6 +8,8 @@ import puj.web.clinicahaven.entity.Tratamiento;
 public interface tratamientoService {
     public Tratamiento findById(Long id);
 
+    public List<Tratamiento> findAll();
+
     public List<Tratamiento> getHistorial(Long id);
 
     public Tratamiento findByPetId(Long id);

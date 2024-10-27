@@ -1,5 +1,6 @@
 package puj.web.clinicahaven.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -26,6 +27,7 @@ public class mascota {
     @ManyToOne
     private Cliente dueño;
 
+    @JsonBackReference
     @ManyToOne
     private Tratamiento tratamiento;
     

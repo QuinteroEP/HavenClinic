@@ -221,16 +221,16 @@ public class DatabaseInit implements ApplicationRunner {
         csvService.uploadCsv("src/main/resources/MEDICAMENTOS_VETERINARIA.csv");
 
         //datos de tratamiento
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-01"), "ACOLAN"));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-02"), "ACTIONIS"));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-03"), "ACUIMIX"));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-04"), "ALSIR"));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-05"), "AUROFAC"));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-06"),  "CEBIN"));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-07"), "CEMAY"));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-08"),  "CENDOX"));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-09"), "COLFIVE"));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-10"),  "COLIMIX"));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-11-09")));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2021-01-12")));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2022-12-20")));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2022-10-21")));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2023-09-19")));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2020-01-23")));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2019-08-14")));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2022-11-06")));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-09-06")));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-02-02")));
 
         // Asociar mascotas a dueños ciclicamente
         List<mascota> mascotas = petRepository1.findAll();
@@ -251,21 +251,24 @@ public class DatabaseInit implements ApplicationRunner {
             petRepository1.save(mascotas.get(i));
         }
 
-       /* //Asignar tratamientos con una mascota, veterinario y una droga
+        //Asignar tratamientos con una mascota, veterinario y una droga
         for (int i = 0; i < tratamientos.size(); i++) {
             Tratamiento tratamiento = tratamientos.get(i);
-            tratamiento.setIdMascota(mascotas.get(i % mascotas.size()).getId());
+
+            tratamiento.setMascota(mascotas.get(i % mascotas.size()));
             mascotas.get(i % mascotas.size()).setEnTratamiento(true);
-            tratamiento.setIdVeterinario(veterinarios.get(i % veterinarios.size()).getVetId());
+
+            tratamiento.setVeterinario(veterinarios.get(i % veterinarios.size()));
 
             tratamiento.setDroga(drogas.get(i % drogas.size()));
             drogas.get(i % drogas.size()).setUnidadesDisponibles(drogas.get(i % drogas.size()).getUnidadesDisponibles() - 1);
             drogas.get(i % drogas.size()).setUnidadesVendidas(drogas.get(i % drogas.size()).getUnidadesVendidas() + 1);
 
-            tratamiento.setNombredroga(drogas.get(i % drogas.size()).getNombre());
             tratamientoRepository.save(tratamiento);
-        }*/
+        }
+
         //Asignar tratamientos
+        /*
         int[] repetitions = {4, 3, 2, 1};
         int mascotaIndex = 0;
         int veterinarioIndex = 0;
@@ -291,7 +294,7 @@ public class DatabaseInit implements ApplicationRunner {
                 veterinarioIndex++;
             }
         }
-
+ */
         for (int i = 0; i < mascotas.size(); i++) {
             if(mascotas.get(i).isEnTratamiento()){
                 mascotas.get(i).setTratamiento(tratamientos.get(i % tratamientos.size()));

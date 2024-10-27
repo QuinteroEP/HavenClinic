@@ -20,6 +20,11 @@ public class tratamientoImplementation implements tratamientoService{
     }
 
     @Override
+    public List<Tratamiento> findAll(){
+        return repo.findAll();
+    }
+
+    @Override
     public List<Tratamiento> getHistorial(Long id) {
         return repo.getHistorial(id);
     }
