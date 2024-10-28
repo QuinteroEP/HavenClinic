@@ -24,9 +24,9 @@ public interface tratamientoRepository extends JpaRepository<Tratamiento, Long> 
     @Query("SELECT SUM(t.droga.precioVenta - t.droga.precioCompra) FROM Tratamiento t")
     double sumGananciasTotales();
 
-    @Query("select t from Tratamiento t where t.idMascota = ?1")
+    @Query("select t from Tratamiento t where t.mascota.id = ?1")
     List<Tratamiento> getHistorial(Long id);
 
-    @Query("select t from Tratamiento t where t.idMascota = ?1")
-    Tratamiento findByPetId(Long id);
+    @Query("select t from Tratamiento t where t.mascota.id = ?1")
+    List<Tratamiento> findByPetId(Long id);
 }

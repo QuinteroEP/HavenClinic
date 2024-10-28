@@ -1,11 +1,16 @@
 package puj.web.clinicahaven.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class mascota {
@@ -26,8 +31,9 @@ public class mascota {
     @ManyToOne
     private Cliente dueño;
 
-    @ManyToOne
-    private Tratamiento tratamiento;
+    @JsonIgnore
+    @OneToMany(mappedBy="mascota", cascade = CascadeType.ALL)
+    private List<Tratamiento> tratamiento = new ArrayList<>();
     
     public mascota(String nombre, int edad, String raza, String url, String genero, Long id, String condicion, String descripcion) {
         this.nombre = nombre;
@@ -63,13 +69,20 @@ public class mascota {
         this.dueño = dueño;
     }
 
-    public Tratamiento getTratamiento() {
-        return tratamiento;
+
+    public boolean getEnTratamiento() {
+        return this.enTratamiento;
     }
 
-    public void setTratamiento(Tratamiento Tratamiento) {
-        this.tratamiento = Tratamiento;
+
+    public List<Tratamiento> getTratamiento() {
+        return this.tratamiento;
     }
+
+    public void setTratamiento(List<Tratamiento> tratamiento) {
+        this.tratamiento = tratamiento;
+    }
+
 
     public String getNombre() {
         return nombre;

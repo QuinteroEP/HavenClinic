@@ -2,6 +2,7 @@ package puj.web.clinicahaven.entity;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -15,46 +16,29 @@ public class Tratamiento {
     @GeneratedValue
     private Long id;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate fecha;
-    private String Nombredroga;
-    
-    private Long idVeterinario;
-    private Long idMascota;
-    private Long idDroga;
 
-    @JsonIgnore
+
     @ManyToOne
+    @JsonIgnore
+    private mascota mascota;
+
+    @ManyToOne
+    @JsonIgnore
+    private Veterinario veterinario;
+
+    @ManyToOne
+    @JsonIgnore
     private Droga droga;
 
+    public Tratamiento(){
 
-
-    public Tratamiento(Long id, LocalDate fecha, Long idVeterinario, Long idMascota, Droga droga) {
-        this.id = id;
-        this.fecha = fecha;
-        this.idVeterinario = idVeterinario;
-        this.idMascota = idMascota;
     }
 
-    public Tratamiento(LocalDate fecha, String Nombredroga) {
-        this.fecha = fecha;
-        this.Nombredroga = Nombredroga;
-    }
-
-    public Tratamiento(LocalDate fecha, String nombredroga, Long idVeterinario, Long idMascota, Long idDroga) {
-        this.fecha = fecha;
-        Nombredroga = nombredroga;
-        this.idVeterinario = idVeterinario;
-        this.idMascota = idMascota;
-        this.idDroga = idDroga;
-    }
-
-    public Tratamiento (LocalDate fecha) {
+    public Tratamiento(LocalDate fecha){
         this.fecha = fecha;
     }
-
-    public Tratamiento() {}
-
-
 
     public Long getId() {
         return this.id;
@@ -72,20 +56,20 @@ public class Tratamiento {
         this.fecha = fecha;
     }
 
-    public Long getIdVeterinario() {
-        return this.idVeterinario;
+    public mascota getMascota() {
+        return this.mascota;
     }
 
-    public void setIdVeterinario(Long idVeterinario) {
-        this.idVeterinario = idVeterinario;
+    public void setMascota(mascota mascota) {
+        this.mascota = mascota;
     }
 
-    public Long getIdMascota() {
-        return this.idMascota;
+    public Veterinario getVeterinario() {
+        return this.veterinario;
     }
 
-    public void setIdMascota(Long idMascota) {
-        this.idMascota = idMascota;
+    public void setVeterinario(Veterinario veterinario) {
+        this.veterinario = veterinario;
     }
 
     public Droga getDroga() {
@@ -95,13 +79,4 @@ public class Tratamiento {
     public void setDroga(Droga droga) {
         this.droga = droga;
     }
-
-    public String getNombredroga() {
-        return Nombredroga;
-    }
-
-    public void setNombredroga(String nombredroga) {
-        Nombredroga = nombredroga;
-    }
-
 }

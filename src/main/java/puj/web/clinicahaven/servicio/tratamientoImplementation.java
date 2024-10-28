@@ -20,12 +20,17 @@ public class tratamientoImplementation implements tratamientoService{
     }
 
     @Override
+    public List<Tratamiento> findAll(){
+        return repo.findAll();
+    }
+
+    @Override
     public List<Tratamiento> getHistorial(Long id) {
         return repo.getHistorial(id);
     }
 
     @Override
-    public Tratamiento findByPetId(Long id) {
+    public List<Tratamiento> findByPetId(Long id) {
         return repo.findByPetId(id);
     }
 
