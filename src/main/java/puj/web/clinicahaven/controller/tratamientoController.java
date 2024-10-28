@@ -76,24 +76,21 @@ public class tratamientoController {
         return ResponseEntity.ok(mascota);
     }
 
-    //cambiar el estado del tratamiento de una mascota
+    //administrar el tratamiento de una mascota
     //localhost:8090/tratamientos/alter/1
     @PutMapping("/alter/{mascotaId}")
-    @Operation(summary = "cambiar el estado del tratamiento de una mascota")
-    public ResponseEntity<Droga> alter(Model model, @PathVariable("id") Long id) {
+    @Operation(summary = "administrar el tratamiento de una mascota")
+    public ResponseEntity<Droga> alter(Model model, @PathVariable("mascotaId") Long id) {
         mascota mascota = mascotaService.findById(id);
-        Tratamiento tratamiento = mascota.getTratamiento().getLast();
+        Tratamiento tratamiento = mascota.getTratamiento().get((mascota.getTratamiento().size() - 1));
         Droga droga = tratamiento.getDroga();
 
-        if(mascota.isEnTratamiento()){
-            mascota.setEnTratamiento(false);
-        }else{
-            mascota.setEnTratamiento(true);
-        }
+        mascota.setEnTratamiento(false);
 
         droga.setUnidadesDisponibles(droga.getUnidadesDisponibles() - 1);
         droga.setUnidadesVendidas(droga.getUnidadesVendidas() + 1);
         drogaService.update(droga);
+        mascotaService.update(mascota);
         
         return ResponseEntity.ok(droga);
     }
