@@ -12,7 +12,7 @@ public interface tratamientoService {
 
     public List<Tratamiento> getHistorial(Long id);
 
-    public Tratamiento findByPetId(Long id);
+    public List<Tratamiento> findByPetId(Long id);
 
     @Transactional
     public Tratamiento add(Tratamiento tratamiento);

@@ -30,7 +30,7 @@ public class tratamientoImplementation implements tratamientoService{
     }
 
     @Override
-    public Tratamiento findByPetId(Long id) {
+    public List<Tratamiento> findByPetId(Long id) {
         return repo.findByPetId(id);
     }
 

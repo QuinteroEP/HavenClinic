@@ -3,7 +3,7 @@ package puj.web.clinicahaven.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +22,7 @@ public class Droga {
     private int unidadesDisponibles;
     private int unidadesVendidas;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "droga")
     private List<Tratamiento> tratamientos = new ArrayList<>();
 

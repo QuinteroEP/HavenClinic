@@ -3,7 +3,7 @@ package puj.web.clinicahaven.entity;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,15 +22,15 @@ public class Tratamiento {
 
 
     @OneToOne
-    @JsonManagedReference
+    @JsonIgnore
     private mascota mascota;
 
     @ManyToOne
-    @JsonManagedReference
+    @JsonIgnore
     private Veterinario veterinario;
 
     @ManyToOne
-    @JsonManagedReference
+    @JsonIgnore
     private Droga droga;
 
     public Tratamiento(){

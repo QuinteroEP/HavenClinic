@@ -1,5 +1,6 @@
 package puj.web.clinicahaven.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -144,7 +145,9 @@ public class PetRepositoryTest {
  */
         for (int i = 0; i < mascotas.size(); i++) {
             if(mascotas.get(i).isEnTratamiento()){
-                mascotas.get(i).setTratamiento(tratamientos.get(i % tratamientos.size()));
+                List<Tratamiento> listaTratamientos = new ArrayList<>();
+                listaTratamientos.add(tratamientos.get(i % tratamientos.size()));
+                mascotas.get(i).setTratamiento(listaTratamientos);
             }
             PetRepository.save(mascotas.get(i));
         }

@@ -28,5 +28,5 @@ public interface tratamientoRepository extends JpaRepository<Tratamiento, Long> 
     List<Tratamiento> getHistorial(Long id);
 
     @Query("select t from Tratamiento t where t.mascota.id = ?1")
-    Tratamiento findByPetId(Long id);
+    List<Tratamiento> findByPetId(Long id);
 }

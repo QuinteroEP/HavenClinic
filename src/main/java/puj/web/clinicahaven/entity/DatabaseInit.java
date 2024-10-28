@@ -1,6 +1,7 @@
 package puj.web.clinicahaven.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -297,7 +298,9 @@ public class DatabaseInit implements ApplicationRunner {
  */
         for (int i = 0; i < mascotas.size(); i++) {
             if(mascotas.get(i).isEnTratamiento()){
-                mascotas.get(i).setTratamiento(tratamientos.get(i % tratamientos.size()));
+                List<Tratamiento> listaTratamientos = new ArrayList<>();
+                listaTratamientos.add(tratamientos.get(i % tratamientos.size()));
+                mascotas.get(i).setTratamiento(listaTratamientos);
             }
             petRepository1.save(mascotas.get(i));
         }
