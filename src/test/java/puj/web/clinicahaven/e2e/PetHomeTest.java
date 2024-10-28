@@ -8,6 +8,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -54,6 +57,7 @@ public class PetHomeTest {
     @Test
     public void SystemTest_VerMascotas() {
         driver.get(BASE_URL + "/Mascotas/all?userType=veterinario&correo=qwe@m.c");
+        
     
 
     }
@@ -95,16 +99,121 @@ public class PetHomeTest {
 
 
     //agregar una nueva mascota
-    @Test
-    public void HomeTest_addStudent_listSize(){
-        driver.get(BASE_URL +"/Mascotas/all?userType=veterinario&correo=qwe@m.c");
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btn-agregar")));     //espera hasta que lleguen los datos:
+@Test
+public void HomeTest_addStudent_listSize() {
+    driver.get(BASE_URL + "/Mascotas/all?userType=veterinario&correo=qwe@m.c");
+    
+    // Wait until the "Registrar Nueva Mascota" button is present
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btn-agregar")));
     WebElement btnAgregar = driver.findElement(By.id("btn-agregar"));
-
     btnAgregar.click();
+    
+    
+    // Wait until the form is present
+    //wait.until(ExpectedConditions.presenceOfElementLocated(By.id("name")));
+    
+    // Fill out the form
+    WebElement inputName = driver.findElement(By.id("name"));
+    inputName.sendKeys("Firulais");
+
+    WebElement inputAge = driver.findElement(By.id("age"));
+    inputAge.sendKeys("5");
+
+    WebElement inputBreed = driver.findElement(By.id("breed"));
+    inputBreed.sendKeys("Labrador");
+
+    WebElement inputCedulaDueno = driver.findElement(By.id("cedulaDueno"));
+        inputCedulaDueno.sendKeys(Keys.BACK_SPACE);
+        inputCedulaDueno.sendKeys("123");
+
+    WebElement inputGender = driver.findElement(By.id("gender"));
+    inputGender.sendKeys("Macho");
+
+    WebElement inputCondition = driver.findElement(By.id("condition"));
+    inputCondition.sendKeys("Sano");
+
+    WebElement inputDescription = driver.findElement(By.id("description"));
+    inputDescription.sendKeys("Muy amigable");
+
+    WebElement inputUrl = driver.findElement(By.id("url"));
+    inputUrl.sendKeys("http://example.com/firulais.jpg");
+
+    // Submit the form      // Wait until the button is clickable
+    ///wait.until(ExpectedConditions.presenceOfElementLocated(By.id("submitMascotaBtn")));
+    WebElement submitButton = driver.findElement(By.id("submitMascotaBtn"));
+    submitButton.click();
+
+    List<WebElement> list = driver.findElements(By.className("liStudentName"));
+    Assertions.assertThat(list.size()).isEqualTo(103);
+}
+
+//CAS DE USO
+//agregar una mascota y ver los detalles de esa mascota
+@Test
+public void HomeTest_addStudent_petName(){
+
+    //1. GREGAR UNA MASCOTA
+
+    driver.get(BASE_URL + "/Mascotas/all?userType=veterinario&correo=qwe@m.c");
+
+    // Wait until the "Registrar Nueva Mascota" button is present
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btn-agregar")));
+    WebElement btnAgregar = driver.findElement(By.id("btn-agregar"));
+    btnAgregar.click();
+    
+    
+    // Wait until the form is present
+    //wait.until(ExpectedConditions.presenceOfElementLocated(By.id("name")));
+    
+    // Fill out the form
+    WebElement inputName = driver.findElement(By.id("name"));
+    inputName.sendKeys("Firulais");
+
+    WebElement inputAge = driver.findElement(By.id("age"));
+    inputAge.sendKeys("5");
+
+    WebElement inputBreed = driver.findElement(By.id("breed"));
+    inputBreed.sendKeys("Labrador");
+
+    WebElement inputCedulaDueno = driver.findElement(By.id("cedulaDueno"));
+    inputCedulaDueno.sendKeys(Keys.BACK_SPACE);
+    inputCedulaDueno.sendKeys("123");
+
+    WebElement inputGender = driver.findElement(By.id("gender"));
+    inputGender.sendKeys("Macho");
+
+    WebElement inputCondition = driver.findElement(By.id("condition"));
+    inputCondition.sendKeys("Sano");
+
+    WebElement inputDescription = driver.findElement(By.id("description"));
+    inputDescription.sendKeys("Muy amigable");
+
+    WebElement inputUrl = driver.findElement(By.id("url"));
+    inputUrl.sendKeys("http://example.com/firulais.jpg");
+
+    // Submit the form      // Wait until the button is clickable
+    //wait.until(ExpectedConditions.presenceOfElementLocated(By.id("submitMascotaBtn")));
+    WebElement submitButton = driver.findElement(By.id("submitMascotaBtn"));
+    submitButton.click();
+
+    List<WebElement> list = driver.findElements(By.className("btn-danger"));
+    Assertions.assertThat(list.size()).isEqualTo(102);
+
+    List<WebElement> allButtonsInfo = driver.findElements(By.className("info-button"));
+    allButtonsInfo.get(allButtonsInfo.size()-1).click(); 
+    
+    //2. ver detalles de la mascota que agregue en este caso esta al final de la lista
+// Submit the form      // Wait until the button is clickable
+///wait.until(ExpectedConditions.presenceOfElementLocated(By.id("submitMascotaBtn")));
+String idinfo=  "nombreMascotaInfo";
+wait.until(ExpectedConditions.presenceOfElementLocated(By.id(idinfo))); //Espera hasta que el elemento sea visible no continua
+WebElement petName = driver.findElement(By.id(idinfo));
+
+String expected = "Firulais";
+Assertions.assertThat(petName.getText()).isEqualTo(expected);//verifica que el nombre de la mascota sea Trufa(expected)
 
 
-    }
+}
 
     @AfterEach
     void tearDown() {
