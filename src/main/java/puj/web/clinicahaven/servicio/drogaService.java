@@ -14,4 +14,6 @@ public interface drogaService {
     public Droga findByName(String nombre);
 
     public Droga update(Droga droga);
+
+    public Droga findByTratamientoId(Long id);
 }

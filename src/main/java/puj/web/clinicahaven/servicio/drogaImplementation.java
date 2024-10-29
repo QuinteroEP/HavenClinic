@@ -37,4 +37,9 @@ public class drogaImplementation implements drogaService{
     public Droga update(Droga droga){
         return repo.save(droga);
     }
+
+    @Override
+    public Droga findByTratamientoId(Long id){
+        return repo.findByTratamientoId(id);
+    }
 }
