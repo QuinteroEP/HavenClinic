@@ -117,6 +117,7 @@ public class tratamientoController {
         @GetMapping("/droga/{id}")
         @Operation(summary = "Obtener el nombre de una droga a partir del id de un tratamiento")
         public Droga drogaNombre(Model model, @PathVariable("id") Long id){
-            return drogaService.findById(id);
+            Tratamiento tratamiento = tratamientoService.findById(id);
+            return drogaService.findByTratamientoId(tratamiento.getId());
         }
 }
