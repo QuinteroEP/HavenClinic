@@ -141,21 +141,21 @@ public class UseCaseTest1 {
      wait.until(ExpectedConditions.presenceOfElementLocated(By.id("name")));
 
      WebElement inputNameCliente = driver.findElement(By.id("name"));
-     inputNameCliente.sendKeys("Juan Perez");
+     inputNameCliente.sendKeys("Juancho Perez");
  
      WebElement inputCedulaCliente = driver.findElement(By.id("cedula"));
      inputCedulaCliente.sendKeys(Keys.BACK_SPACE);
-     inputCedulaCliente.sendKeys("98765");
+     inputCedulaCliente.sendKeys("9876565");
  
      WebElement inputCelularCliente = driver.findElement(By.id("celular"));
      inputCelularCliente.sendKeys(Keys.BACK_SPACE);
-     inputCelularCliente.sendKeys("987654");
+     inputCelularCliente.sendKeys("9874654");
  
      WebElement inputCorreoCliente = driver.findElement(By.id("correo"));
-     inputCorreoCliente.sendKeys("juan.perez@example.com");
+     inputCorreoCliente.sendKeys("juanperezprueba@example.com");
  
      WebElement inputContrasenaCliente = driver.findElement(By.id("contrasena"));
-     inputContrasenaCliente.sendKeys("password123");
+     inputContrasenaCliente.sendKeys("password123j");
  
      // Submit the form
      WebElement submitButton = driver.findElement(By.id("SubmitCliente"));
@@ -181,7 +181,7 @@ public class UseCaseTest1 {
     
         WebElement inputCedulaDueno = driver.findElement(By.id("cedulaDueno"));
         inputCedulaDueno.sendKeys(Keys.BACK_SPACE);
-        inputCedulaDueno.sendKeys("98765");
+        inputCedulaDueno.sendKeys("9876565");
     
         WebElement inputGender = driver.findElement(By.id("gender"));
         inputGender.sendKeys("Macho");
@@ -201,11 +201,44 @@ public class UseCaseTest1 {
     WebElement submitButtonMascota = driver.findElement(By.id("submitMascotaBtn"));
     submitButtonMascota.click();
 
-//5.El cliente verifica que se realizo correctamente el inicio de sesion
-//salir de la sesion de veterinario
-wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnCerrarSesion")));
-WebElement btnCerrarSesion = driver.findElement(By.id("btnCerrarSesion"));
-btnCerrarSesion.click();
+    //5.El cliente verifica que se realizo correctamente el inicio de sesion
+
+    //5.1 inicio sesion cliente
+
+    //salir de la sesion de veterinario
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnCerrarSesion")));
+    WebElement btnCerrarSesion = driver.findElement(By.id("btnCerrarSesion"));
+    btnCerrarSesion.click();
+
+    //iniciar sesion como cliente
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("LogIn")));
+    WebElement btnLogInCliente = driver.findElement(By.id("LogIn"));
+    btnLogInCliente.click();
+
+    
+    // Esperar a que el popup aparezca
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("Loginemail")));
+
+    // inicio sesion con cliente
+    WebElement inputLoginCorreoCliente = driver.findElement(By.id("Loginemail"));
+    inputLoginCorreoCliente.sendKeys("juanperezprueba@example.com");
+
+    WebElement inputLoginpassCliente = driver.findElement(By.id("Loginpsw"));
+    inputLoginpassCliente.sendKeys("password123j");
+    //click iniciar sesion
+    // Attempt to log in/correctamente
+    WebElement btnLoginCuentaCliente = driver.findElement(By.id("btnloginCuenta"));
+    btnLoginCuentaCliente.click();
+
+    //5.2ver mascotas del cliente
+    //entrar a ver mis mascotas
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnVerMisMascotas")));
+    WebElement btnVerMisMascotas = driver.findElement(By.id("btnVerMisMascotas"));
+    btnVerMisMascotas.click();
+
+    //ver la mascota ->FIN
+    
+
 
 
 
