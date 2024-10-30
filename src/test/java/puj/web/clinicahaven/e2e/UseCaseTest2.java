@@ -8,6 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -51,8 +52,17 @@ public class UseCaseTest2 {
     }
 
     @Test
-    public void testVeterinarianAdministersNewMedication() {
-        driver.get(BASE_URL + "/Mascotas/all?userType=veterinario&correo=qwe@m.c");
+    public void testVeterinarianAdministersNewMedication() throws InterruptedException {
+            /*    // Step 0: Verify quantity sold and earnings
+                driver.get(BASE_URL + "/admin");
+                WebElement quantitySold = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("total")));
+                int initialQuantitySold = Integer.parseInt(quantitySold.getText());
+                WebElement earnings = driver.findElement(By.id("total2"));
+                double initialEarnings = Double.parseDouble(earnings.getText());
+        
+        */
+                driver.get(BASE_URL + "/Mascotas/all?userType=veterinario&correo=qwe@m.c");
+        
 
         // Step 1: Search for the pet
         WebElement searchBox = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("search-box")));
@@ -65,10 +75,19 @@ public class UseCaseTest2 {
         WebElement infoButton = driver.findElement(By.id("info-button"));
         infoButton.click();
 
+        // Wait until the "Administer Treatment" button is present
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("ATbutton")));
         WebElement administerTreatmentButton = driver.findElement(By.id("ATbutton"));
-        administerTreatmentButton.click();
 
+        // Scroll to the button to ensure it is in view
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", administerTreatmentButton);
+        Thread.sleep(500);
+
+        // Wait until the button is clickable
+        wait.until(ExpectedConditions.elementToBeClickable(administerTreatmentButton));
+
+        // Click the "Administer Treatment" button
+        administerTreatmentButton.click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("Gbutton")));
         WebElement generateTreatmentButton = driver.findElement(By.id("Gbutton"));
         generateTreatmentButton.click();
@@ -92,10 +111,18 @@ public class UseCaseTest2 {
         WebElement infoButton2 = driver.findElement(By.id("info-button"));
         infoButton2.click();
 
-        WebElement treatmentDetails = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("droga-treatment")));
+        // Scroll to the treatment details to ensure it is in view
+        WebElement treatmentDetails = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/app-root/app-informacion-mascota/main/div/div/div/div[2]/div[3]/ol/li[2]")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", treatmentDetails);
+        Thread.sleep(500);
+
+        // Verify the treatment details
         Assertions.assertThat(treatmentDetails.getText()).contains("ACTIONIS");
+
+
+        driver.get(BASE_URL + "/admin");
 /*
-        // Step 5: Verify quantity sold and earnings
+        // Step 0: Verify quantity sold and earnings
         driver.get(BASE_URL + "/dashboard");
         WebElement quantitySold = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("quantity-sold")));
         int initialQuantitySold = Integer.parseInt(quantitySold.getText());

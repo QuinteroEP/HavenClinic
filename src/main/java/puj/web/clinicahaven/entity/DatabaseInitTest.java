@@ -231,7 +231,7 @@ public class DatabaseInitTest implements ApplicationRunner {
         tratamientoRepository.save(new Tratamiento(LocalDate.parse("2019-08-14")));
         tratamientoRepository.save(new Tratamiento(LocalDate.parse("2022-11-06")));
         tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-09-06")));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-02-02")));
+        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-02")));
 
         // Asociar mascotas a dueños ciclicamente
         List<mascota> mascotas = petRepository1.findAll();

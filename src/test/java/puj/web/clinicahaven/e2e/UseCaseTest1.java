@@ -55,17 +55,26 @@ public class UseCaseTest1 {
 
     //Caso 1 Codigo intento solo clickear el boton iniciar sesion
     @Test
-    public void SystemTest_VerMascotas() {
+    public void SystemTest_VerMascotas() throws InterruptedException {
         driver.get(BASE_URL);
     
         // 1. Iniciar Sesion incorrectamente
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("LogIn")));
-        WebElement btnLogIn = driver.findElement(By.id("LogIn"));
-        btnLogIn.click();
-    
+    // 1. Iniciar Sesion incorrectamente
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("LogIn")));
+    WebElement btnLogIn = driver.findElement(By.id("LogIn"));
+
+    // Scroll to the button to ensure it is in view
+    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btnLogIn);
+    Thread.sleep(500);
+
+    // Wait until the button is clickable
+    wait.until(ExpectedConditions.elementToBeClickable(btnLogIn));
+
+    // Click the login button
+    btnLogIn.click();
         
         // Esperar a que el popup aparezca
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("Loginemail")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("cancel")));
     
         // inicio incorrecto/info incorrecta
         WebElement inputLoginCorreo = driver.findElement(By.id("Loginemail"));
@@ -75,7 +84,7 @@ public class UseCaseTest1 {
         inputLoginpass.sendKeys("abdefrtgyhuc");
     
         //  checkbox
-        WebElement checkBox = driver.findElement(By.id("check-box"));
+        WebElement checkBox = driver.findElement(By.id("checkVeterinario"));
         checkBox.click();
     
         // Attempt to log in/incorrectamente
@@ -116,9 +125,9 @@ public class UseCaseTest1 {
     WebElement inputLoginpass2 = driver.findElement(By.id("Loginpsw"));
     inputLoginpass2.sendKeys("abc");
 
-    //  checkbox
-    WebElement checkBox2 = driver.findElement(By.id("check-box"));
-    checkBox2.click();
+     /*   //  checkbox
+        WebElement checkBox2 = driver.findElement(By.id("checkVeterinario"));
+        checkBox2.click();*/
 
     // Attempt to log in/correctamente
     WebElement btnLoginCuentaCorrecta = driver.findElement(By.id("btnloginCuenta"));
@@ -127,14 +136,23 @@ public class UseCaseTest1 {
     //3.ingresar nuevo cliente
     //entrar a lista de clientes
 
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnlistaClientes")));
-    WebElement btnListaClientes = driver.findElement(By.id("btnlistaClientes"));
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Lista de Clientes")));
+    WebElement btnListaClientes = driver.findElement((By.linkText("Lista de Clientes")));
     btnListaClientes.click();
 
     //entrar a forms agregar un nuevo cliente
 
     wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnAgregarCliente")));
-    WebElement btnAgregarCliente = driver.findElement(By.id("btnagregarCliente"));
+    WebElement btnAgregarCliente = driver.findElement(By.id("btnAgregarCliente"));
+
+    // Scroll to the button to ensure it is in view
+    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btnAgregarCliente);
+    Thread.sleep(1500);
+
+    // Wait until the button is clickable
+    wait.until(ExpectedConditions.elementToBeClickable(btnAgregarCliente));
+
+    // Click the "Agregar Cliente" button
     btnAgregarCliente.click();
 
      // Llenar informacion nuevo cliente
@@ -164,8 +182,8 @@ public class UseCaseTest1 {
     //4. Agregar una mascota nueva asociandola al nuevo cliente
 
     //entrar al forms agregar nueva mascota
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnAgregarMascota")));
-    WebElement btnagregarMascota = driver.findElement(By.id("btnagregarMascota"));
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Añadir Mascota")));
+    WebElement btnagregarMascota = driver.findElement(By.linkText("Añadir Mascota"));
     btnagregarMascota.click();
 
     // Llenar informacion nueva mascota
@@ -196,24 +214,41 @@ public class UseCaseTest1 {
         inputUrl.sendKeys("http://example.com/firulais.jpg");
 
         // Submit the form
-            // Submit the form      // Wait until the button is clickable
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("submitMascotaBtn")));
-    WebElement submitButtonMascota = driver.findElement(By.id("submitMascotaBtn"));
-    submitButtonMascota.click();
+                // Wait until the "Submit Mascota" button is present
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("submitMascotaBtn")));
+        WebElement submitButtonMascota = driver.findElement(By.id("submitMascotaBtn"));
 
+        // Scroll to the button to ensure it is in view
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", submitButtonMascota);
+        Thread.sleep(500);
+
+        // Wait until the button is clickable
+        wait.until(ExpectedConditions.elementToBeClickable(submitButtonMascota));
+
+        // Click the "Submit Mascota" button
+        submitButtonMascota.click();
     //5.El cliente verifica que se realizo correctamente el inicio de sesion
 
     //5.1 inicio sesion cliente
 
     //salir de la sesion de veterinario
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnCerrarSesion")));
-    WebElement btnCerrarSesion = driver.findElement(By.id("btnCerrarSesion"));
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Cerrar Sesion")));
+    WebElement btnCerrarSesion = driver.findElement(By.linkText("Cerrar Sesion"));
     btnCerrarSesion.click();
 
-    //iniciar sesion como cliente
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("LogIn")));
-    WebElement btnLogInCliente = driver.findElement(By.id("LogIn"));
-    btnLogInCliente.click();
+      // 1. Iniciar Sesion cliente
+      wait.until(ExpectedConditions.presenceOfElementLocated(By.id("LogIn")));
+      WebElement btnLogInCliente = driver.findElement(By.id("LogIn"));
+  
+      // Scroll to the button to ensure it is in view
+      ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btnLogInCliente);
+      Thread.sleep(500);
+  
+      // Wait until the button is clickable
+      wait.until(ExpectedConditions.elementToBeClickable(btnLogInCliente));
+  
+      // Click the login button
+      btnLogInCliente.click();
 
     
     // Esperar a que el popup aparezca
@@ -232,8 +267,8 @@ public class UseCaseTest1 {
 
     //5.2ver mascotas del cliente
     //entrar a ver mis mascotas
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnVerMisMascotas")));
-    WebElement btnVerMisMascotas = driver.findElement(By.id("btnVerMisMascotas"));
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Mis Mascotas")));
+    WebElement btnVerMisMascotas = driver.findElement(By.linkText("Mis Mascotas"));
     btnVerMisMascotas.click();
 
     //ver la mascota ->FIN
