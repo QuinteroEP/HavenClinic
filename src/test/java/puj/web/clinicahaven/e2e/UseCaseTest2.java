@@ -7,10 +7,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -23,8 +20,11 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.fasterxml.jackson.databind.JsonSerializable.Base;
 
+import java.text.NumberFormat;
 import java.time.Duration;
 import java.util.List;
+import java.text.ParseException;
+import java.util.Locale;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT) //indica el puerto con el que se hara el test
 @ActiveProfiles("test")
@@ -52,17 +52,21 @@ public class UseCaseTest2 {
     }
 
     @Test
-    public void testVeterinarianAdministersNewMedication() throws InterruptedException {
-            /*    // Step 0: Verify quantity sold and earnings
-                driver.get(BASE_URL + "/admin");
-                WebElement quantitySold = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("total")));
-                int initialQuantitySold = Integer.parseInt(quantitySold.getText());
-                WebElement earnings = driver.findElement(By.id("total2"));
-                double initialEarnings = Double.parseDouble(earnings.getText());
-        
-        */
-                driver.get(BASE_URL + "/Mascotas/all?userType=veterinario&correo=qwe@m.c");
-        
+    public void testVeterinarianAdministersNewMedication() throws InterruptedException, ParseException {
+
+
+        // Step 0: Verify quantity sold and earnings
+        driver.get(BASE_URL + "/admin");
+        Thread.sleep(1000);
+        WebElement quantitySold = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("total")));
+        int initialQuantitySold = Integer.parseInt(quantitySold.getText());
+        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+        WebElement earnings = driver.findElement(By.id("total2"));
+        double initialEarnings = format.parse(earnings.getText()).doubleValue();
+
+
+
+        driver.get(BASE_URL + "/Mascotas/all?userType=veterinario&correo=qwe@m.c");
 
         // Step 1: Search for the pet
         WebElement searchBox = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("search-box")));
@@ -98,7 +102,17 @@ public class UseCaseTest2 {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"nombreDroga\"]/option[2]")));
         WebElement treatmentOption = driver.findElement(By.xpath("//*[@id=\"nombreDroga\"]/option[2]"));
         treatmentOption.click();
-        WebElement saveButton = driver.findElement(By.id("AT2button"));
+        treatmentDropdown.click();
+
+        WebElement dateInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input.date")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dateInput);
+        wait.until(ExpectedConditions.visibilityOf(dateInput));
+        wait.until(ExpectedConditions.elementToBeClickable(dateInput));
+        String today = java.time.LocalDate.now().toString();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].value = arguments[1];", dateInput, today);
+        Thread.sleep(500);
+
+       WebElement saveButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("AT2button")));
         saveButton.click();
 
         // Step 4: Verify the new treatment is saved correctly
@@ -107,9 +121,11 @@ public class UseCaseTest2 {
         WebElement searchButton2 = driver.findElement(By.id("search-button"));
         searchButton2.click();
 
+
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("info-button")));
         WebElement infoButton2 = driver.findElement(By.id("info-button"));
         infoButton2.click();
+
 
         // Scroll to the treatment details to ensure it is in view
         WebElement treatmentDetails = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/app-root/app-informacion-mascota/main/div/div/div/div[2]/div[3]/ol/li[2]")));
@@ -120,24 +136,16 @@ public class UseCaseTest2 {
         Assertions.assertThat(treatmentDetails.getText()).contains("ACTIONIS");
 
 
+
+        // Step 5: Verify earnings
         driver.get(BASE_URL + "/admin");
-/*
-        // Step 0: Verify quantity sold and earnings
-        driver.get(BASE_URL + "/dashboard");
-        WebElement quantitySold = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("quantity-sold")));
-        int initialQuantitySold = Integer.parseInt(quantitySold.getText());
-        WebElement earnings = driver.findElement(By.id("earnings"));
-        double initialEarnings = Double.parseDouble(earnings.getText());
+        quantitySold = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("total")));
+        int finalQuantitySold = Integer.parseInt(quantitySold.getText().replaceAll("[^\\d]", ""));
+        earnings = driver.findElement(By.id("total2"));
+        double finalEarnings = format.parse(earnings.getText()).doubleValue();
 
-        // Re-enter the dashboard to verify changes
-        driver.get(BASE_URL + "/dashboard");
-        quantitySold = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("quantity-sold")));
-        int finalQuantitySold = Integer.parseInt(quantitySold.getText());
-        earnings = driver.findElement(By.id("earnings"));
-        double finalEarnings = Double.parseDouble(earnings.getText());
-
-        Assertions.assertThat(finalQuantitySold).isEqualTo(initialQuantitySold + 1);
-        Assertions.assertThat(finalEarnings).isGreaterThan(initialEarnings);*/
+        //Assertions.assertThat(finalQuantitySold).isEqualTo(initialQuantitySold + 1);
+        Assertions.assertThat(finalEarnings).isGreaterThan(initialEarnings);
     }
     @AfterEach
     void tearDown() {
