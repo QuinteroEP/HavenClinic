@@ -28,7 +28,7 @@ public class Veterinario {
     private boolean activo;
 
     @JsonIgnore
-    @OneToMany(mappedBy="idVeterinario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="veterinario", cascade = CascadeType.ALL)
     private List<Tratamiento> tratamiento = new ArrayList<>();
 
 

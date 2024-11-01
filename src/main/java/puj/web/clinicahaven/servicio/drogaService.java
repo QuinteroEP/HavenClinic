@@ -12,4 +12,8 @@ public interface drogaService {
     public Number getQuantity(Long id);
 
     public Droga findByName(String nombre);
+
+    public Droga update(Droga droga);
+
+    public Droga findByTratamientoId(Long id);
 }

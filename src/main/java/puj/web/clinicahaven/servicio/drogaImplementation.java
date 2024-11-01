@@ -32,4 +32,14 @@ public class drogaImplementation implements drogaService{
     public Droga findByName(String nombre){
         return repo.findByNombre(nombre);
     }
+
+    @Override
+    public Droga update(Droga droga){
+        return repo.save(droga);
+    }
+
+    @Override
+    public Droga findByTratamientoId(Long id){
+        return repo.findByTratamientoId(id);
+    }
 }

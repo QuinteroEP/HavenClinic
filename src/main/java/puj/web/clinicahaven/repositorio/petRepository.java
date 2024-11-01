@@ -14,8 +14,7 @@ public interface petRepository extends JpaRepository<mascota, Long> {
     mascota findPetById(Long id);
     List<mascota> findByNombre(String nombre);
 
-
-     void deleteById(Long id);
+    void deleteById(Long id);
 
     List<mascota> findByDueño(Cliente dueño);
 

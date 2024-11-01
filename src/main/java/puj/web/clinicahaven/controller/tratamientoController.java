@@ -15,10 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import puj.web.clinicahaven.entity.Droga;
 import puj.web.clinicahaven.entity.Tratamiento;
+import puj.web.clinicahaven.entity.Veterinario;
 import puj.web.clinicahaven.entity.mascota;
+import puj.web.clinicahaven.servicio.VeterinarioService;
+import puj.web.clinicahaven.servicio.drogaService;
 import puj.web.clinicahaven.servicio.petService;
 import puj.web.clinicahaven.servicio.tratamientoService;
+
 
 @RestController
 @RequestMapping("/tratamientos")
@@ -30,37 +35,64 @@ public class tratamientoController {
     @Autowired
     tratamientoService tratamientoService;
 
+    @Autowired
+    drogaService drogaService;
+
+    @Autowired
+    VeterinarioService VeterinarioService;
+
     //agregar tratamiento
-    //localhost:8090/tratamientos/add/1
-    @PostMapping("/add/{id}")
+    //localhost:8090/tratamientos/add/1/1/1
+    @PostMapping("/add/{vetId}/{mascotaId}/{drogaId}")
     @Operation(summary = "agregar un tratamiento a una mascota")
-    public ResponseEntity<mascota> newTreatment(Model model, @PathVariable("id") Long id, @RequestBody Tratamiento tratamiento  ) {
-        mascota mascota = mascotaService.findById(id);
+    public ResponseEntity<mascota> newTreatment(Model model, @PathVariable("vetId") Long idVet, @PathVariable("mascotaId") Long idMascota, @PathVariable("drogaId") Long idDroga ,@RequestBody Tratamiento tratamiento ) {
+        mascota mascota = mascotaService.findById(idMascota);
+        Droga droga = drogaService.findById(idDroga);
+        Veterinario veterinario = VeterinarioService.findById(idVet);
+        Tratamiento newTratamiento = new Tratamiento(tratamiento.getFecha());
+
         if(!mascota.isEnTratamiento()){
             mascota.setEnTratamiento(true);
         }
-        mascota.setTratamiento(tratamiento);
-        mascotaService.update(mascota);
+       
+        newTratamiento.setMascota(mascota);
+        newTratamiento.setVeterinario(veterinario);
+        newTratamiento.setDroga(droga);
         
-        tratamientoService.add(tratamiento);
+        tratamientoService.add(newTratamiento);
         return ResponseEntity.ok(mascota);
     }
 
-    
     //cambiar el estado del tratamiento de una mascota
-    //localhost:8090/tratamientos/update/1
-    @PutMapping("/update/{id}")
+    //localhost:8090/tratamientos/update/1/1
+    @PutMapping("/update/{mascotaId}/{drogaId}")
     @Operation(summary = "cambiar el estado del tratamiento de una mascota")
-    public ResponseEntity<mascota> alterTreatment(Model model, @PathVariable("id") Long id) {
-        mascota mascota = mascotaService.findById(id);
-        if(mascota.isEnTratamiento()){
-            mascota.setEnTratamiento(false);
-        }
-        else{
-            mascota.setEnTratamiento(true);
-        }
-        mascotaService.update(mascota);
+    public ResponseEntity<mascota> alterTreatment(Model model, @PathVariable("id") Long idMascota, @PathVariable("drogaId") Long idDroga, @RequestBody Tratamiento tratamiento) {
+        mascota mascota = mascotaService.findById(idMascota);
+        
+        tratamiento.setDroga(drogaService.findById(idDroga));
+        tratamiento.setMascota(mascota);
+
         return ResponseEntity.ok(mascota);
+    }
+
+    //administrar el tratamiento de una mascota
+    //localhost:8090/tratamientos/alter/1
+    @PutMapping("/alter/{mascotaId}")
+    @Operation(summary = "administrar el tratamiento de una mascota")
+    public ResponseEntity<Droga> alter(Model model, @PathVariable("mascotaId") Long id) {
+        mascota mascota = mascotaService.findById(id);
+        Tratamiento tratamiento = mascota.getTratamiento().get((mascota.getTratamiento().size() - 1));
+        Droga droga = tratamiento.getDroga();
+
+        mascota.setEnTratamiento(false);
+
+        droga.setUnidadesDisponibles(droga.getUnidadesDisponibles() - 1);
+        droga.setUnidadesVendidas(droga.getUnidadesVendidas() + 1);
+        drogaService.update(droga);
+        mascotaService.update(mascota);
+        
+        return ResponseEntity.ok(droga);
     }
 
     //mostrar informacion del tratamiento
@@ -75,18 +107,17 @@ public class tratamientoController {
         @GetMapping("/historial/{id}")
         @Operation(summary = "ver historial de la Mascota seleccionada")
         public List<Tratamiento> petHistory(Model model, @PathVariable("id") Long id) {
-            mascota mascota = mascotaService.findById(id);
-            List<Tratamiento> historial = tratamientoService.getHistorial(mascota.getId());
+            List<Tratamiento> historial = tratamientoService.getHistorial(id);
 
             return  historial;
         }
 
-        //Obtener tratamiento apartir de la id de una mascota
-        //http://localhost:8090/tratamientos/mascota/1
-        @GetMapping("/mascota/{id}")
-        @Operation(summary = "ver historial de la Mascota seleccionada")
-        public Tratamiento petTreatment(Model model, @PathVariable("id") Long id) {
-            Tratamiento tratamiento = tratamientoService.findByPetId(id);
-            return  tratamiento;
+        //Obtener el nombre de una droga a partir del id de un tratamiento
+        //http://localhost:8090/tratamientos/droga/1
+        @GetMapping("/droga/{id}")
+        @Operation(summary = "Obtener el nombre de una droga a partir del id de un tratamiento")
+        public Droga drogaNombre(Model model, @PathVariable("id") Long id){
+            Tratamiento tratamiento = tratamientoService.findById(id);
+            return drogaService.findByTratamientoId(tratamiento.getId());
         }
 }

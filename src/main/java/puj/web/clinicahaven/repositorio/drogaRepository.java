@@ -19,4 +19,7 @@ public interface drogaRepository extends JpaRepository<Droga, Long>{
 
     //@Query("select d FROM Tratamiento t JOIN t.droga d where d.nombre = ?1")
     Droga findByNombre(String nombre);
+
+    @Query("select d FROM Tratamiento t JOIN t.droga d WHERE t.id = ?1")
+    Droga findByTratamientoId(Long id);
 }
