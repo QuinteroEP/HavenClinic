@@ -64,8 +64,8 @@ public class petController {
     @GetMapping("/mis_mascotas")
     public ResponseEntity<List<mascota>> showClientPets( HttpSession session) {
         Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
-        System.out.println("Cliente loggeado: " + loggedInClient.getNombre() + "id: " + loggedInClient.getId());
-        List<mascota> lista = mascotaService.findByDueñoId(loggedInClient.getId());
+        System.out.println("Cliente loggeado: " + loggedInClient.getNombre() + "id: " + loggedInClient.getClienteId());
+        List<mascota> lista = mascotaService.findByDueñoId(loggedInClient.getClienteId());
 
         ResponseEntity<List<mascota>> response = new ResponseEntity<>(lista, HttpStatus.OK);
         return response;

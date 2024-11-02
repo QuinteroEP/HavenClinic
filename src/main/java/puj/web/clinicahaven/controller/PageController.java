@@ -51,7 +51,7 @@ public class PageController {
             }
         } else {
             Cliente cliente = clienteService.findByEmail(email);
-            if (cliente != null && cliente.getCorreo().equals(email) && cliente.getcontrasena().equals(password)) {
+            if (cliente != null && cliente.getCorreo().equals(email) && cliente.getContrasena().equals(password)) {
                 SessionUtil.setLoggedInClient(session, cliente);
                 return "redirect:/menu";
             }

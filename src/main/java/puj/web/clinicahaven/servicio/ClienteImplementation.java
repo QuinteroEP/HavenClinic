@@ -65,12 +65,12 @@ public class ClienteImplementation implements ClienteService{
     @Transactional
     public void update(Cliente cliente) {
 
-        Cliente existingCliente = repoCliente.findById(cliente.getId()).orElse(null);
+        Cliente existingCliente = repoCliente.findById(cliente.getClienteId()).orElse(null);
         if (existingCliente != null) {
             existingCliente.setNombre(cliente.getNombre());
             existingCliente.setCelular(cliente.getCelular());
             existingCliente.setCorreo(cliente.getCorreo());
-            existingCliente.setcontrasena(cliente.getcontrasena());
+            existingCliente.setContrasena(cliente.getContrasena());
 
             repoCliente.save(existingCliente);
         } else {

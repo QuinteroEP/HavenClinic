@@ -12,8 +12,12 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Cliente {
 
     @Id
@@ -55,69 +59,6 @@ public class Cliente {
         this.celular = celular;
         this.correo = correo;
         this.contrasena = contrasena;
-    }
-
-    public Cliente() {
-    }
-
-
-    public String getNombre() {
-        return nombre;
-    }
-
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-
-    public int getCedula() {
-        return cedula;
-    }
-
-
-    public void setCedula(int cedula) {
-        this.cedula = cedula;
-    }
-
-
-    public int getCelular() {
-        return celular;
-    }
-
-
-    public void setCelular(int celular) {
-        this.celular = celular;
-    }
-
-
-    public String getCorreo() {
-        return correo;
-    }
-
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-
-    public String getcontrasena() {
-        return contrasena;
-    }
-
-
-    public void setcontrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
-    public long getId() {
-        return clienteId;
-    }
-
-
-    public void setId(long clienteId) {
-        this.clienteId = clienteId;
-    }
-    
-    }
+    }    
+}
 

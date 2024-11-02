@@ -222,16 +222,16 @@ public class DatabaseInit implements ApplicationRunner {
         csvService.uploadCsv("src/main/resources/MEDICAMENTOS_VETERINARIA.csv");
 
         //datos de tratamiento
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-11-09")));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2021-01-12")));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2022-12-20")));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2022-10-21")));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2023-09-19")));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2020-01-23")));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2019-08-14")));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2022-11-06")));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-09-06")));
-        tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-10-02")));
+        tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2024-11-09")).build());
+        tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2021-01-12")).build());
+        tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2022-12-20")).build());
+        tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2022-10-21")).build());
+        tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2023-09-19")).build());
+        tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2020-01-23")).build());
+        tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2019-08-14")).build());
+        tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2022-11-06")).build());
+        tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2024-09-06")).build());
+        tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2024-10-02")).build());
 
         // Asociar mascotas a dueños ciclicamente
         List<mascota> mascotas = petRepository1.findAll();
