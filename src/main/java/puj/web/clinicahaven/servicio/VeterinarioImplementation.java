@@ -62,8 +62,8 @@ public List<Veterinario> findByNombre(String nombre) {
 
     @Override
     @Transactional
-    public void add(Veterinario veterinario) {
-        repoVeterinario.save(veterinario);
+    public Veterinario add(Veterinario veterinario) {
+        return repoVeterinario.save(veterinario);
     }
 
     //almacena la nueva informacion del veterinario

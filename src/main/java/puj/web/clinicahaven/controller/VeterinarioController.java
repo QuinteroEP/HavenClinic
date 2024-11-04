@@ -3,6 +3,7 @@ package puj.web.clinicahaven.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
-
+import puj.web.clinicahaven.dto.VeterinarioDTO;
+import puj.web.clinicahaven.dto.VeterinarioMapper;
 import puj.web.clinicahaven.entity.Veterinario;
 import puj.web.clinicahaven.servicio.VeterinarioService;
 
@@ -33,12 +35,14 @@ public class VeterinarioController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Veterinario> getVeterinarioById(@PathVariable Long id) {
+    public ResponseEntity<VeterinarioDTO> getVeterinarioById(@PathVariable Long id) {
         Veterinario veterinario = veterinarioService.findById(id);
+        VeterinarioDTO VeterinarioDTO = VeterinarioMapper.INSTANCE.convert(veterinario);
         if (veterinario == null) {
-            return ResponseEntity.notFound().build();
+            return new ResponseEntity<VeterinarioDTO>(VeterinarioDTO, HttpStatus.BAD_REQUEST);
+      
         }
-        return ResponseEntity.ok(veterinario);
+        return new ResponseEntity<VeterinarioDTO>(VeterinarioDTO, HttpStatus.CREATED);
     }
 
       @GetMapping("/findByCedula/{cedula}")
@@ -49,8 +53,13 @@ public class VeterinarioController {
     }
 
     @PostMapping("/agregarVeterinario")
-    public  void addVeterinario(@RequestBody Veterinario veterinario) {
-        veterinarioService.add(veterinario);
+    public  ResponseEntity<VeterinarioDTO> addVeterinario(@RequestBody Veterinario veterinario) {
+       Veterinario newVeterinario = veterinarioService.add(veterinario);
+       VeterinarioDTO VeterinarioDTO = VeterinarioMapper.INSTANCE.convert(newVeterinario);
+        if(newVeterinario == null){
+            return new ResponseEntity<VeterinarioDTO>(VeterinarioDTO, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<VeterinarioDTO>(VeterinarioDTO, HttpStatus.CREATED);
        
     }
 

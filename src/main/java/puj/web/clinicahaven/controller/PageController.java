@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
+import puj.web.clinicahaven.dto.VeterinarioDTO;
+import puj.web.clinicahaven.dto.VeterinarioMapper;
 import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.SessionUtil;
 import puj.web.clinicahaven.entity.Veterinario;
@@ -43,6 +45,7 @@ public class PageController {
     public String login(@RequestParam("email") String email, @RequestParam("psw") String password, @RequestParam("userType") String userType, Model model, HttpSession session) {
         if ("veterinarian".equals(userType)) {
             Veterinario veterinario = veterinarioService.findByEmail(email);
+            VeterinarioDTO veterinarioDTO = VeterinarioMapper.INSTANCE.convert(veterinario);
             if (veterinario != null && veterinario.getCorreo().equals(email) && veterinario.getContrasena().equals(password)) {
                 SessionUtil.setLoggedInVeterinarian(session, veterinario);
                 model.addAttribute("veterinarianName", veterinario.getNombre());

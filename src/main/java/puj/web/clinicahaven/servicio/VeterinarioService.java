@@ -10,7 +10,7 @@ public interface VeterinarioService {
     Veterinario findByEmail(String email);
     List<Veterinario> findByNombre(String nombre);
     Veterinario findVetByCedula(int cedula);
-    void add(Veterinario veterinario); // Declarar el método add
+    Veterinario add(Veterinario veterinario); // Declarar el método add
     void updateVet(Veterinario veterinario); // Declarar el método update
     void deleteById(Long id);//este no se usa
      void deleteVetByCedula(int cedula); 

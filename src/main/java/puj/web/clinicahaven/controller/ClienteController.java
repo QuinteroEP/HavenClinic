@@ -3,6 +3,7 @@ package puj.web.clinicahaven.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpSession;
+import puj.web.clinicahaven.dto.ClienteDTO;
+import puj.web.clinicahaven.dto.ClienteMapper;
+import puj.web.clinicahaven.dto.VeterinarioDTO;
 import puj.web.clinicahaven.entity.Cliente;
 
 import puj.web.clinicahaven.servicio.ClienteService;
@@ -104,13 +108,15 @@ public void Eliminarcliente(@PathVariable("cedula") int cedula) {
 //actualizar cliente
 //localhost:8080/cliente/update/1
 @PutMapping("/update/{id}")
-public ResponseEntity<Cliente> actualizarCliente(HttpSession session, @RequestBody Cliente cliente, @PathVariable("id") Long id) {
+public ResponseEntity<ClienteDTO> actualizarCliente(HttpSession session, @RequestBody Cliente cliente, @PathVariable("id") Long id) {
         Cliente existingCliente = clienteService.findByid(id);
+        ClienteDTO clienteDTO = ClienteMapper.INSTANCE.convert(existingCliente);
         if (existingCliente == null) {
-            return ResponseEntity.notFound().build();
+             return new ResponseEntity<ClienteDTO>(clienteDTO, HttpStatus.BAD_REQUEST);
+
         }
         clienteService.update(cliente);
-        return ResponseEntity.ok(cliente);
+        return new ResponseEntity<ClienteDTO>(clienteDTO, HttpStatus.OK);
     }
 
     //para la barra de busqueda, ver la informacion del cliente por nombre
