@@ -5,7 +5,7 @@ import puj.web.clinicahaven.entity.Veterinario;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-11-04T17:45:30-0500",
+    date = "2024-11-05T14:19:15-0500",
     comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.40.0.z20241023-1306, environment: Java 17.0.13 (Eclipse Adoptium)"
 )
 public class VeterinarioMapperImpl implements VeterinarioMapper {

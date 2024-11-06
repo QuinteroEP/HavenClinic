@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "users")
+@Table(name = "roles")
 @Data
 @NoArgsConstructor
 public class Role {
@@ -19,7 +19,7 @@ public class Role {
 
     private String name;
 
-    private void Role(String name){
+    public  Role(String name){
         this.name = name;
     }
 }
