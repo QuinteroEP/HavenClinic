@@ -12,7 +12,7 @@ public class VeterinarioDTO {
     private int celular;
     private String especialidad;
     private String foto;
-    private int numAtenciones;
+    //private int numAtenciones;
     private boolean activo;
 
     //veterinario ->veterinarioDTO

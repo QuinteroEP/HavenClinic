@@ -24,6 +24,8 @@ import puj.web.clinicahaven.repositorio.UserRepository;
 @Service
 public class CustomUserDetailService implements UserDetailsService {
 
+    //USERENTITY  -> USERDETAILS (user estandar que usa spring security)
+
     @Autowired
     private UserRepository userRepository;
     @Autowired 
@@ -43,6 +45,7 @@ public class CustomUserDetailService implements UserDetailsService {
         return userDetails;
     }
     
+    //Roles que tenemos en la BD  a GrantedAuthority
     private Collection<GrantedAuthority> mapToGrantedAuthorities(List<Role> roles){
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }

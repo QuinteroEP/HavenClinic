@@ -5,7 +5,7 @@ import puj.web.clinicahaven.entity.Cliente;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-11-05T23:51:22-0500",
+    date = "2024-11-06T14:57:01-0500",
     comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.40.0.z20241023-1306, environment: Java 17.0.13 (Eclipse Adoptium)"
 )
 public class ClienteMapperImpl implements ClienteMapper {

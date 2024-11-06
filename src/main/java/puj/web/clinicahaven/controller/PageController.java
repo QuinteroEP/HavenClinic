@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
 import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.Veterinario;
+import puj.web.clinicahaven.security.JWTGenerator;
 import puj.web.clinicahaven.servicio.ClienteService;
 import puj.web.clinicahaven.servicio.VeterinarioService;
 
@@ -32,6 +33,9 @@ public class PageController {
 
     @Autowired
     AuthenticationManager authenticationManager; 
+
+    @Autowired
+    JWTGenerator jwtGenerator;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -61,6 +65,7 @@ public class PageController {
             );
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
+            String token = jwtGenerator.generateToken(authentication);
             return "redirect:/vetmain";
             }
             
@@ -83,6 +88,7 @@ public class PageController {
                 );
             
             SecurityContextHolder.getContext().setAuthentication(authentication);
+            String token = jwtGenerator.generateToken(authentication);  //2:07 como meto el token en la redireccion
             return "redirect:/menu";
             }
             /* 
@@ -96,5 +102,7 @@ public class PageController {
         model.addAttribute("error", "Credenciales invalidas, vuelva a intentar");
         return "loginPage";
     }
+    //JWT json web token ->encriptacion de informacion
+
 
 }

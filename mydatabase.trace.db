@@ -3575,3 +3575,11 @@ alter table if exists veterinario add constraint FKrdmk5pr2nqeuql785t0wpppwy for
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+2024-11-06 15:16:06.873015-05:00 jdbc[11]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "ROLES" no encontrada
+Table "ROLES" not found; SQL statement:
+alter table if exists user_roles add constraint FKh8ciramu9cc9q3qcqiv4ue8a6 foreign key (role_id) references roles [42102-224]
+2024-11-06 15:16:30.980079-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "DROGA" no encontrada
+Table "DROGA" not found; SQL statement:
+INSERT INTO DROGA (ID, NOMBRE, PRECIO_VENTA, PRECIO_COMPRA, UNIDADES_DISPONIBLES, UNIDADES_VENDIDAS) SELECT * FROM CSVREAD('src/main/resources/MEDICAMENTOS_VETERINARIA.csv') [42102-224]
