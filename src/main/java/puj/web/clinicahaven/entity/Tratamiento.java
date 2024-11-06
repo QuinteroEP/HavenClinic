@@ -42,4 +42,46 @@ public class Tratamiento {
     public Tratamiento(LocalDate fecha){
         this.fecha = fecha;
     }
+
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getFecha() {
+        return this.fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public mascota getMascota() {
+        return this.mascota;
+    }
+
+    public void setMascota(mascota mascota) {
+        this.mascota = mascota;
+    }
+
+    public Veterinario getVeterinario() {
+        return this.veterinario;
+    }
+
+    public void setVeterinario(Veterinario veterinario) {
+        this.veterinario = veterinario;
+    }
+
+    public Droga getDroga() {
+        return this.droga;
+    }
+
+    public void setDroga(Droga droga) {
+        this.droga = droga;
+    }
+
 }

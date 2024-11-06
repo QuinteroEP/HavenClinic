@@ -1,9 +1,9 @@
 package puj.web.clinicahaven.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,12 +17,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.qos.logback.core.net.server.Client;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpSession;
 import puj.web.clinicahaven.dto.ClienteDTO;
 import puj.web.clinicahaven.dto.ClienteMapper;
 import puj.web.clinicahaven.dto.VeterinarioDTO;
 import puj.web.clinicahaven.entity.Cliente;
+import puj.web.clinicahaven.entity.UserEntity;
+import puj.web.clinicahaven.repositorio.UserRepository;
+import puj.web.clinicahaven.security.CustomUserDetailService;
 
 import puj.web.clinicahaven.servicio.ClienteService;
 
@@ -35,8 +39,14 @@ import puj.web.clinicahaven.servicio.ClienteService;
 @CrossOrigin (origins = "http://localhost:4200") //especifica al backend que paginas le pueden hacer peticiones//conecta con angular
 public class ClienteController {
     
-    @Autowired
-    ClienteService clienteService;
+@Autowired
+ClienteService clienteService;
+
+@Autowired
+UserRepository userRepository;
+
+@Autowired
+private CustomUserDetailService customUserDetailService;
 
 
 //menu principal del cliente
@@ -86,14 +96,22 @@ public String CrearNuevoCliente(Model model) {
 }
 //agrega el cliente despues de registrarse
 //localhost:8090/cliente/agregarCliente
-
 @PostMapping("/agregarCliente")
+public ResponseEntity<Cliente> agregarCliente(@RequestBody Cliente cliente) {
+    if(userRepository.existsByUsername(cliente.getCorreo())){
+        return new ResponseEntity<Cliente>(cliente, HttpStatus.BAD_REQUEST);
+    }
 
-public void agregarCliente(@RequestBody Cliente cliente) {
+    UserEntity userEntity = customUserDetailService.ClienteToUser(cliente);
+    cliente.setUserEntity(userEntity);
+    clienteService.add(cliente);
+
+    return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);
+
+    /* 
     // HttpSession session
    clienteService.add(cliente);
-    //SessionUtil.setLoggedInClient(session, cliente);
-
+    //SessionUtil.setLoggedInClient(session, cliente);*/
 }
 
 //localhost:8080/cliente/eliminarCliente/{cedula}

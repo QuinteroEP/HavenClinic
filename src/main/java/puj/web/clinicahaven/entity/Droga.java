@@ -53,4 +53,53 @@ public class Droga {
         this.unidadesDisponibles = unidadesDisponibles;
         this.unidadesVendidas = unidadesVendidas;
     }
+
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return this.nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public float getPrecioVenta() {
+        return this.precioVenta;
+    }
+
+    public void setPrecioVenta(float precioVenta) {
+        this.precioVenta = precioVenta;
+    }
+
+    public float getPrecioCompra() {
+        return this.precioCompra;
+    }
+
+    public void setPrecioCompra(float precioCompra) {
+        this.precioCompra = precioCompra;
+    }
+
+    public int getUnidadesDisponibles() {
+        return this.unidadesDisponibles;
+    }
+
+    public void setUnidadesDisponibles(int unidadesDisponibles) {
+        this.unidadesDisponibles = unidadesDisponibles;
+    }
+
+    public int getUnidadesVendidas() {
+        return this.unidadesVendidas;
+    }
+
+    public void setUnidadesVendidas(int unidadesVendidas) {
+        this.unidadesVendidas = unidadesVendidas;
+    }    
 }

@@ -14,11 +14,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@NoArgsConstructor
+//@NoArgsConstructor
 public class Cliente {
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -63,6 +62,66 @@ public class Cliente {
         this.celular = celular;
         this.correo = correo;
         this.contrasena = contrasena;
-    }    
+    }
+
+    public Cliente() {}
+
+
+    public UserEntity getUserEntity() {
+        return this.userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
+
+    public long getClienteId() {
+        return this.clienteId;
+    }
+
+    public void setClienteId(long clienteId) {
+        this.clienteId = clienteId;
+    }
+
+    public int getCedula() {
+        return this.cedula;
+    }
+
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getNombre() {
+        return this.nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getCelular() {
+        return this.celular;
+    }
+
+    public void setCelular(int celular) {
+        this.celular = celular;
+    }
+
+    public String getCorreo() {
+        return this.correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getContrasena() {
+        return this.contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
 }
 

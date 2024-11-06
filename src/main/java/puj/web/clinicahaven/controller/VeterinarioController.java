@@ -18,7 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.Operation;
 import puj.web.clinicahaven.dto.VeterinarioDTO;
 import puj.web.clinicahaven.dto.VeterinarioMapper;
+import puj.web.clinicahaven.entity.Cliente;
+import puj.web.clinicahaven.entity.UserEntity;
 import puj.web.clinicahaven.entity.Veterinario;
+import puj.web.clinicahaven.repositorio.UserRepository;
+import puj.web.clinicahaven.security.CustomUserDetailService;
 import puj.web.clinicahaven.servicio.VeterinarioService;
 
 @RestController
@@ -28,6 +32,12 @@ public class VeterinarioController {
 
     @Autowired
     private VeterinarioService veterinarioService;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    private CustomUserDetailService customUserDetailService;
 
     @GetMapping("/all")
     public List<Veterinario> getAllVeterinarios() {
@@ -53,14 +63,29 @@ public class VeterinarioController {
     }
 
     @PostMapping("/agregarVeterinario")
-    public  ResponseEntity<VeterinarioDTO> addVeterinario(@RequestBody Veterinario veterinario) {
+    public  ResponseEntity addVeterinario(@RequestBody Veterinario veterinario) {
+        if(userRepository.existsByUsername(veterinario.getCorreo())){
+        return new ResponseEntity<String>("Este veterinario ya esta registrado", HttpStatus.BAD_REQUEST);
+        }
+
+        UserEntity userEntity = customUserDetailService.VetToUser(veterinario);
+        veterinario.setUserEntity(userEntity);
+        Veterinario VeterinarioNuevo = veterinarioService.add(veterinario);
+        VeterinarioDTO VeterinarioDTO = VeterinarioMapper.INSTANCE.convert(VeterinarioNuevo);
+
+        if(VeterinarioNuevo == null){
+            return new ResponseEntity<VeterinarioDTO>(VeterinarioDTO, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<VeterinarioDTO>(VeterinarioDTO, HttpStatus.CREATED);
+
+        /* 
        Veterinario newVeterinario = veterinarioService.add(veterinario);
        VeterinarioDTO VeterinarioDTO = VeterinarioMapper.INSTANCE.convert(newVeterinario);
         if(newVeterinario == null){
             return new ResponseEntity<VeterinarioDTO>(VeterinarioDTO, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<VeterinarioDTO>(VeterinarioDTO, HttpStatus.CREATED);
-       
+       */
     }
 
     //localhost:8090/veterinario/update/1
