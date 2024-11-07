@@ -107,7 +107,7 @@ public Cliente MostrarInfoCliente(@PathVariable("correo") String correo) {
     return cliente;
 }
 
-//registra al cliente (no se uso, se dejo como pop up de index)
+//registra al cliente (no se uso, se dejo como pop up de index) cuando se paso a angular dejo de usarse
 //localhost:8090/cliente/registrar
 
 @GetMapping("/registrar") 
@@ -167,12 +167,10 @@ public ResponseEntity<ClienteDTO> actualizarCliente(HttpSession session, @Reques
     }
 
 
-    
+    //NO SIRVE NO SE USA//ERA PARA PROBAR EL LOGIN SOLO CLIENTE
      @PostMapping("/login")
      public ResponseEntity loginCliente (@RequestBody Cliente cliente) {
 
-
-       
                 /*  */
                 Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(cliente.getCorreo(), "123")

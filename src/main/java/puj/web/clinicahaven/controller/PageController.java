@@ -103,6 +103,7 @@ public class PageController {
     
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 String token = jwtGenerator.generateToken(authentication);
+                
                 return new ResponseEntity<>(token, HttpStatus.OK);
                 
             }

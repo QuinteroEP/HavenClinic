@@ -31,16 +31,40 @@ public class SecurityConfig {
             .authorizeHttpRequests(exchanges ->   //configurar lo que quiero que sea publico o no 
                 exchanges
                      .requestMatchers("/login").permitAll()
-                    .requestMatchers("/h2/**" ).permitAll() //min 36
-                    //.requestMatchers("/mascotas/**" ).authenticated() 
-                    //.requestMatchers("/cliente/find/**" ).hasAuthority("VETERINARIO")
-                   
-                    .requestMatchers("/veterinarios/details").hasAuthority("VETERINARIO")
+                    .requestMatchers("/h2/**" ).permitAll() 
+                    //acceso del veterinario
+                    //funciones con los clientes
+                    .requestMatchers("/cliente/find/**" ).hasAuthority("VETERINARIO")
+                     .requestMatchers("/veterinarios/details").hasAuthority("VETERINARIO")
+                     .requestMatchers("/cliente/all").hasAuthority("VETERINARIO")
+                     .requestMatchers("/cliente/findClienteByNombre/**").hasAuthority("VETERINARIO")
+                     .requestMatchers("/cliente/update/**").hasAuthority("VETERINARIO")
+                     //.requestMatchers("/cliente/eliminarCliente/**").hasAuthority("VETERINARIO")
+                     //.requestMatchers("/cliente/agregarCliente").hasAuthority("VETERINARIO")
+                     //funciones con las mascotas
+                    .requestMatchers("/mascotas/vetmascota").hasAuthority("VETERINARIO")   
+                    .requestMatchers("/mascotas/addPet/**").hasAuthority("VETERINARIO") 
+                    .requestMatchers("/mascotas/deletePet/**").hasAuthority("VETERINARIO")
+                    .requestMatchers("/mascotas/actualizar_mascota/**").hasAuthority("VETERINARIO")
+
+                    //funciones con los tratamientos
+                    .requestMatchers("/tratamientos/**").hasAuthority("VETERINARIO")
+
+
+                    //Acceso del cliente
+                    .requestMatchers("/mascotas/mis_mascotas/").hasAuthority("CLIENTE")
+
+
+                     
+
+
+
+                     //acceso del cliente
                     .requestMatchers("/cliente/details").hasAuthority("CLIENTE")
                     .anyRequest().permitAll()
             )
-            .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint));
-           http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+            .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint))
+           .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
             return http.build();
      }
 
