@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
@@ -64,9 +65,10 @@ public class Cliente {
         this.contrasena = contrasena;
     }
 
-    public Cliente() {}
 
-
+public Cliente() {
+    
+}
     public UserEntity getUserEntity() {
         return this.userEntity;
     }
@@ -122,6 +124,7 @@ public class Cliente {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
+ 
 
 }
 

@@ -2,9 +2,14 @@ package puj.web.clinicahaven.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.endpoint.SecurityContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -47,6 +52,24 @@ UserRepository userRepository;
 
 @Autowired
 private CustomUserDetailService customUserDetailService;
+
+@Autowired
+AuthenticationManager authenticationManager;
+
+//Prueba de manejao de autenticacion
+@GetMapping("/details")
+public ResponseEntity<ClienteDTO> buscarCliente(){
+    Cliente cliente = clienteService.findByEmail(
+        SecurityContextHolder.getContext().getAuthentication().getName()
+
+    );
+    ClienteDTO clienteDTO = ClienteMapper.INSTANCE.convert(cliente);
+    if(cliente == null){
+        return new ResponseEntity<ClienteDTO>(clienteDTO, HttpStatus.BAD_REQUEST);
+    }
+        return new ResponseEntity<ClienteDTO>(clienteDTO, HttpStatus.OK);
+}
+
 
 
 //menu principal del cliente
@@ -142,4 +165,22 @@ public ResponseEntity<ClienteDTO> actualizarCliente(HttpSession session, @Reques
     public List<Cliente> findByNombre(@PathVariable("nombre") String nombre) {
         return clienteService.findClienteByNombre(nombre);
     }
+
+
+    
+     @PostMapping("/login")
+     public ResponseEntity loginCliente (@RequestBody Cliente cliente) {
+
+
+       
+                /*  */
+                Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(cliente.getCorreo(), "123")
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return new ResponseEntity("Usuario ingreso con exito", HttpStatus.OK);
+         
+     }
+     
+     
 }

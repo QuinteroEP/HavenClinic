@@ -1,6 +1,10 @@
 package puj.web.clinicahaven.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -11,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
@@ -55,54 +60,59 @@ public class PageController {
 
 
     @PostMapping("/login")
-    public String login(@RequestParam("email") String email, @RequestParam("psw") String password, @RequestParam("userType") String userType, Model model, HttpSession session) {
-        if ("veterinarian".equals(userType)) {
+    public ResponseEntity<String> login(@RequestBody Map<String, String> loginData) {
+        String email = loginData.get("email");
+        String password = loginData.get("psw");
+        String userType = loginData.get("userType");
+        if ("veterinario".equals(userType)) {
+        System.out.println("email: " + email + " password: " + password + " userType: " + userType);}
+        else if ("cliente".equals(userType)) {
+            System.out.println("email: " + email + " password: " + password + " userType: " + userType);
+        }
+  
+        if ("veterinario".equals(userType)) {
             Veterinario veterinario = veterinarioService.findByEmail(email);
-
-            if (veterinario != null && veterinario.getCorreo().equals(email) && veterinario.getContrasena().equals(password)) {
-            Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(veterinario.getCorreo(), veterinario.getContrasena())
-            );
-
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            String token = jwtGenerator.generateToken(authentication);
-            return "redirect:/vetmain";
-            }
+            System.out.println("veterinario: " + veterinario.getCorreo());
+            System.out.println("veterinario contrasena: " + veterinario.getContrasena());
             
-            /* 
-            Veterinario veterinario = veterinarioService.findByEmail(email);
-            VeterinarioDTO veterinarioDTO = VeterinarioMapper.INSTANCE.convert(veterinario);
+            if ( veterinario.getCorreo().equals(email) && veterinario.getContrasena().equals(password)) {
+                System.out.println("entro al veterinario: " + veterinario.getCorreo());
+                 
+                Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(veterinario.getCorreo(), password)
 
-            if (veterinario != null && veterinario.getCorreo().equals(email) && veterinario.getContrasena().equals(password)) {
-                SessionUtil.setLoggedInVeterinarian(session, veterinario);
-                model.addAttribute("veterinarianName", veterinario.getNombre());
-
-                return "redirect:/vetmain";
-            }*/
-        } else {
+                );
+    
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                String token = jwtGenerator.generateToken(authentication);
+                return new ResponseEntity<>(token, HttpStatus.OK);
+                
+            }
+        } else if ("cliente".equals(userType)) {
             Cliente cliente = clienteService.findByEmail(email);
+            System.out.println("cliente: " + cliente.getNombre());
+            System.out.println("cliente contrasena: " + cliente.getContrasena());
+            System.out.println("entro al cliente: " + cliente.getCorreo());
+            if (cliente.getCorreo().equals(email) && cliente.getContrasena().equals(password)) {
+                System.out.println("entro al cliente: " + cliente.getCorreo());
+                
 
-            if (cliente != null && passwordEncoder.matches(password, cliente.getContrasena())) {
                 Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(email, password)
                 );
-            
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            String token = jwtGenerator.generateToken(authentication);  //2:07 como meto el token en la redireccion
-            return "redirect:/menu";
+    
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                String token = jwtGenerator.generateToken(authentication);
+                return new ResponseEntity<>(token, HttpStatus.OK);
+                
             }
-            /* 
-            Cliente cliente = clienteService.findByEmail(email);
-            if (cliente != null && cliente.getCorreo().equals(email) && cliente.getContrasena().equals(password)) {
-                SessionUtil.setLoggedInClient(session, cliente);
-                return "redirect:/menu";
-            }*/
+                 
         }
-
-        model.addAttribute("error", "Credenciales invalidas, vuelva a intentar");
-        return "loginPage";
+    
+       
+        return new ResponseEntity<>("Credenciales inválidas, vuelva a intentar", HttpStatus.UNAUTHORIZED);
     }
-    //JWT json web token ->encriptacion de informacion
+
 
 
 }

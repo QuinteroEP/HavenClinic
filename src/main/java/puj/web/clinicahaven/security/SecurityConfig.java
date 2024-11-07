@@ -30,9 +30,13 @@ public class SecurityConfig {
             .headers(headers -> headers.frameOptions(frame -> frame.disable()))
             .authorizeHttpRequests(exchanges ->   //configurar lo que quiero que sea publico o no 
                 exchanges
+                     .requestMatchers("/login").permitAll()
                     .requestMatchers("/h2/**" ).permitAll() //min 36
                     //.requestMatchers("/mascotas/**" ).authenticated() 
-                    //.requestMatchers("/cliente/find/**" ).authenticated() 
+                    //.requestMatchers("/cliente/find/**" ).hasAuthority("VETERINARIO")
+                   
+                    .requestMatchers("/veterinarios/details").hasAuthority("VETERINARIO")
+                    .requestMatchers("/cliente/details").hasAuthority("CLIENTE")
                     .anyRequest().permitAll()
             )
             .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint));

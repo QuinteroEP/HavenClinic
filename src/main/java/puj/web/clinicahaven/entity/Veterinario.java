@@ -32,7 +32,7 @@ public class Veterinario {
     private String nombre;
     private int celular;
     private String especialidad;
-    @Transient ///no se muestra la contraseña en la tabla 
+    //@Transient ///no se muestra la contraseña en la tabla 
     private String contrasena;
     private String foto;
     private int numAtenciones;
@@ -68,8 +68,7 @@ public class Veterinario {
         this.activo = true;
     }
 
-
-
+/*
     public String getCorreo() {
         return correo;
     }
@@ -150,19 +149,8 @@ public class Veterinario {
         this.tratamiento = tratamiento;
     }
 
-    public boolean isActivo() {
-        return activo;
-    }
+     */
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
 
-    public UserEntity getUserEntity() {
-        return this.userEntity;
-    }
 
-    public void setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
-    }
 }

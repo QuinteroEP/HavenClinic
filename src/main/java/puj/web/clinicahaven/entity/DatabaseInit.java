@@ -367,7 +367,7 @@ public class DatabaseInit implements ApplicationRunner {
         tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-09-06")));
         tratamientoRepository.save(new Tratamiento(LocalDate.parse("2024-02-02")));
 
-        /*
+        
         tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2024-11-09")).build());
         tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2021-01-12")).build());
         tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2022-12-20")).build());
@@ -378,7 +378,7 @@ public class DatabaseInit implements ApplicationRunner {
         tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2022-11-06")).build());
         tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2024-09-06")).build());
         tratamientoRepository.save(new Tratamiento.TratamientoBuilder().fecha(LocalDate.parse("2024-10-02")).build());
- */
+ 
 
         // Asociar mascotas a dueños ciclicamente
         List<mascota> mascotas = petRepository1.findAll();

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import puj.web.clinicahaven.dto.ClienteDTO;
+import puj.web.clinicahaven.dto.ClienteMapper;
 import puj.web.clinicahaven.dto.VeterinarioDTO;
 import puj.web.clinicahaven.dto.VeterinarioMapper;
 import puj.web.clinicahaven.entity.Cliente;
@@ -38,6 +41,19 @@ public class VeterinarioController {
 
     @Autowired
     private CustomUserDetailService customUserDetailService;
+
+    //Prueba de manejao de autenticacion
+@GetMapping("/details")
+public ResponseEntity<VeterinarioDTO> buscarCliente(){
+    Veterinario veterinario = veterinarioService.findByEmail(
+        SecurityContextHolder.getContext().getAuthentication().getName()
+    );
+    VeterinarioDTO veterinarioDTO= VeterinarioMapper.INSTANCE.convert(veterinario);
+    if(veterinario == null){
+        return new ResponseEntity<VeterinarioDTO>(veterinarioDTO, HttpStatus.BAD_REQUEST);
+    }
+        return new ResponseEntity<VeterinarioDTO>(veterinarioDTO, HttpStatus.OK);
+}
 
     @GetMapping("/all")
     public List<Veterinario> getAllVeterinarios() {
