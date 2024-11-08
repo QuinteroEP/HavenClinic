@@ -129,4 +129,14 @@ public class petController {
         ResponseEntity<List<mascota>> response = new ResponseEntity<>(lista, HttpStatus.OK);
         return response;
     }
+
+    //Mostrar todas las mascotas que el veterinario esta tratando
+    //localhost:8090/mascotas/pacientes/1
+    @GetMapping("/pacientes/{id}")
+    public ResponseEntity<List<mascota>> vetPatients(@PathVariable("id") Long id) {
+        List<mascota> lista = mascotaService.getVetPets(id);
+
+        ResponseEntity<List<mascota>> response = new ResponseEntity<>(lista, HttpStatus.OK);
+        return response;
+    }
 }

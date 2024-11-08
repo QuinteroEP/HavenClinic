@@ -57,4 +57,9 @@ public class petImplementation implements petService{
     public List<mascota> findByNombre(String nombre) {
         return repo.findByNombre(nombre);
     }
+
+    @Override
+    public List<mascota> getVetPets(long id){
+        return  repo.getVetPets(id);
+    }
 }
