@@ -66,12 +66,15 @@ public class tratamientoController {
     //cambiar el estado del tratamiento de una mascota
     //localhost:8090/tratamientos/update/1/1
     @PutMapping("/update/{mascotaId}/{drogaId}")
-    @Operation(summary = "cambiar el estado del tratamiento de una mascota")
-    public ResponseEntity<mascota> alterTreatment(Model model, @PathVariable("id") Long idMascota, @PathVariable("drogaId") Long idDroga, @RequestBody Tratamiento tratamiento) {
+    @Operation(summary = "modificar el tratamiento de una mascota")
+    public ResponseEntity<mascota> alterTreatment(Model model, @PathVariable("mascotaId") Long idMascota, @PathVariable("drogaId") Long idDroga, @RequestBody Tratamiento tratamiento) {
         mascota mascota = mascotaService.findById(idMascota);
-        
-        tratamiento.setDroga(drogaService.findById(idDroga));
-        tratamiento.setMascota(mascota);
+        List<Tratamiento> tratamientos = tratamientoService.findByPetId(idMascota);
+
+        Tratamiento tratamientoMascota = tratamientos.get(tratamientos.size() - 1);
+
+        tratamientoMascota.setDroga(drogaService.findById(idDroga));
+        tratamientoService.add(tratamientoMascota);
 
         return ResponseEntity.ok(mascota);
     }

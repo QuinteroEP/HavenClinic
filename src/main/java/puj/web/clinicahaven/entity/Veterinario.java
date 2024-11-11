@@ -11,7 +11,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Transient;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -150,7 +149,11 @@ public class Veterinario {
     }
 
      */
+    public boolean getActivo() {
+        return this.activo;
+    }
 
-
-
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 }

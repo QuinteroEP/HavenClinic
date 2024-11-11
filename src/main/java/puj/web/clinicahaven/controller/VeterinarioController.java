@@ -118,14 +118,16 @@ public ResponseEntity<VeterinarioDTO> buscarCliente(){
     }
 
     @PutMapping("/cambiarestado/{cedula}")
-    public void cambiarEstadoVeterinario(@PathVariable("cedula") int cedula, @RequestBody Veterinario veterinarioDetails) {
+    public ResponseEntity<Veterinario> cambiarEstadoVeterinario(@PathVariable("cedula") int cedula, @RequestBody Veterinario veterinarioDetails) {
         Veterinario veterinario = veterinarioService.findVetByCedula(cedula);
         if (veterinario == null) {
-            return;
+            return ResponseEntity.notFound().build();
         }
 
         veterinarioService.cambiarEstado(veterinario);
+        Veterinario updatedVeterinario = veterinarioService.findVetByCedula(cedula);
 
+        return ResponseEntity.ok(updatedVeterinario);
     }
 
 

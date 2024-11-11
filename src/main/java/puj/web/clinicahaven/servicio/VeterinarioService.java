@@ -13,6 +13,6 @@ public interface VeterinarioService {
     Veterinario add(Veterinario veterinario); // Declarar el método add
     void updateVet(Veterinario veterinario); // Declarar el método update
     void deleteById(Long id);//este no se usa
-     void deleteVetByCedula(int cedula); 
-     void cambiarEstado(Veterinario veterinario);
+    void deleteVetByCedula(int cedula); 
+    Veterinario cambiarEstado(Veterinario veterinario);
 }

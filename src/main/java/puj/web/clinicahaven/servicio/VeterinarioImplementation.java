@@ -85,18 +85,13 @@ public List<Veterinario> findByNombre(String nombre) {
         }
     }
     
-
-
-      //cambia el estado del veterinario en lugar de eliminarlo
-      @Override
-      @Transactional
-      public void cambiarEstado(Veterinario veterinario) {//cambiar el estado
-          Veterinario existingVeterinario = repoVeterinario.findByCedula(veterinario.getCedula());
-         
-  
-          existingVeterinario.setActivo(false );
-          repoVeterinario.save(existingVeterinario);
-  
-  
-      }
+    //cambia el estado del veterinario en lugar de eliminarlo
+    @Override
+    @Transactional
+    public Veterinario cambiarEstado(Veterinario veterinario){
+        Veterinario existingVeterinario = repoVeterinario.findByCedula(veterinario.getCedula());
+    
+        existingVeterinario.setActivo(!existingVeterinario.getActivo());
+        return repoVeterinario.saveAndFlush(existingVeterinario);
+    }
 }

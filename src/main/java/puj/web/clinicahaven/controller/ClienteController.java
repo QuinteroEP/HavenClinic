@@ -120,9 +120,9 @@ public String CrearNuevoCliente(Model model) {
 //agrega el cliente despues de registrarse
 //localhost:8090/cliente/agregarCliente
 @PostMapping("/agregarCliente")
-public ResponseEntity<Cliente> agregarCliente(@RequestBody Cliente cliente) {
+public ResponseEntity agregarCliente(@RequestBody Cliente cliente) {
     if(userRepository.existsByUsername(cliente.getCorreo())){
-        return new ResponseEntity<Cliente>(cliente, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<String>("Este correo ya esta registrado", HttpStatus.BAD_REQUEST);
     }
 
     UserEntity userEntity = customUserDetailService.ClienteToUser(cliente);
@@ -141,9 +141,7 @@ public ResponseEntity<Cliente> agregarCliente(@RequestBody Cliente cliente) {
 //path variable para mandar el parametro de la url a la base de datos
 @DeleteMapping("/eliminarCliente/{cedula}")
 public void Eliminarcliente(@PathVariable("cedula") int cedula) {
-    clienteService.deleteByCedula(cedula);
-    
-
+    clienteService.delete(clienteService.findByCedula(cedula));
 }
 
 //actualizar cliente
