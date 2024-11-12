@@ -57,7 +57,10 @@ public class SecurityConfig {
 
                     //acceso del admin
                     .requestMatchers("/admin/").hasAuthority("ADMIN")
-
+                    .requestMatchers("/veterinarios/all").hasAuthority("ADMIN")
+                     .requestMatchers("/veterinarios/agregarVeterinario").hasAuthority("ADMIN")
+                     .requestMatchers("/veterinarios/update/**").hasAuthority("ADMIN")
+               
                      
 
 
