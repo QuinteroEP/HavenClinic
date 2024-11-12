@@ -2,10 +2,9 @@ package puj.web.clinicahaven.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.endpoint.SecurityContext;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,12 +22,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ch.qos.logback.core.net.server.Client;
+
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpSession;
 import puj.web.clinicahaven.dto.ClienteDTO;
 import puj.web.clinicahaven.dto.ClienteMapper;
-import puj.web.clinicahaven.dto.VeterinarioDTO;
+
 import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.UserEntity;
 import puj.web.clinicahaven.repositorio.UserRepository;

@@ -60,7 +60,7 @@ public class SecurityConfig {
                     .requestMatchers("/veterinarios/all").hasAuthority("ADMIN")
                      .requestMatchers("/veterinarios/agregarVeterinario").hasAuthority("ADMIN")
                      .requestMatchers("/veterinarios/update/**").hasAuthority("ADMIN")
-               
+                     .requestMatchers("/dashboard/kpis").hasAuthority("ADMIN")
                      
 
 

@@ -108,6 +108,7 @@ public ResponseEntity<VeterinarioDTO> buscarCliente(){
     //se encarga de actualizar la info del vet
     @PutMapping("/update/{cedula}")
     public void updateVeterinario(@PathVariable("cedula") int cedula, @RequestBody Veterinario veterinarioDetails) {
+        System.out.println("cedula cliente a actualizar: "+ cedula);
         Veterinario veterinario = veterinarioService.findVetByCedula(cedula);
         if (veterinario == null) {
             return;
@@ -117,17 +118,20 @@ public ResponseEntity<VeterinarioDTO> buscarCliente(){
 
     }
 
-    @PutMapping("/cambiarestado/{cedula}")
-    public ResponseEntity<Veterinario> cambiarEstadoVeterinario(@PathVariable("cedula") int cedula, @RequestBody Veterinario veterinarioDetails) {
+    @PutMapping("/cambiarEstado/{cedula}")
+    public void cambiarEstadoVeterinario(@PathVariable("cedula") int cedula, @RequestBody Veterinario veterinarioDetails) {
+        System.out.println("cedula cliente a eliminar: "+ cedula);
         Veterinario veterinario = veterinarioService.findVetByCedula(cedula);
+        System.out.println("el veterinario es:"+ veterinario);
         if (veterinario == null) {
-            return ResponseEntity.notFound().build();
+            return;
         }
 
         veterinarioService.cambiarEstado(veterinario);
-        Veterinario updatedVeterinario = veterinarioService.findVetByCedula(cedula);
+        System.out.println("el veterinario esta:"+ veterinario.getActivo());
+      
 
-        return ResponseEntity.ok(updatedVeterinario);
+        return;
     }
 
 
