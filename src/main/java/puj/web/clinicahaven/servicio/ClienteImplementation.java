@@ -3,10 +3,15 @@ package puj.web.clinicahaven.servicio;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import puj.web.clinicahaven.entity.Cliente;
+import puj.web.clinicahaven.entity.Role;
+import puj.web.clinicahaven.entity.UserEntity;
+import puj.web.clinicahaven.repositorio.RoleRepository;
+import puj.web.clinicahaven.repositorio.UserRepository;
 import puj.web.clinicahaven.repositorio.clienteRepository;
 
 // @Service es un decorador que indica que la clase es un servicio para ser inyectada en otros componentes
@@ -15,6 +20,15 @@ public class ClienteImplementation implements ClienteService{
 
     @Autowired //en este caso se inyecta el repositorio de cliente en el servicio
     clienteRepository repoCliente;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    RoleRepository roleRepository;
 
     @Override
     public Cliente findByid(Long id) {
@@ -78,15 +92,42 @@ public class ClienteImplementation implements ClienteService{
         }
     }
 
-    @Override
-    @Transactional
-    public void add(Cliente cliente) {
-     
-        repoCliente.save(cliente);
-    }
+@Override
+@Transactional
+public void add(Cliente cliente) {
+    UserEntity userEntity = new UserEntity();
+    userEntity.setUsername(cliente.getCorreo());
+    userEntity.setContrasena(passwordEncoder.encode(cliente.getContrasena()));
+    Role roles = roleRepository.findByName("CLIENTE").get();
+    userEntity.setRoles(List.of(roles));
+    userRepository.save(userEntity);
+
+    cliente.setUserEntity(userEntity);
+    repoCliente.save(cliente);
+}
 
     @Override
     public List<Cliente>  findClienteByNombre(String nombre) {
         return repoCliente.findByNombre(nombre);
+    }
+
+    //que paso con cliente service? .-.
+    
+    @Override
+    @Transactional
+    public void delete(Cliente cliente) {
+        //System.out.println("Cliente a eliminar: " + cliente);
+        if (cliente.getUserEntity() != null) {
+            // Eliminar las referencias en la tabla user_roles
+            UserEntity userEntity = cliente.getUserEntity();
+            System.out.println("UserEntity: " + userEntity);    
+            userEntity.getRoles().clear();
+            userRepository.save(userEntity);
+    
+            // Ahora eliminar el UserEntity
+            userRepository.delete(userEntity);
+        }
+        System.out.println("Cliente eliminado con éxito del repo");
+        repoCliente.delete(cliente);
     }
 }

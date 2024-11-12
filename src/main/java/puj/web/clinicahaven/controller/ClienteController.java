@@ -3,6 +3,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.endpoint.SecurityContext;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -55,6 +56,8 @@ private CustomUserDetailService customUserDetailService;
 
 @Autowired
 AuthenticationManager authenticationManager;
+
+UserEntity userEntity;
 
 //Prueba de manejao de autenticacion
 @GetMapping("/details")
@@ -140,8 +143,15 @@ public ResponseEntity agregarCliente(@RequestBody Cliente cliente) {
 //localhost:8080/cliente/eliminarCliente/{cedula}
 //path variable para mandar el parametro de la url a la base de datos
 @DeleteMapping("/eliminarCliente/{cedula}")
-public void Eliminarcliente(@PathVariable("cedula") int cedula) {
-    clienteService.delete(clienteService.findByCedula(cedula));
+public ResponseEntity<String> eliminarCliente(@PathVariable("cedula") int cedula) {
+    Cliente cliente = clienteService.findByCedula(cedula);
+
+    if (cliente == null) {
+        return new ResponseEntity<>("Cliente no encontrado", HttpStatus.NOT_FOUND);
+    }
+    clienteService.delete(cliente);
+    System.out.println("Cliente eliminado con éxito"+HttpStatus.OK);
+    return new ResponseEntity<String>("Cliente eliminado con éxito", HttpStatus.OK);
 }
 
 //actualizar cliente

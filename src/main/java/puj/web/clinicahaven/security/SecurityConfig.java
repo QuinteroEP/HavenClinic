@@ -55,6 +55,9 @@ public class SecurityConfig {
                     .requestMatchers("/mascotas/mis_mascotas/").hasAuthority("CLIENTE")
 
 
+                    //acceso del admin
+                    .requestMatchers("/admin/").hasAuthority("ADMIN")
+
                      
 
 
