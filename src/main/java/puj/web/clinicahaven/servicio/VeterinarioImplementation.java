@@ -3,11 +3,15 @@ package puj.web.clinicahaven.servicio;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
-
+import puj.web.clinicahaven.entity.Role;
+import puj.web.clinicahaven.entity.UserEntity;
 import puj.web.clinicahaven.entity.Veterinario;
+import puj.web.clinicahaven.repositorio.RoleRepository;
+import puj.web.clinicahaven.repositorio.UserRepository;
 import puj.web.clinicahaven.repositorio.VeterinarioRepository;
 
 
@@ -16,6 +20,16 @@ public class VeterinarioImplementation implements VeterinarioService {
 
     @Autowired
     VeterinarioRepository repoVeterinario;
+
+      @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    RoleRepository roleRepository;
+
 
     @Override
     public Veterinario findById(Long id) {
@@ -63,6 +77,14 @@ public List<Veterinario> findByNombre(String nombre) {
     @Override
     @Transactional
     public Veterinario add(Veterinario veterinario) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUsername(veterinario.getCorreo());
+        userEntity.setContrasena(passwordEncoder.encode(veterinario.getContrasena()));
+        Role roles = roleRepository.findByName("VETERINARIO").get();
+        userEntity.setRoles(List.of(roles));
+        userRepository.save(userEntity);
+
+        veterinario.setUserEntity(userEntity);
         return repoVeterinario.save(veterinario);
     }
 
