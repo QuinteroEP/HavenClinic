@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
+import puj.web.clinicahaven.entity.Admin;
 import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.Veterinario;
 import puj.web.clinicahaven.security.JWTGenerator;
 import puj.web.clinicahaven.servicio.ClienteService;
 import puj.web.clinicahaven.servicio.VeterinarioService;
+import puj.web.clinicahaven.servicio.adminService;
 
 @Controller
 @CrossOrigin(origins = "http://localhost:4200")
@@ -35,6 +37,9 @@ public class PageController {
 
     @Autowired
     private VeterinarioService veterinarioService;
+
+    @Autowired
+    private adminService  adminService;
 
     @Autowired
     AuthenticationManager authenticationManager; 
@@ -108,6 +113,17 @@ public class PageController {
                 
             }
                  
+        }else if ("admin".equals(userType)) {
+            Admin admin = adminService.findByCorreo(email);
+            if ( admin.getCorreo().equals(email) && admin.getContrasena().equals(password)) {
+                Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(email, password)
+                );
+    
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                String token = jwtGenerator.generateToken(authentication);
+                return new ResponseEntity<>(token, HttpStatus.OK);
+            }
         }
     
        

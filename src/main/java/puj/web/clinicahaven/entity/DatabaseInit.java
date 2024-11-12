@@ -15,6 +15,7 @@ import jakarta.transaction.Transactional;
 import puj.web.clinicahaven.repositorio.RoleRepository;
 import puj.web.clinicahaven.repositorio.UserRepository;
 import puj.web.clinicahaven.repositorio.VeterinarioRepository;
+import puj.web.clinicahaven.repositorio.adminRepository;
 import puj.web.clinicahaven.repositorio.clienteRepository;
 import puj.web.clinicahaven.repositorio.drogaRepository;
 import puj.web.clinicahaven.repositorio.petRepository;
@@ -32,6 +33,8 @@ public class DatabaseInit implements ApplicationRunner {
     petRepository petRepository1;
     @Autowired
     VeterinarioRepository veterinarioRepository;
+    @Autowired
+    adminRepository  adminRepository;
     @Autowired
     drogaRepository drogaRepository;
     @Autowired
@@ -53,10 +56,19 @@ public class DatabaseInit implements ApplicationRunner {
 
         roleRepository.save(new Role("VETERINARIO"));
         roleRepository.save(new Role("CLIENTE"));
+        roleRepository.save(new Role("ADMIN"));
 
         Cliente clienteSave;
         Veterinario veterinarioSave;
+        Admin adminSave;
         UserEntity userEntity;
+
+        //CREACION DEL ADMIN
+        adminSave = new Admin("user","contra");
+        userEntity = saveUserAdmin(adminSave);
+        adminSave.setUserEntity(userEntity);
+        adminRepository.save(adminSave);
+
         
         //datos quemados de clientes
         //1.Crear el onbjeto
@@ -310,7 +322,7 @@ public class DatabaseInit implements ApplicationRunner {
 
         //Datos quemados de veterinarios
 
-        veterinarioSave = new Veterinario(1234, "Admin", 111, "Cardilogia", "abc", "", 0, "qwe@m.c");
+        veterinarioSave = new Veterinario(1234, "PEDRITO", 111, "Cardilogia", "abc", "", 0, "qwe@m.c");
         userEntity = saveUserVeterinario(veterinarioSave);
         veterinarioSave.setUserEntity(userEntity);
         veterinarioRepository.save(veterinarioSave);
@@ -447,4 +459,17 @@ public class DatabaseInit implements ApplicationRunner {
         userEntity.setRoles(List.of(roles));
         return userRepository.save(userEntity);
     }
+
+    private UserEntity saveUserAdmin(Admin admin){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUsername(admin.getCorreo());
+        userEntity.setContrasena(passwordEncoder.encode(admin.getContrasena()));
+
+        Role roles = roleRepository.findByName("ADMIN").get();
+        userEntity.setRoles(List.of(roles));
+        return userRepository.save(userEntity);
+    }
+
+
+
 }

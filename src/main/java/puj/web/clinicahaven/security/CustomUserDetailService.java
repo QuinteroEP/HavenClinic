@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import puj.web.clinicahaven.entity.Admin;
 import puj.web.clinicahaven.entity.Cliente;
 import puj.web.clinicahaven.entity.Role;
 import puj.web.clinicahaven.entity.UserEntity;
@@ -71,4 +72,15 @@ public class CustomUserDetailService implements UserDetailsService {
 
         return user;
     }
+
+    public UserEntity AdminToUser(Admin admin){
+        UserEntity user = new UserEntity();
+        user.setUsername(admin.getCorreo());
+        user.setContrasena(passwordEncoder.encode(admin.getContrasena()));
+
+        Role roles = roleRepository.findByName("ADMIN").get();
+        user.setRoles(List.of(roles));
+
+        return user;
+    }   
 }
