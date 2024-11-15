@@ -64,8 +64,8 @@ public class petController {
     @GetMapping("/mis_mascotas")
     public ResponseEntity<List<mascota>> showClientPets( HttpSession session) {
         Cliente loggedInClient = SessionUtil.getLoggedInClient(session);
-        System.out.println("Cliente loggeado: " + loggedInClient.getNombre() + "id: " + loggedInClient.getId());
-        List<mascota> lista = mascotaService.findByDueñoId(loggedInClient.getId());
+        System.out.println("Cliente loggeado: " + loggedInClient.getNombre() + "id: " + loggedInClient.getClienteId());
+        List<mascota> lista = mascotaService.findByDueñoId(loggedInClient.getClienteId());
 
         ResponseEntity<List<mascota>> response = new ResponseEntity<>(lista, HttpStatus.OK);
         return response;
@@ -126,6 +126,16 @@ public class petController {
     public ResponseEntity<List<mascota>> findByNombre(@PathVariable("nombre") String nombre) {
         List<mascota> lista =  mascotaService.findByNombre(nombre);
                 
+        ResponseEntity<List<mascota>> response = new ResponseEntity<>(lista, HttpStatus.OK);
+        return response;
+    }
+
+    //Mostrar todas las mascotas que el veterinario esta tratando
+    //localhost:8090/mascotas/pacientes/1
+    @GetMapping("/pacientes/{id}")
+    public ResponseEntity<List<mascota>> vetPatients(@PathVariable("id") Long id) {
+        List<mascota> lista = mascotaService.getVetPets(id);
+
         ResponseEntity<List<mascota>> response = new ResponseEntity<>(lista, HttpStatus.OK);
         return response;
     }

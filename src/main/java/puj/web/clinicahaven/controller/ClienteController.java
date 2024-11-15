@@ -1,9 +1,15 @@
 package puj.web.clinicahaven.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,9 +22,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpSession;
+import puj.web.clinicahaven.dto.ClienteDTO;
+import puj.web.clinicahaven.dto.ClienteMapper;
+
 import puj.web.clinicahaven.entity.Cliente;
+import puj.web.clinicahaven.entity.UserEntity;
+import puj.web.clinicahaven.repositorio.UserRepository;
+import puj.web.clinicahaven.security.CustomUserDetailService;
 
 import puj.web.clinicahaven.servicio.ClienteService;
 
@@ -31,8 +44,34 @@ import puj.web.clinicahaven.servicio.ClienteService;
 @CrossOrigin (origins = "http://localhost:4200") //especifica al backend que paginas le pueden hacer peticiones//conecta con angular
 public class ClienteController {
     
-    @Autowired
-    ClienteService clienteService;
+@Autowired
+ClienteService clienteService;
+
+@Autowired
+UserRepository userRepository;
+
+@Autowired
+private CustomUserDetailService customUserDetailService;
+
+@Autowired
+AuthenticationManager authenticationManager;
+
+UserEntity userEntity;
+
+//Prueba de manejao de autenticacion
+@GetMapping("/details")
+public ResponseEntity<ClienteDTO> buscarCliente(){
+    Cliente cliente = clienteService.findByEmail(
+        SecurityContextHolder.getContext().getAuthentication().getName()
+
+    );
+    ClienteDTO clienteDTO = ClienteMapper.INSTANCE.convert(cliente);
+    if(cliente == null){
+        return new ResponseEntity<ClienteDTO>(clienteDTO, HttpStatus.BAD_REQUEST);
+    }
+        return new ResponseEntity<ClienteDTO>(clienteDTO, HttpStatus.OK);
+}
+
 
 
 //menu principal del cliente
@@ -70,7 +109,7 @@ public Cliente MostrarInfoCliente(@PathVariable("correo") String correo) {
     return cliente;
 }
 
-//registra al cliente (no se uso, se dejo como pop up de index)
+//registra al cliente (no se uso, se dejo como pop up de index) cuando se paso a angular dejo de usarse
 //localhost:8090/cliente/registrar
 
 @GetMapping("/registrar") 
@@ -82,35 +121,50 @@ public String CrearNuevoCliente(Model model) {
 }
 //agrega el cliente despues de registrarse
 //localhost:8090/cliente/agregarCliente
-
 @PostMapping("/agregarCliente")
+public ResponseEntity agregarCliente(@RequestBody Cliente cliente) {
+    if(userRepository.existsByUsername(cliente.getCorreo())){
+        return new ResponseEntity<String>("Este correo ya esta registrado", HttpStatus.BAD_REQUEST);
+    }
 
-public void agregarCliente(@RequestBody Cliente cliente) {
+    UserEntity userEntity = customUserDetailService.ClienteToUser(cliente);
+    cliente.setUserEntity(userEntity);
+    clienteService.add(cliente);
+
+    return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);
+
+    /* 
     // HttpSession session
    clienteService.add(cliente);
-    //SessionUtil.setLoggedInClient(session, cliente);
-
+    //SessionUtil.setLoggedInClient(session, cliente);*/
 }
 
 //localhost:8080/cliente/eliminarCliente/{cedula}
 //path variable para mandar el parametro de la url a la base de datos
 @DeleteMapping("/eliminarCliente/{cedula}")
-public void Eliminarcliente(@PathVariable("cedula") int cedula) {
-    clienteService.deleteByCedula(cedula);
-    
+public ResponseEntity<String> eliminarCliente(@PathVariable("cedula") int cedula) {
+    Cliente cliente = clienteService.findByCedula(cedula);
 
+    if (cliente == null) {
+        return new ResponseEntity<>("Cliente no encontrado", HttpStatus.NOT_FOUND);
+    }
+    clienteService.delete(cliente);
+    System.out.println("Cliente eliminado con éxito"+HttpStatus.OK);
+    return new ResponseEntity<String>("Cliente eliminado con éxito", HttpStatus.OK);
 }
 
 //actualizar cliente
 //localhost:8080/cliente/update/1
 @PutMapping("/update/{id}")
-public ResponseEntity<Cliente> actualizarCliente(HttpSession session, @RequestBody Cliente cliente, @PathVariable("id") Long id) {
+public ResponseEntity<ClienteDTO> actualizarCliente(HttpSession session, @RequestBody Cliente cliente, @PathVariable("id") Long id) {
         Cliente existingCliente = clienteService.findByid(id);
+        ClienteDTO clienteDTO = ClienteMapper.INSTANCE.convert(existingCliente);
         if (existingCliente == null) {
-            return ResponseEntity.notFound().build();
+             return new ResponseEntity<ClienteDTO>(clienteDTO, HttpStatus.BAD_REQUEST);
+
         }
         clienteService.update(cliente);
-        return ResponseEntity.ok(cliente);
+        return new ResponseEntity<ClienteDTO>(clienteDTO, HttpStatus.OK);
     }
 
     //para la barra de busqueda, ver la informacion del cliente por nombre
@@ -118,4 +172,20 @@ public ResponseEntity<Cliente> actualizarCliente(HttpSession session, @RequestBo
     public List<Cliente> findByNombre(@PathVariable("nombre") String nombre) {
         return clienteService.findClienteByNombre(nombre);
     }
+
+
+    //NO SIRVE NO SE USA//ERA PARA PROBAR EL LOGIN SOLO CLIENTE
+     @PostMapping("/login")
+     public ResponseEntity loginCliente (@RequestBody Cliente cliente) {
+
+                /*  */
+                Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(cliente.getCorreo(), "123")
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return new ResponseEntity("Usuario ingreso con exito", HttpStatus.OK);
+         
+     }
+     
+     
 }

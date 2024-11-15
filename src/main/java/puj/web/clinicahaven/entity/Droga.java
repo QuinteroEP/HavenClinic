@@ -9,8 +9,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Droga {
     @Id
     @GeneratedValue
@@ -49,9 +53,6 @@ public class Droga {
         this.unidadesDisponibles = unidadesDisponibles;
         this.unidadesVendidas = unidadesVendidas;
     }
-
-    public Droga(){}
-
 
 
     public Long getId() {
@@ -100,5 +101,5 @@ public class Droga {
 
     public void setUnidadesVendidas(int unidadesVendidas) {
         this.unidadesVendidas = unidadesVendidas;
-    }
+    }    
 }

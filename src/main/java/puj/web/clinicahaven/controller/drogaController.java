@@ -26,6 +26,7 @@ public class drogaController {
         return drogaService.findAll();
     }
 
+
     //Mostrar informacion de una droga
     //localhost:8090/drogas/info/1
     @GetMapping("/info/{id}")

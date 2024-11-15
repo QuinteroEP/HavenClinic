@@ -9,8 +9,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Tratamiento {
     @Id
     @GeneratedValue
@@ -18,7 +26,6 @@ public class Tratamiento {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate fecha;
-
 
     @ManyToOne
     @JsonIgnore
@@ -32,13 +39,10 @@ public class Tratamiento {
     @JsonIgnore
     private Droga droga;
 
-    public Tratamiento(){
-
-    }
-
     public Tratamiento(LocalDate fecha){
         this.fecha = fecha;
     }
+
 
     public Long getId() {
         return this.id;
@@ -79,4 +83,5 @@ public class Tratamiento {
     public void setDroga(Droga droga) {
         this.droga = droga;
     }
+
 }

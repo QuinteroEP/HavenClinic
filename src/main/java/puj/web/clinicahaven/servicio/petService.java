@@ -24,4 +24,6 @@ public interface petService {
     public List<mascota> findByDueño(Cliente dueño);
     
     public List<mascota> findByDueñoId(Long id);
+
+    public List<mascota> getVetPets(long id);
 }

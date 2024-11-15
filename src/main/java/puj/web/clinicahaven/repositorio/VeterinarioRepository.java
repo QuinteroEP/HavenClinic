@@ -13,11 +13,10 @@ public interface VeterinarioRepository extends JpaRepository<Veterinario, Long> 
     Veterinario findByCorreo(String email);
 
     Veterinario findByCedula(int cedula);
+
     List<Veterinario> findByNombre(String nombre);
     
-  
     long countByActivo(boolean activo);
 
     void deleteByCedula(int cedula);
-
 }

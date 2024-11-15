@@ -34,4 +34,6 @@ public interface ClienteService {
     public void update(Cliente cliente);
     @Transactional
     public void add(Cliente cliente);
+    @Transactional
+    public void delete(Cliente cliente);
 }

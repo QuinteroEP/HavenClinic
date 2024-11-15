@@ -255,7 +255,7 @@ public class PetRepositoryTest {
         List<mascota> pets = PetRepository.findByDueñoId(id);
         //3. assert
         Assertions.assertThat(pets).isNotEmpty();
-        Assertions.assertThat(pets.get(0).getDueño().getId()).isEqualTo(2);
+        Assertions.assertThat(pets.get(0).getDueño().getClienteId()).isEqualTo(2);
     }
     @Test
     public void PetRepositoryTest_countByEnTratamiento_Pet(){

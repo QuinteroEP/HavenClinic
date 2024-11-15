@@ -10,9 +10,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Veterinario {
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private UserEntity userEntity;
+
     @Id
     @GeneratedValue
     private long vetId;
@@ -22,6 +31,7 @@ public class Veterinario {
     private String nombre;
     private int celular;
     private String especialidad;
+    //@Transient ///no se muestra la contraseña en la tabla 
     private String contrasena;
     private String foto;
     private int numAtenciones;
@@ -57,8 +67,7 @@ public class Veterinario {
         this.activo = true;
     }
 
-    public Veterinario() {}
-
+/*
     public String getCorreo() {
         return correo;
     }
@@ -139,8 +148,9 @@ public class Veterinario {
         this.tratamiento = tratamiento;
     }
 
-    public boolean isActivo() {
-        return activo;
+     */
+    public boolean getActivo() {
+        return this.activo;
     }
 
     public void setActivo(boolean activo) {
